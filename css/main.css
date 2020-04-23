@@ -1974,7 +1974,7 @@ a:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #011752;
+  background: #8fd400;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3417,7 +3417,7 @@ h2.post-title {
   border: 1px solid #fff;
   padding-left: 0px;
 background-img
-  background: url("https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE/2.jpg");
+  background-image: url("https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE/2.jpg");
 }
 h1.post-title {
   font-weight: 600;
@@ -3611,7 +3611,7 @@ li.nav-item.nav-level-6 {
     left: 0;
     top: 0;
     width: 100%;
-    background: url("https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/header-bg.jpg");
+    background-image: url("https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/header-bg.jpg");
     z-index: 99999;
     height: auto;
     position: unset;
@@ -4193,7 +4193,7 @@ ul.popular-posts .popular-posts-item .popular-posts-title a:hover {
   padding: 50px 36px 10px 36px;
 }
 #messageboard {
-  background: url("https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE/1.jpg");
+  backgroun-image: url("https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE/1.jpg");
 }
 @media (max-width: 767px) {
   #top {
