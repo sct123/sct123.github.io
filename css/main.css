@@ -2010,7 +2010,7 @@ a:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8f45ff;
+  background: #f577cc;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3185,12 +3185,12 @@ hr {
   margin-top: 20px;
 }
 .header {
-  background-image: linear-gradient(90deg, #f79533 0, #f37055 15%, #ef4e7b 30%, #a166ab 44%, #5073b8 58%, #1098ad 72%, #07b39b 86%, #6dba82 100%) !important;
+  background-image: linear-gradient(90deg, #e45636 0, #e6e990 15%, #ef4e7b 30%, #a166ab 44%, #5073b8 58%, #1098ad 72%, #07b39b 86%, #6dba82 100%) !important;
 }
 .footer {
-/*background-image: linear-gradient(90deg,#f79533 0,#f37055 15%,#ef4e7b 30%,#a166ab 44%,#5073b8 58%,#1098ad 72%,#07b39b 86%,#6dba82 100%) !important;*/
+  background-image: linear-gradient(90deg, #f79533 0, #f37055 15%, #ef4e7b 30%, #a166ab 44%, #5073b8 58%, #1098ad 72%, #07b39b 86%, #6dba82 100%) !important;
 /*background-color: rgba(243, 242, 238, 1);*/
-  background: none !important;
+/*background: none !important;*/
 }
 .site-meta .site-title {
   font-size: 28px;
@@ -3247,14 +3247,14 @@ a:hover {
   border: 1px solid #fff;
 /*-webkit-border-radius: 8px;*/
 /*-moz-border-radius: 8px;*/
-  border-radius: 3px;
+  border-radius: 5px;
   -webkit-box-shadow: #666 0px 0px 10px;
   -moz-box-shadow: #666 0px 0px 10px;
   box-shadow: #666 0px 0px 10px;
-  background: #f3f2ee;
+  background: #fff;
 /*background: #fff;*/
   behavior: url("/images/PIE.htc");
-/*border: 1px solid rgba(128, 128, 128, 0.4);*/
+  border: 1px solid rgba(128,128,128,0.4);
 /*   border-left: 1px solid darkgray;
    border-right: 1px solid darkgray;*/
 /*rgba(128, 128, 128, 0.4)*/
@@ -3456,7 +3456,7 @@ div.links-of-author.motion-element {
 }
 h2.post-title {
   font-weight: 600;
-  border: 0px solid #fff;
+  border: 1px solid #fff;
   padding-left: 0px;
 }
 h1.post-title {
