@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://mykindle.xyz/photos/index.html</loc>
+    
+    <lastmod>2020-04-24T07:49:46.730Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://mykindle.xyz/about/index.html</loc>
+    
+    <lastmod>2020-04-24T07:37:42.170Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://mykindle.xyz/book/index.html</loc>
+    
+    <lastmod>2020-04-24T03:02:08.560Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://mykindle.xyz/messageboard/index.html</loc>
     
     <lastmod>2020-04-24T01:03:01.461Z</lastmod>
