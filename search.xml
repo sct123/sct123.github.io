@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>hexo添加rss订阅功能</title>
+    <url>/2020/04/24/hexo%E6%B7%BB%E5%8A%A0rss%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<p>hexo如何添加rss功能呢？</p>
+<a id="more"></a>
+<h3 id="rss包"><a href="#rss包" class="headerlink" title="rss包"></a>rss包</h3><p>在hexojs下有一个hexo-generator-feed的npm包,用来实现订阅功能<br>首先安装这个包</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-feed</span><br></pre></td></tr></table></figure>
+<p>安装成功后在themes的主题配置文件_config.yml下配置该插件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">feed:</span><br><span class="line">    type: atom</span><br><span class="line">    path: atom.xml</span><br><span class="line">    limit: 20</span><br><span class="line">    hub:</span><br><span class="line">    content:</span><br><span class="line">    content_limit:</span><br><span class="line">    content_limit_delim: &#39; &#39;</span><br></pre></td></tr></table></figure>
+<p>参数的含义：</p>
+<p>type: RSS的类型(atom/rss2)</p>
+<p>path: 文件路径,默认是atom.xml/rss2.xml</p>
+<p>limit: 展示文章的数量,使用0或则false代表展示全部</p>
+<p>hub:</p>
+<p>content: 在RSS文件中是否包含内容 ,有3个值 true/false默认不填为false</p>
+<p>content_limit: 指定内容的长度作为摘要,仅仅在上面content设置为false和没有自定义的描述出现<br>content_limit_delim: 上面截取描述的分隔符,截取内容是以指定的这个分隔符作为截取结束的标志.在达到规定的内容长度之前最后出现的这个分隔符之前的内容,，防止从中间截断.</p>
+<h5 id="如果是next主题可以实现另一种方法："><a href="#如果是next主题可以实现另一种方法：" class="headerlink" title="如果是next主题可以实现另一种方法："></a>如果是next主题可以实现另一种方法：</h5><p>在主题的config.yml文件下找到</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rss:</span><br></pre></td></tr></table></figure>
+<p>直接设置为true就可以了</p>
+<p>配置完成后直接在根目录下运行hexo g<br>就会在你博客的pubilc 文件夹下发现atom.xml文件了</p>
+<p>参考文章：<a href="https://blog.csdn.net/weixin_34292287/article/details/88931060" target="_blank" rel="noopener">https://blog.csdn.net/weixin_34292287/article/details/88931060</a></p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>控制语句</title>
     <url>/2020/04/24/java%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B/</url>
     <content><![CDATA[<p>控制语句在基础中还是比较重要，还带那么一点有趣</p>
@@ -20,6 +46,29 @@
       </categories>
       <tags>
         <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo的使用</title>
+    <url>/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>记录一些我学到hexo命令</p>
+<a id="more"></a>
+<h2 id="Hexo学到的东西"><a href="#Hexo学到的东西" class="headerlink" title="Hexo学到的东西"></a>Hexo学到的东西</h2><h3 id="hexo命令1-本地部署"><a href="#hexo命令1-本地部署" class="headerlink" title="hexo命令1-本地部署"></a>hexo命令1-本地部署</h3><pre><code class="bash">$ hexo init &lt;folder&gt; <span class="comment">#init是初始化一个hexo文件夹</span></code></pre>
+<pre><code class="bash">$ <span class="built_in">cd</span> &lt;folder&gt;  <span class="comment">#注意一定要打开文件夹才能进行部署</span></code></pre>
+<pre><code class="bash">$ npm install    <span class="comment">#部署之前进行安装</span></code></pre>
+<pre><code class="bash">$ hexo g   <span class="comment">#生成静态网页</span></code></pre>
+<pre><code class="bash">$ hexo s      <span class="comment">#启动服务器 启动之后会默认给一个网址进去就是我们部署的网页了</span></code></pre>
+<h3 id="更换hexo主题"><a href="#更换hexo主题" class="headerlink" title="更换hexo主题"></a>更换hexo主题</h3><pre><code class="bash"> 把你想更换的主题放在themes目录下。官网有很多好看的主题：https://hexo.io/themes/
+
+ 然后修改站点目录下的_config.yml配置文件找到themes: landscape(默认主题)
+
+修改成你在themes下放好的主题，就完成了</code></pre>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -250,32 +299,6 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo添加rss订阅功能</title>
-    <url>/2020/04/24/hexo%E6%B7%BB%E5%8A%A0rss%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD/</url>
-    <content><![CDATA[<p>hexo如何添加rss功能呢？</p>
-<a id="more"></a>
-<h3 id="rss包"><a href="#rss包" class="headerlink" title="rss包"></a>rss包</h3><p>在hexojs下有一个hexo-generator-feed的npm包,用来实现订阅功能<br>首先安装这个包</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-feed</span><br></pre></td></tr></table></figure>
-<p>安装成功后在themes的主题配置文件_config.yml下配置该插件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">feed:</span><br><span class="line">    type: atom</span><br><span class="line">    path: atom.xml</span><br><span class="line">    limit: 20</span><br><span class="line">    hub:</span><br><span class="line">    content:</span><br><span class="line">    content_limit:</span><br><span class="line">    content_limit_delim: &#39; &#39;</span><br></pre></td></tr></table></figure>
-<p>参数的含义：</p>
-<p>type: RSS的类型(atom/rss2)</p>
-<p>path: 文件路径,默认是atom.xml/rss2.xml</p>
-<p>limit: 展示文章的数量,使用0或则false代表展示全部</p>
-<p>hub:</p>
-<p>content: 在RSS文件中是否包含内容 ,有3个值 true/false默认不填为false</p>
-<p>content_limit: 指定内容的长度作为摘要,仅仅在上面content设置为false和没有自定义的描述出现<br>content_limit_delim: 上面截取描述的分隔符,截取内容是以指定的这个分隔符作为截取结束的标志.在达到规定的内容长度之前最后出现的这个分隔符之前的内容,，防止从中间截断.</p>
-<h5 id="如果是next主题可以实现另一种方法："><a href="#如果是next主题可以实现另一种方法：" class="headerlink" title="如果是next主题可以实现另一种方法："></a>如果是next主题可以实现另一种方法：</h5><p>在主题的config.yml文件下找到</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rss:</span><br></pre></td></tr></table></figure>
-<p>直接设置为true就可以了</p>
-<p>配置完成后直接在根目录下运行hexo g<br>就会在你博客的pubilc 文件夹下发现atom.xml文件了</p>
-<p>参考文章：<a href="https://blog.csdn.net/weixin_34292287/article/details/88931060" target="_blank" rel="noopener">https://blog.csdn.net/weixin_34292287/article/details/88931060</a></p>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java数据类型</title>
     <url>/2020/04/24/java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<p>java的数据类型可分为两大类：<br>基本数据类型（primitive data type）和引用数据类型（referece data type)</p>
@@ -346,29 +369,6 @@
       </categories>
       <tags>
         <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo的使用</title>
-    <url>/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>记录一些我学到hexo命令</p>
-<a id="more"></a>
-<h2 id="Hexo学到的东西"><a href="#Hexo学到的东西" class="headerlink" title="Hexo学到的东西"></a>Hexo学到的东西</h2><h3 id="hexo命令1-本地部署"><a href="#hexo命令1-本地部署" class="headerlink" title="hexo命令1-本地部署"></a>hexo命令1-本地部署</h3><pre><code class="bash">$ hexo init &lt;folder&gt; <span class="comment">#init是初始化一个hexo文件夹</span></code></pre>
-<pre><code class="bash">$ <span class="built_in">cd</span> &lt;folder&gt;  <span class="comment">#注意一定要打开文件夹才能进行部署</span></code></pre>
-<pre><code class="bash">$ npm install    <span class="comment">#部署之前进行安装</span></code></pre>
-<pre><code class="bash">$ hexo g   <span class="comment">#生成静态网页</span></code></pre>
-<pre><code class="bash">$ hexo s      <span class="comment">#启动服务器 启动之后会默认给一个网址进去就是我们部署的网页了</span></code></pre>
-<h3 id="更换hexo主题"><a href="#更换hexo主题" class="headerlink" title="更换hexo主题"></a>更换hexo主题</h3><pre><code class="bash"> 把你想更换的主题放在themes目录下。官网有很多好看的主题：https://hexo.io/themes/
-
- 然后修改站点目录下的_config.yml配置文件找到themes: landscape(默认主题)
-
-修改成你在themes下放好的主题，就完成了</code></pre>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
