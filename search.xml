@@ -228,6 +228,29 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo的使用</title>
+    <url>/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>记录一些我学到hexo命令</p>
+<a id="more"></a>
+<h2 id="Hexo学到的东西"><a href="#Hexo学到的东西" class="headerlink" title="Hexo学到的东西"></a>Hexo学到的东西</h2><h3 id="hexo命令1-本地部署"><a href="#hexo命令1-本地部署" class="headerlink" title="hexo命令1-本地部署"></a>hexo命令1-本地部署</h3><pre><code class="bash">$ hexo init &lt;folder&gt; <span class="comment">#init是初始化一个hexo文件夹</span></code></pre>
+<pre><code class="bash">$ <span class="built_in">cd</span> &lt;folder&gt;  <span class="comment">#注意一定要打开文件夹才能进行部署</span></code></pre>
+<pre><code class="bash">$ npm install    <span class="comment">#部署之前进行安装</span></code></pre>
+<pre><code class="bash">$ hexo g   <span class="comment">#生成静态网页</span></code></pre>
+<pre><code class="bash">$ hexo s      <span class="comment">#启动服务器 启动之后会默认给一个网址进去就是我们部署的网页了</span></code></pre>
+<h3 id="更换hexo主题"><a href="#更换hexo主题" class="headerlink" title="更换hexo主题"></a>更换hexo主题</h3><pre><code class="bash"> 把你想更换的主题放在themes目录下。官网有很多好看的主题：https://hexo.io/themes/
+
+ 然后修改站点目录下的_config.yml配置文件找到themes: landscape(默认主题)
+
+修改成你在themes下放好的主题，就完成了</code></pre>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo添加rss订阅功能</title>
     <url>/2020/04/24/hexo%E6%B7%BB%E5%8A%A0rss%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD/</url>
     <content><![CDATA[<p>hexo如何添加rss功能呢？</p>
@@ -294,25 +317,6 @@
       </tags>
   </entry>
   <entry>
-    <title>java运算符的优先级</title>
-    <url>/2020/04/24/java%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
-    <content><![CDATA[<p>java运算符的优先级</p>
-<a id="more"></a>
-<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">优先级	运算符	类	结合性</span><br><span class="line">1	()	括号运算符	由左至右</span><br><span class="line">2	!、+（正号）、-（负号）	一元运算符	由左至右</span><br><span class="line">2	~	位逻辑运算符	由右至左</span><br><span class="line">2	++、--	递增与递减运算符	由右至左</span><br><span class="line">3	*、/、%	算术运算符	由左至右</span><br><span class="line">4	+、-	算术运算符	由左至右</span><br><span class="line">5	&lt;&lt;、&gt;&gt;	位左移、右移运算符	由左至右</span><br><span class="line">6	&gt;、&gt;=、&lt;、&lt;=	关系运算符	由左至右</span><br><span class="line">7	==、!=	关系运算符	由左至右</span><br><span class="line">8	&amp;	位运算符、逻辑运算符	由左至右</span><br><span class="line">9	^	位运算符、逻辑运算符	由左至右</span><br><span class="line">10	|	位运算符、逻辑运算符	由左至右</span><br><span class="line">11	&amp;&amp;	逻辑运算符	由左至右</span><br><span class="line">12	||	逻辑运算符	由左至右</span><br><span class="line">13</span><br><span class="line">	? :	条件运算符	由右至左</span><br><span class="line">14	=、+=、-=、*=、/=、%=	赋值运算符、扩展运算符	由右至左</span><br></pre></td></tr></table></figure>
-<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">运算符	说明</span><br><span class="line">逻辑与	&amp;( 与)	两个操作数为<span class="literal">true</span>，结果才是<span class="literal">true</span>，否则是<span class="literal">false</span></span><br><span class="line">逻辑或	|(或)	两个操作数有一个是<span class="literal">true</span>，结果就是<span class="literal">true</span></span><br><span class="line">短路与	&amp;&amp;( 与)	只要有一个为<span class="literal">false</span>，则直接返回<span class="literal">false</span></span><br><span class="line">短路或	||(或)	只要有一个为<span class="literal">true</span>， 则直接返回<span class="literal">true</span></span><br><span class="line">逻辑非	!（非）	取反：!<span class="literal">false</span>为<span class="literal">true</span>，!<span class="literal">true</span>为<span class="literal">false</span></span><br><span class="line">逻辑异或	^（异或）	相同为<span class="literal">false</span>，不同为<span class="literal">true</span></span><br><span class="line">Integer.toBinaryString         一个整数的二进制表达</span><br><span class="line">&lt;&lt;								左移</span><br><span class="line">&gt;&gt;								右移</span><br><span class="line">&gt;&gt;&gt;                         带符号右移与无符号右移</span><br></pre></td></tr></table></figure>
-<h3 id="条件运算符"><a href="#条件运算符" class="headerlink" title="条件运算符"></a>条件运算符</h3><p>语法格式：<br>1    x ? y : z<br>其中 x 为 boolean 类型表达式，先计算 x 的值，若为true，则整个运算的结果为表达式 y 的值，否则整个运算结果为表达式 z 的值。</p>
-<h3 id="带符号右移-gt-gt"><a href="#带符号右移-gt-gt" class="headerlink" title="带符号右移 &gt;&gt;"></a>带符号右移 &gt;&gt;</h3><p>对于正数， 带符号右移 &gt;&gt; 会把所有的位右移，并在最前面补0<br>对于负数， 带符号右移 &gt;&gt; 会把所有的位右移，并在最前面补1</p>
-<h3 id="无符号右移-gt-gt-gt"><a href="#无符号右移-gt-gt-gt" class="headerlink" title="无符号右移&gt;&gt;&gt;"></a>无符号右移&gt;&gt;&gt;</h3><p>如果是一个负数，那么对应的二进制的第一位是1<br>无符号右移&gt;&gt;&gt;会把第一位的1也向右移动，导致移动后，第一位变成0<br>这样就会使得负数在无符号右移后，得到一个正数</p>
-<h3 id="自增-自减"><a href="#自增-自减" class="headerlink" title="自增 自减"></a>自增 自减</h3><p>++ –<br>i++  先赋值再自增<br>++i先自增再赋值</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>标识符</title>
     <url>/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/</url>
     <content><![CDATA[<p>java标识符的命名规范<br><a href="https://www.sxt.cn/Java_jQuery_in_action/Java_Identifier.html" target="_blank" rel="noopener">原文来源</a></p>
@@ -364,26 +368,22 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo的使用</title>
-    <url>/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>记录一些我学到hexo命令</p>
+    <title>java运算符的优先级</title>
+    <url>/2020/04/24/java%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
+    <content><![CDATA[<p>java运算符的优先级</p>
 <a id="more"></a>
-<h2 id="Hexo学到的东西"><a href="#Hexo学到的东西" class="headerlink" title="Hexo学到的东西"></a>Hexo学到的东西</h2><h3 id="hexo命令1-本地部署"><a href="#hexo命令1-本地部署" class="headerlink" title="hexo命令1-本地部署"></a>hexo命令1-本地部署</h3><pre><code class="bash">$ hexo init &lt;folder&gt; <span class="comment">#init是初始化一个hexo文件夹</span></code></pre>
-<pre><code class="bash">$ <span class="built_in">cd</span> &lt;folder&gt;  <span class="comment">#注意一定要打开文件夹才能进行部署</span></code></pre>
-<pre><code class="bash">$ npm install    <span class="comment">#部署之前进行安装</span></code></pre>
-<pre><code class="bash">$ hexo g   <span class="comment">#生成静态网页</span></code></pre>
-<pre><code class="bash">$ hexo s      <span class="comment">#启动服务器 启动之后会默认给一个网址进去就是我们部署的网页了</span></code></pre>
-<h3 id="更换hexo主题"><a href="#更换hexo主题" class="headerlink" title="更换hexo主题"></a>更换hexo主题</h3><pre><code class="bash"> 把你想更换的主题放在themes目录下。官网有很多好看的主题：https://hexo.io/themes/
-
- 然后修改站点目录下的_config.yml配置文件找到themes: landscape(默认主题)
-
-修改成你在themes下放好的主题，就完成了</code></pre>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">优先级	运算符	类	结合性</span><br><span class="line">1	()	括号运算符	由左至右</span><br><span class="line">2	!、+（正号）、-（负号）	一元运算符	由左至右</span><br><span class="line">2	~	位逻辑运算符	由右至左</span><br><span class="line">2	++、--	递增与递减运算符	由右至左</span><br><span class="line">3	*、/、%	算术运算符	由左至右</span><br><span class="line">4	+、-	算术运算符	由左至右</span><br><span class="line">5	&lt;&lt;、&gt;&gt;	位左移、右移运算符	由左至右</span><br><span class="line">6	&gt;、&gt;=、&lt;、&lt;=	关系运算符	由左至右</span><br><span class="line">7	==、!=	关系运算符	由左至右</span><br><span class="line">8	&amp;	位运算符、逻辑运算符	由左至右</span><br><span class="line">9	^	位运算符、逻辑运算符	由左至右</span><br><span class="line">10	|	位运算符、逻辑运算符	由左至右</span><br><span class="line">11	&amp;&amp;	逻辑运算符	由左至右</span><br><span class="line">12	||	逻辑运算符	由左至右</span><br><span class="line">13</span><br><span class="line">	? :	条件运算符	由右至左</span><br><span class="line">14	=、+=、-=、*=、/=、%=	赋值运算符、扩展运算符	由右至左</span><br></pre></td></tr></table></figure>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">运算符	说明</span><br><span class="line">逻辑与	&amp;( 与)	两个操作数为<span class="literal">true</span>，结果才是<span class="literal">true</span>，否则是<span class="literal">false</span></span><br><span class="line">逻辑或	|(或)	两个操作数有一个是<span class="literal">true</span>，结果就是<span class="literal">true</span></span><br><span class="line">短路与	&amp;&amp;( 与)	只要有一个为<span class="literal">false</span>，则直接返回<span class="literal">false</span></span><br><span class="line">短路或	||(或)	只要有一个为<span class="literal">true</span>， 则直接返回<span class="literal">true</span></span><br><span class="line">逻辑非	!（非）	取反：!<span class="literal">false</span>为<span class="literal">true</span>，!<span class="literal">true</span>为<span class="literal">false</span></span><br><span class="line">逻辑异或	^（异或）	相同为<span class="literal">false</span>，不同为<span class="literal">true</span></span><br><span class="line">Integer.toBinaryString         一个整数的二进制表达</span><br><span class="line">&lt;&lt;								左移</span><br><span class="line">&gt;&gt;								右移</span><br><span class="line">&gt;&gt;&gt;                         带符号右移与无符号右移</span><br></pre></td></tr></table></figure>
+<h3 id="条件运算符"><a href="#条件运算符" class="headerlink" title="条件运算符"></a>条件运算符</h3><p>语法格式：<br>1    x ? y : z<br>其中 x 为 boolean 类型表达式，先计算 x 的值，若为true，则整个运算的结果为表达式 y 的值，否则整个运算结果为表达式 z 的值。</p>
+<h3 id="带符号右移-gt-gt"><a href="#带符号右移-gt-gt" class="headerlink" title="带符号右移 &gt;&gt;"></a>带符号右移 &gt;&gt;</h3><p>对于正数， 带符号右移 &gt;&gt; 会把所有的位右移，并在最前面补0<br>对于负数， 带符号右移 &gt;&gt; 会把所有的位右移，并在最前面补1</p>
+<h3 id="无符号右移-gt-gt-gt"><a href="#无符号右移-gt-gt-gt" class="headerlink" title="无符号右移&gt;&gt;&gt;"></a>无符号右移&gt;&gt;&gt;</h3><p>如果是一个负数，那么对应的二进制的第一位是1<br>无符号右移&gt;&gt;&gt;会把第一位的1也向右移动，导致移动后，第一位变成0<br>这样就会使得负数在无符号右移后，得到一个正数</p>
+<h3 id="自增-自减"><a href="#自增-自减" class="headerlink" title="自增 自减"></a>自增 自减</h3><p>++ –<br>i++  先赋值再自增<br>++i先自增再赋值</p>
 ]]></content>
       <categories>
-        <category>hexo</category>
+        <category>java</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
+        <tag>java</tag>
       </tags>
   </entry>
 </search>
