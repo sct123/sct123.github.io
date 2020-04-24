@@ -1,6 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hexo的使用</title>
+    <url>/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>记录一些我学到hexo命令</p>
+<a id="more"></a>
+<h2 id="Hexo学到的东西"><a href="#Hexo学到的东西" class="headerlink" title="Hexo学到的东西"></a>Hexo学到的东西</h2><h3 id="hexo命令1-本地部署"><a href="#hexo命令1-本地部署" class="headerlink" title="hexo命令1-本地部署"></a>hexo命令1-本地部署</h3><pre><code class="bash">$ hexo init &lt;folder&gt; <span class="comment">#init是初始化一个hexo文件夹</span></code></pre>
+<pre><code class="bash">$ <span class="built_in">cd</span> &lt;folder&gt;  <span class="comment">#注意一定要打开文件夹才能进行部署</span></code></pre>
+<pre><code class="bash">$ npm install    <span class="comment">#部署之前进行安装</span></code></pre>
+<pre><code class="bash">$ hexo g   <span class="comment">#生成静态网页</span></code></pre>
+<pre><code class="bash">$ hexo s      <span class="comment">#启动服务器 启动之后会默认给一个网址进去就是我们部署的网页了</span></code></pre>
+<h3 id="更换hexo主题"><a href="#更换hexo主题" class="headerlink" title="更换hexo主题"></a>更换hexo主题</h3><pre><code class="bash"> 把你想更换的主题放在themes目录下。官网有很多好看的主题：https://hexo.io/themes/
+
+ 然后修改站点目录下的_config.yml配置文件找到themes: landscape(默认主题)
+
+修改成你在themes下放好的主题，就完成了</code></pre>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java数据类型</title>
+    <url>/2020/04/24/java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<p>java的数据类型可分为两大类：<br>基本数据类型（primitive data type）和引用数据类型（referece data type)</p>
+<a id="more"></a>
+<h3 id="基本数据类型（primitive-data-type）："><a href="#基本数据类型（primitive-data-type）：" class="headerlink" title="基本数据类型（primitive data type）："></a>基本数据类型（primitive data type）：</h3><p>-整数类型（byte short int long）<br>型(java语言的整型常数默认为int型，声明long型常量可以后加 ‘l’或’L’)<br>浮点类型(float double)<br>字符型（char）<br>布尔型(boolean)        </p>
+<h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><p>类（class）(String是引用类型)<br>接口(interface)<br>数组</p>
+<p>$ //引用数据类型的大小统一为4个字节,记录的是其引用对象的地址</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">类型	占用存储空间	                            表示范围</span><br><span class="line">byte	1字节（=8位=2⑻=256字）	-2⑺~2⑺-1（-128~127)</span><br><span class="line">short	2字节			-2⒂~2⒂-1(-32768~32767)</span><br><span class="line">int	4字节			-2*(31幂)~2*(31幂)（-2127283648~2147483647）（约21亿）</span><br><span class="line">long	8字节			-2*(63)~2*(63)-1	</span><br><span class="line">char	2字节	</span><br><span class="line">boolean	1位	</span><br><span class="line"><span class="built_in">float</span>	4字节	</span><br><span class="line">double	8字节</span><br></pre></td></tr></table></figure>
+<p> 基本数据类型的类型转换可分为：<br>自动类型转换：容量小的数据类型可以自动转换为容量大的数据类型<br>强制类型转换：用于显式的转换一个数值的类型，语法格式：(type)var</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>控制语句</title>
+    <url>/2020/04/24/java%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<p>控制语句在基础中还是比较重要，还带那么一点有趣</p>
+<a id="more"></a>
+<h2 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h2><h3 id="选择结构："><a href="#选择结构：" class="headerlink" title="选择结构："></a>选择结构：</h3><p>if单选泽结构<br>if-else 双选择结构<br>if-else if - else多选择结构<br>switch结构</p>
+<h3 id="循环结构："><a href="#循环结构：" class="headerlink" title="循环结构："></a>循环结构：</h3><p>while循环<br>do-while循环（先执行再判断，为true继续执行，否则停止）<br>for循环（初始化声明的变量作用域为整个for循环体内，在循环体外无法访问）<br>嵌套循环（  在一个循环语句内部再嵌套一个或多个循环，称为嵌套循环。<br>while、do-while与for循环可以任意嵌套多层。）<br>break和continue语句<br>带标签的break和continue</p>
+<h3 id="下面是几个控制语句的例题"><a href="#下面是几个控制语句的例题" class="headerlink" title="下面是几个控制语句的例题"></a>下面是几个控制语句的例题</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">* 复利公式：</span><br><span class="line">F = p* ( (1+r)^n );</span><br><span class="line">F 最终收入 p 本金 r 年利率 n 存了多少年</span><br><span class="line"> */</span><br><span class="line">public class Millionaire &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int p = 1000,n;</span><br><span class="line">		<span class="built_in">float</span> r = 0.2F;</span><br><span class="line">		int F=0  ;</span><br><span class="line">		<span class="keyword">for</span> (int i = 0; F&lt;=100000; i++) &#123;</span><br><span class="line">			F=(int) (p*((r/12)+1));</span><br><span class="line">			p+=1000;</span><br><span class="line">			<span class="keyword">if</span> (F&gt;=100000) &#123;</span><br><span class="line">				n=i/12;</span><br><span class="line">				System.out.println(n);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">* 黄金分割点：</span><br><span class="line"> * 寻找某两个数相除，其结果 离黄金分割点 0.618最近</span><br><span class="line">分母和分子不能同时为偶数</span><br><span class="line">分母和分子 取值范围在[1-20]</span><br><span class="line"> */</span><br><span class="line">public class GoldSenectionRatio &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// 寻找某两个数相除，其结果 离黄金分割点 0.618最近</span><br><span class="line">        //</span><br><span class="line">        // 分母和分子不能同时为偶数</span><br><span class="line">        // 分母和分子 取值范围在[1-20]</span><br><span class="line">        int range = 20; // 取值范围</span><br><span class="line">        <span class="built_in">float</span> breakPoint = 0.618f; // 黄金分割点</span><br><span class="line"> </span><br><span class="line">        <span class="built_in">float</span> minDiff = 100; // 离黄金分割点的差值</span><br><span class="line">        int answerFenzi = 0; // 找到的分子</span><br><span class="line">        int answerFenmu = 0; // 找到的分母</span><br><span class="line">        <span class="keyword">for</span> (int fenzi = 1; fenzi &lt;= range; fenzi++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (int fenmu = 1; fenmu &lt;= range; fenmu++) &#123;</span><br><span class="line">                // 分母和分子不能同时为偶数</span><br><span class="line">                <span class="keyword">if</span> (0 == fenzi % 2 &amp; 0 == fenmu % 2)</span><br><span class="line">                    <span class="built_in">continue</span>;</span><br><span class="line"> </span><br><span class="line">                // 取值</span><br><span class="line">                <span class="built_in">float</span> value = (<span class="built_in">float</span>) fenzi / fenmu;</span><br><span class="line">                // 取离黄金分割点的差值</span><br><span class="line">                <span class="built_in">float</span> diff = value - breakPoint;</span><br><span class="line">                // 绝对值</span><br><span class="line">                diff = diff &lt; 0 ? 0 - diff : diff;</span><br><span class="line"> </span><br><span class="line">//                 找出最小的差值</span><br><span class="line">                <span class="keyword">if</span> (diff &lt; minDiff) &#123;</span><br><span class="line">                    minDiff = diff;</span><br><span class="line">                    answerFenzi = fenzi;</span><br><span class="line">                    answerFenmu = fenmu;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        System.out.println(<span class="string">"离黄金分割点("</span> + breakPoint + <span class="string">")最近的两个数相除是:"</span> + answerFenzi + <span class="string">"/"</span> + answerFenmu + <span class="string">"="</span></span><br><span class="line">                + ((<span class="built_in">float</span>) answerFenzi / answerFenmu));</span><br><span class="line"> </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">/*计算数的阶乘*/</span><br><span class="line">public class Factorial &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		 Scanner s = new Scanner(System.in);</span><br><span class="line">	        System.out.println(<span class="string">"请输入一个整数："</span>);</span><br><span class="line">	        int n = s.nextInt();</span><br><span class="line">	        int fac = 1;</span><br><span class="line">	        <span class="keyword">while</span>(n&gt;=1)&#123;</span><br><span class="line">	            fac *=n;</span><br><span class="line">	            n--;</span><br><span class="line">	        &#125;</span><br><span class="line">	        System.out.println(<span class="string">"阶乘是:"</span> + fac);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/*水仙花数定义：</span><br><span class="line">1. 一定是3位数</span><br><span class="line">2. 每一位的立方，加起来恰好是这个数本身，比如153=1*1*1+5*5*5+3*3*3</span><br><span class="line"> */</span><br><span class="line">public class Daffodil &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int daffodil;</span><br><span class="line">		System.out.println(<span class="string">"打印所有的水仙花数："</span>);</span><br><span class="line">		<span class="keyword">for</span> (int a = 0; a &lt; 10; a++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (int b = 0; b &lt; 10; b++) &#123;</span><br><span class="line">				<span class="keyword">for</span> (int c = 0; c &lt; 10; c++) &#123;</span><br><span class="line">					<span class="keyword">if</span> (a*100+b*10+c == (a*a*a)+(b*b*b)+(c*c*c)&amp;&amp;a*100+b*10+c&gt;99) &#123;</span><br><span class="line">						daffodil =a*100+b*10+c;</span><br><span class="line">						System.out.println(daffodil);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://how2j.cn/p/5504" target="_blank" rel="noopener">例题来源</a></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo添加rss订阅功能</title>
+    <url>/2020/04/24/hexo%E6%B7%BB%E5%8A%A0rss%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<p>hexo如何添加rss功能呢？</p>
+<a id="more"></a>
+<h3 id="rss包"><a href="#rss包" class="headerlink" title="rss包"></a>rss包</h3><p>在hexojs下有一个hexo-generator-feed的npm包,用来实现订阅功能<br>首先安装这个包</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-feed</span><br></pre></td></tr></table></figure>
+<p>安装成功后在themes的主题配置文件_config.yml下配置该插件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">feed:</span><br><span class="line">    type: atom</span><br><span class="line">    path: atom.xml</span><br><span class="line">    limit: 20</span><br><span class="line">    hub:</span><br><span class="line">    content:</span><br><span class="line">    content_limit:</span><br><span class="line">    content_limit_delim: &#39; &#39;</span><br></pre></td></tr></table></figure>
+<p>参数的含义：</p>
+<p>type: RSS的类型(atom/rss2)</p>
+<p>path: 文件路径,默认是atom.xml/rss2.xml</p>
+<p>limit: 展示文章的数量,使用0或则false代表展示全部</p>
+<p>hub:</p>
+<p>content: 在RSS文件中是否包含内容 ,有3个值 true/false默认不填为false</p>
+<p>content_limit: 指定内容的长度作为摘要,仅仅在上面content设置为false和没有自定义的描述出现<br>content_limit_delim: 上面截取描述的分隔符,截取内容是以指定的这个分隔符作为截取结束的标志.在达到规定的内容长度之前最后出现的这个分隔符之前的内容,，防止从中间截断.</p>
+<h5 id="如果是next主题可以实现另一种方法："><a href="#如果是next主题可以实现另一种方法：" class="headerlink" title="如果是next主题可以实现另一种方法："></a>如果是next主题可以实现另一种方法：</h5><p>在主题的config.yml文件下找到</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rss:</span><br></pre></td></tr></table></figure>
+<p>直接设置为true就可以了</p>
+<p>配置完成后直接在根目录下运行hexo g<br>就会在你博客的pubilc 文件夹下发现atom.xml文件了</p>
+<p>参考文章：<a href="https://blog.csdn.net/weixin_34292287/article/details/88931060" target="_blank" rel="noopener">https://blog.csdn.net/weixin_34292287/article/details/88931060</a></p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java数组</title>
+    <url>/2020/04/24/java%E6%95%B0%E7%BB%84%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>数组，以及Arrays.方法的使用</p>
+<a id="more"></a>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="创建数组的时候，要指明数组的长度。"><a href="#创建数组的时候，要指明数组的长度。" class="headerlink" title="创建数组的时候，要指明数组的长度。"></a>创建数组的时候，要指明数组的长度。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">int a [ ] = new int[5] ; //分配了长度是5的数组，但是没有赋值</span><br><span class="line">a[4]=100; //下标4，实质上是“第5个”，即最后一个</span><br><span class="line">a[5]=101; //下标5，实质上是“第6个”，超出范围 ,产生数组下标越界异</span><br><span class="line"></span><br><span class="line">int[] a = new int[]&#123;100,102,444,836,3236&#125;;//写法一: 分配空间同时赋值</span><br><span class="line">int[] b = &#123;100,102,444,836,3236&#125;;//写法二： 省略了new int[],效果一样</span><br><span class="line"></span><br><span class="line">//写法三：同时分配空间，和指定内容</span><br><span class="line">//在这个例子里，长度是3，内容是5个，产生矛盾了</span><br><span class="line">//所以如果指定了数组的内容，就不能同时设置数组的长度</span><br><span class="line"> int[] c = new int[3]&#123;100,102,444,836,3236&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="引用概念："><a href="#引用概念：" class="headerlink" title="引用概念："></a>引用概念：</h3><p>如果变量代表一个数组，比如a,我们把a叫做引用<br>与基本类型不同 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int c &#x3D; 5; 这叫给c赋值为5 </span><br><span class="line">声明一个引用 int[] a; </span><br><span class="line">a &#x3D; new int[5]; </span><br><span class="line">让a这个引用，指向数组</span><br><span class="line">常</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h3><p>选择法排序</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (int j &#x3D; 0; j &lt; a.length-1; j++) &#123;&#x2F;&#x2F;外层循环一次，</span><br><span class="line">因为最后一次剩下的就是最大的所以循环次数-1</span><br><span class="line">  for (int i &#x3D; j+1; i &lt; a.length; i++) &#123;&#x2F;&#x2F;内层会全部循环一次</span><br><span class="line">    if(a[i]&lt;a[j])&#123; &#x2F;&#x2F;如果然后的数小于前面的就换位 </span><br><span class="line">      int temp &#x3D; a[j];</span><br><span class="line">     a[j] &#x3D; a[i];</span><br><span class="line">     a[i] &#x3D; temp;</span><br><span class="line">            &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>冒泡法排序</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (int j &#x3D; 0; j &lt; a.length; j++) &#123;&#x2F;&#x2F;</span><br><span class="line">  for (int i &#x3D; 0; i &lt; a.length-j-1; i++) &#123;&#x2F;&#x2F;-1防止数组下标越界</span><br><span class="line">&#x2F;&#x2F;-j是因为每内循环一次，最大的就放在后面了，就不需要比较了</span><br><span class="line">    if(a[i]&gt;a[i+1])&#123; &#x2F;&#x2F;如果前面的大于后面的就互换 </span><br><span class="line">     int temp &#x3D; a[i];</span><br><span class="line">     a[i] &#x3D; a[i+1];</span><br><span class="line">     a[i+1] &#x3D; temp;</span><br><span class="line">              &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="增强型for循环遍历"><a href="#增强型for循环遍历" class="headerlink" title="增强型for循环遍历"></a>增强型for循环遍历</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int [] values &#x3D; new int[];</span><br><span class="line">for (int each : values) &#123;</span><br><span class="line">   System.out.println(each);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="复制数组："><a href="#复制数组：" class="headerlink" title="复制数组："></a>复制数组：</h3><p>把一个数组的值，复制到另一个数组中<br>System.arraycopy(src, srcPos, dest, destPos, length)<br>src: 源数组<br>srcPos: 从源数组复制数据的起始位置<br>dest: 目标数组<br>destPos: 复制到目标数组的起始位置<br>length: 复制的长度</p>
+<p>这是一个二维数组，里面的每一个元素，都是一个一维数组<br>所以二维数组又叫数组的数组<br>int b[][] = new int[][]{<br>   {1,2,3},<br>   {4,5,6},<br>   {7,8,9}<br>};</p>
+<h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><p>Arrays是针对数组的工具类，可以进行 排序，查找，复制填充等功能。 大大提高了开发人员的工作效率。</p>
+<h3 id="copyOfRange-数组复制"><a href="#copyOfRange-数组复制" class="headerlink" title="copyOfRange    数组复制"></a>copyOfRange    数组复制</h3><p>与使用System.arraycopy进行数组复制类似的，Arrays提供了一个copyOfRange方法进行数组复制。<br>// copyOfRange(int[] original, int from, int to)<br>// 第一个参数表示源数组<br>// 第二个参数表示开始位置(取得到)<br>// 第三个参数表示结束位置(取不到)</p>
+<h3 id="toString-转换为字符串"><a href="#toString-转换为字符串" class="headerlink" title="toString()    转换为字符串"></a>toString()    转换为字符串</h3><p>//int a[] = new int[] { 18, 62, 68, 82, 65, 9 };<br> //String content = Arrays.toString(a);<br>sort    排序<br>在前面章节学习了 选择法排序 和 冒泡法排序，Arrays工具类提供了一个sort方法，只需要一行代码即可完成排序功能。</p>
+<h3 id="Arrays-sort-a"><a href="#Arrays-sort-a" class="headerlink" title="Arrays.sort(a);"></a>Arrays.sort(a);</h3><p>binarySearch    搜索<br>//使用binarySearch之前，必须先使用sort进行排序<br>//如果数组中有多个相同的元素，查找的结果是不确定的<br>int a[] = new int[] { 18, 62, 68, 82, 65, 9 };<br>Arrays.sort(a);<br>System.out.println(“数字 62出现的位置:”+Arrays.binarySearch(a, 62));</p>
+<h3 id="equals-判断是否相同"><a href="#equals-判断是否相同" class="headerlink" title="equals    判断是否相同"></a>equals    判断是否相同</h3><p>//比较两个数组的内容是否一样<br>System.out.println(Arrays.equals(a, b));</p>
+<h3 id="fill-填充"><a href="#fill-填充" class="headerlink" title="fill    填充"></a>fill    填充</h3><p>//使用同一个值，填充整个数组<br>int a[] = new int[10];<br>Arrays.fill(a, 5);</p>
+<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import java.util.Arrays;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> * 练习-二维数组排序</span><br><span class="line"> * 首先定义一个5*8的二维数组，然后使用随机数填充满</span><br><span class="line"> * 借助Arrays的方法对二维数组进行排序</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class Exercise_TwoDimensionSort &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int a[][] &#x3D; new int[5][8];</span><br><span class="line">		int []b &#x3D; new int [40];&#x2F;&#x2F;这里必须赋值</span><br><span class="line">&#x2F;&#x2F;		int b &#x3D; (int)(Math.random()*100);</span><br><span class="line">&#x2F;&#x2F;		Arrays.fill(a, b);  二维不能填充；</span><br><span class="line">		System.out.println(&quot;排序前：&quot;);</span><br><span class="line">		for (int i &#x3D; 0; i &lt;5; i++) &#123;</span><br><span class="line">			for (int j &#x3D; 0; j &lt;8; j++) &#123;</span><br><span class="line">				a[i][j] &#x3D;(int)(Math.random()*100);&#x2F;&#x2F;给二维数组赋值；</span><br><span class="line">				System.out.print(+a[i][j]+&quot;\t&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">		for (int i &#x3D; 0; i &lt;5; i++) &#123;</span><br><span class="line">			</span><br><span class="line">			System.arraycopy(a[i], 0, b, i*8, a[i].length);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		Arrays.sort(b);</span><br><span class="line">		System.out.println(&quot;排序后：&quot;+Arrays.toString(b));</span><br><span class="line">		for (int i &#x3D; 0; i &lt; 5; i++) &#123;</span><br><span class="line">			System.arraycopy(b, i*8, a[i],0,8);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println(&quot;新的二维数组：&quot;);</span><br><span class="line">		for (int i &#x3D; 0; i &lt;5; i++) &#123;</span><br><span class="line">			for (int j &#x3D; 0; j &lt; 8; j++) &#123;</span><br><span class="line">				System.out.print(a[i][j]+&quot;\t&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://how2j.cn/p/5505" target="_blank" rel="noopener">原文来源</a></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ensp设备调试</title>
     <url>/2020/04/24/ensp%E8%AE%BE%E5%A4%87%E8%B0%83/</url>
     <content><![CDATA[<p>本页来自朋友总结：lrb<br>开头符合为什么模式的命令 “-“用户模式 “*”管理员模式 “+X”配置模式 “/“其他模式 没有符合为所有模式<br>p物理端口 v虚拟端口 b虚拟子端口 u用户登录口 s服务器 a客户认证 g组 n互联网网段 e链路聚合<br>指令前加undo为删除或撤销<br>Error：错误 Info：提醒</p>
@@ -228,122 +353,12 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo的使用</title>
-    <url>/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>记录一些我学到hexo命令</p>
+    <title>标识符</title>
+    <url>/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/</url>
+    <content><![CDATA[<p>java标识符的命名规范<br><a href="https://www.sxt.cn/Java_jQuery_in_action/Java_Identifier.html" target="_blank" rel="noopener">原文来源</a></p>
 <a id="more"></a>
-<h2 id="Hexo学到的东西"><a href="#Hexo学到的东西" class="headerlink" title="Hexo学到的东西"></a>Hexo学到的东西</h2><h3 id="hexo命令1-本地部署"><a href="#hexo命令1-本地部署" class="headerlink" title="hexo命令1-本地部署"></a>hexo命令1-本地部署</h3><pre><code class="bash">$ hexo init &lt;folder&gt; <span class="comment">#init是初始化一个hexo文件夹</span></code></pre>
-<pre><code class="bash">$ <span class="built_in">cd</span> &lt;folder&gt;  <span class="comment">#注意一定要打开文件夹才能进行部署</span></code></pre>
-<pre><code class="bash">$ npm install    <span class="comment">#部署之前进行安装</span></code></pre>
-<pre><code class="bash">$ hexo g   <span class="comment">#生成静态网页</span></code></pre>
-<pre><code class="bash">$ hexo s      <span class="comment">#启动服务器 启动之后会默认给一个网址进去就是我们部署的网页了</span></code></pre>
-<h3 id="更换hexo主题"><a href="#更换hexo主题" class="headerlink" title="更换hexo主题"></a>更换hexo主题</h3><pre><code class="bash"> 把你想更换的主题放在themes目录下。官网有很多好看的主题：https://hexo.io/themes/
-
- 然后修改站点目录下的_config.yml配置文件找到themes: landscape(默认主题)
-
-修改成你在themes下放好的主题，就完成了</code></pre>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo添加rss订阅功能</title>
-    <url>/2020/04/24/hexo%E6%B7%BB%E5%8A%A0rss%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD/</url>
-    <content><![CDATA[<p>hexo如何添加rss功能呢？</p>
-<a id="more"></a>
-<h3 id="rss包"><a href="#rss包" class="headerlink" title="rss包"></a>rss包</h3><p>在hexojs下有一个hexo-generator-feed的npm包,用来实现订阅功能<br>首先安装这个包</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-feed</span><br></pre></td></tr></table></figure>
-<p>安装成功后在themes的主题配置文件_config.yml下配置该插件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">feed:</span><br><span class="line">    type: atom</span><br><span class="line">    path: atom.xml</span><br><span class="line">    limit: 20</span><br><span class="line">    hub:</span><br><span class="line">    content:</span><br><span class="line">    content_limit:</span><br><span class="line">    content_limit_delim: &#39; &#39;</span><br></pre></td></tr></table></figure>
-<p>参数的含义：</p>
-<p>type: RSS的类型(atom/rss2)</p>
-<p>path: 文件路径,默认是atom.xml/rss2.xml</p>
-<p>limit: 展示文章的数量,使用0或则false代表展示全部</p>
-<p>hub:</p>
-<p>content: 在RSS文件中是否包含内容 ,有3个值 true/false默认不填为false</p>
-<p>content_limit: 指定内容的长度作为摘要,仅仅在上面content设置为false和没有自定义的描述出现<br>content_limit_delim: 上面截取描述的分隔符,截取内容是以指定的这个分隔符作为截取结束的标志.在达到规定的内容长度之前最后出现的这个分隔符之前的内容,，防止从中间截断.</p>
-<h5 id="如果是next主题可以实现另一种方法："><a href="#如果是next主题可以实现另一种方法：" class="headerlink" title="如果是next主题可以实现另一种方法："></a>如果是next主题可以实现另一种方法：</h5><p>在主题的config.yml文件下找到</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rss:</span><br></pre></td></tr></table></figure>
-<p>直接设置为true就可以了</p>
-<p>配置完成后直接在根目录下运行hexo g<br>就会在你博客的pubilc 文件夹下发现atom.xml文件了</p>
-<p>参考文章：<a href="https://blog.csdn.net/weixin_34292287/article/details/88931060" target="_blank" rel="noopener">https://blog.csdn.net/weixin_34292287/article/details/88931060</a></p>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>控制语句</title>
-    <url>/2020/04/24/java%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<p>控制语句在基础中还是比较重要，还带那么一点有趣</p>
-<a id="more"></a>
-<h2 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h2><h3 id="选择结构："><a href="#选择结构：" class="headerlink" title="选择结构："></a>选择结构：</h3><p>if单选泽结构<br>if-else 双选择结构<br>if-else if - else多选择结构<br>switch结构</p>
-<h3 id="循环结构："><a href="#循环结构：" class="headerlink" title="循环结构："></a>循环结构：</h3><p>while循环<br>do-while循环（先执行再判断，为true继续执行，否则停止）<br>for循环（初始化声明的变量作用域为整个for循环体内，在循环体外无法访问）<br>嵌套循环（  在一个循环语句内部再嵌套一个或多个循环，称为嵌套循环。<br>while、do-while与for循环可以任意嵌套多层。）<br>break和continue语句<br>带标签的break和continue</p>
-<h3 id="下面是几个控制语句的例题"><a href="#下面是几个控制语句的例题" class="headerlink" title="下面是几个控制语句的例题"></a>下面是几个控制语句的例题</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">* 复利公式：</span><br><span class="line">F = p* ( (1+r)^n );</span><br><span class="line">F 最终收入 p 本金 r 年利率 n 存了多少年</span><br><span class="line"> */</span><br><span class="line">public class Millionaire &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int p = 1000,n;</span><br><span class="line">		<span class="built_in">float</span> r = 0.2F;</span><br><span class="line">		int F=0  ;</span><br><span class="line">		<span class="keyword">for</span> (int i = 0; F&lt;=100000; i++) &#123;</span><br><span class="line">			F=(int) (p*((r/12)+1));</span><br><span class="line">			p+=1000;</span><br><span class="line">			<span class="keyword">if</span> (F&gt;=100000) &#123;</span><br><span class="line">				n=i/12;</span><br><span class="line">				System.out.println(n);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">* 黄金分割点：</span><br><span class="line"> * 寻找某两个数相除，其结果 离黄金分割点 0.618最近</span><br><span class="line">分母和分子不能同时为偶数</span><br><span class="line">分母和分子 取值范围在[1-20]</span><br><span class="line"> */</span><br><span class="line">public class GoldSenectionRatio &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// 寻找某两个数相除，其结果 离黄金分割点 0.618最近</span><br><span class="line">        //</span><br><span class="line">        // 分母和分子不能同时为偶数</span><br><span class="line">        // 分母和分子 取值范围在[1-20]</span><br><span class="line">        int range = 20; // 取值范围</span><br><span class="line">        <span class="built_in">float</span> breakPoint = 0.618f; // 黄金分割点</span><br><span class="line"> </span><br><span class="line">        <span class="built_in">float</span> minDiff = 100; // 离黄金分割点的差值</span><br><span class="line">        int answerFenzi = 0; // 找到的分子</span><br><span class="line">        int answerFenmu = 0; // 找到的分母</span><br><span class="line">        <span class="keyword">for</span> (int fenzi = 1; fenzi &lt;= range; fenzi++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (int fenmu = 1; fenmu &lt;= range; fenmu++) &#123;</span><br><span class="line">                // 分母和分子不能同时为偶数</span><br><span class="line">                <span class="keyword">if</span> (0 == fenzi % 2 &amp; 0 == fenmu % 2)</span><br><span class="line">                    <span class="built_in">continue</span>;</span><br><span class="line"> </span><br><span class="line">                // 取值</span><br><span class="line">                <span class="built_in">float</span> value = (<span class="built_in">float</span>) fenzi / fenmu;</span><br><span class="line">                // 取离黄金分割点的差值</span><br><span class="line">                <span class="built_in">float</span> diff = value - breakPoint;</span><br><span class="line">                // 绝对值</span><br><span class="line">                diff = diff &lt; 0 ? 0 - diff : diff;</span><br><span class="line"> </span><br><span class="line">//                 找出最小的差值</span><br><span class="line">                <span class="keyword">if</span> (diff &lt; minDiff) &#123;</span><br><span class="line">                    minDiff = diff;</span><br><span class="line">                    answerFenzi = fenzi;</span><br><span class="line">                    answerFenmu = fenmu;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        System.out.println(<span class="string">"离黄金分割点("</span> + breakPoint + <span class="string">")最近的两个数相除是:"</span> + answerFenzi + <span class="string">"/"</span> + answerFenmu + <span class="string">"="</span></span><br><span class="line">                + ((<span class="built_in">float</span>) answerFenzi / answerFenmu));</span><br><span class="line"> </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line">/*计算数的阶乘*/</span><br><span class="line">public class Factorial &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		 Scanner s = new Scanner(System.in);</span><br><span class="line">	        System.out.println(<span class="string">"请输入一个整数："</span>);</span><br><span class="line">	        int n = s.nextInt();</span><br><span class="line">	        int fac = 1;</span><br><span class="line">	        <span class="keyword">while</span>(n&gt;=1)&#123;</span><br><span class="line">	            fac *=n;</span><br><span class="line">	            n--;</span><br><span class="line">	        &#125;</span><br><span class="line">	        System.out.println(<span class="string">"阶乘是:"</span> + fac);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/*水仙花数定义：</span><br><span class="line">1. 一定是3位数</span><br><span class="line">2. 每一位的立方，加起来恰好是这个数本身，比如153=1*1*1+5*5*5+3*3*3</span><br><span class="line"> */</span><br><span class="line">public class Daffodil &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int daffodil;</span><br><span class="line">		System.out.println(<span class="string">"打印所有的水仙花数："</span>);</span><br><span class="line">		<span class="keyword">for</span> (int a = 0; a &lt; 10; a++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (int b = 0; b &lt; 10; b++) &#123;</span><br><span class="line">				<span class="keyword">for</span> (int c = 0; c &lt; 10; c++) &#123;</span><br><span class="line">					<span class="keyword">if</span> (a*100+b*10+c == (a*a*a)+(b*b*b)+(c*c*c)&amp;&amp;a*100+b*10+c&gt;99) &#123;</span><br><span class="line">						daffodil =a*100+b*10+c;</span><br><span class="line">						System.out.println(daffodil);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://how2j.cn/p/5504" target="_blank" rel="noopener">例题来源</a></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java数据类型</title>
-    <url>/2020/04/24/java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<p>java的数据类型可分为两大类：<br>基本数据类型（primitive data type）和引用数据类型（referece data type)</p>
-<a id="more"></a>
-<h3 id="基本数据类型（primitive-data-type）："><a href="#基本数据类型（primitive-data-type）：" class="headerlink" title="基本数据类型（primitive data type）："></a>基本数据类型（primitive data type）：</h3><p>-整数类型（byte short int long）<br>型(java语言的整型常数默认为int型，声明long型常量可以后加 ‘l’或’L’)<br>浮点类型(float double)<br>字符型（char）<br>布尔型(boolean)        </p>
-<h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><p>类（class）(String是引用类型)<br>接口(interface)<br>数组</p>
-<p>$ //引用数据类型的大小统一为4个字节,记录的是其引用对象的地址</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">类型	占用存储空间	                            表示范围</span><br><span class="line">byte	1字节（=8位=2⑻=256字）	-2⑺~2⑺-1（-128~127)</span><br><span class="line">short	2字节			-2⒂~2⒂-1(-32768~32767)</span><br><span class="line">int	4字节			-2*(31幂)~2*(31幂)（-2127283648~2147483647）（约21亿）</span><br><span class="line">long	8字节			-2*(63)~2*(63)-1	</span><br><span class="line">char	2字节	</span><br><span class="line">boolean	1位	</span><br><span class="line"><span class="built_in">float</span>	4字节	</span><br><span class="line">double	8字节</span><br></pre></td></tr></table></figure>
-<p> 基本数据类型的类型转换可分为：<br>自动类型转换：容量小的数据类型可以自动转换为容量大的数据类型<br>强制类型转换：用于显式的转换一个数值的类型，语法格式：(type)var</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java数组</title>
-    <url>/2020/04/24/java%E6%95%B0%E7%BB%84%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>数组，以及Arrays.方法的使用</p>
-<a id="more"></a>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="创建数组的时候，要指明数组的长度。"><a href="#创建数组的时候，要指明数组的长度。" class="headerlink" title="创建数组的时候，要指明数组的长度。"></a>创建数组的时候，要指明数组的长度。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">int a [ ] = new int[5] ; //分配了长度是5的数组，但是没有赋值</span><br><span class="line">a[4]=100; //下标4，实质上是“第5个”，即最后一个</span><br><span class="line">a[5]=101; //下标5，实质上是“第6个”，超出范围 ,产生数组下标越界异</span><br><span class="line"></span><br><span class="line">int[] a = new int[]&#123;100,102,444,836,3236&#125;;//写法一: 分配空间同时赋值</span><br><span class="line">int[] b = &#123;100,102,444,836,3236&#125;;//写法二： 省略了new int[],效果一样</span><br><span class="line"></span><br><span class="line">//写法三：同时分配空间，和指定内容</span><br><span class="line">//在这个例子里，长度是3，内容是5个，产生矛盾了</span><br><span class="line">//所以如果指定了数组的内容，就不能同时设置数组的长度</span><br><span class="line"> int[] c = new int[3]&#123;100,102,444,836,3236&#125;;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="引用概念："><a href="#引用概念：" class="headerlink" title="引用概念："></a>引用概念：</h3><p>如果变量代表一个数组，比如a,我们把a叫做引用<br>与基本类型不同 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int c &#x3D; 5; 这叫给c赋值为5 </span><br><span class="line">声明一个引用 int[] a; </span><br><span class="line">a &#x3D; new int[5]; </span><br><span class="line">让a这个引用，指向数组</span><br><span class="line">常</span><br></pre></td></tr></table></figure>
-
-<h3 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h3><p>选择法排序</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (int j &#x3D; 0; j &lt; a.length-1; j++) &#123;&#x2F;&#x2F;外层循环一次，</span><br><span class="line">因为最后一次剩下的就是最大的所以循环次数-1</span><br><span class="line">  for (int i &#x3D; j+1; i &lt; a.length; i++) &#123;&#x2F;&#x2F;内层会全部循环一次</span><br><span class="line">    if(a[i]&lt;a[j])&#123; &#x2F;&#x2F;如果然后的数小于前面的就换位 </span><br><span class="line">      int temp &#x3D; a[j];</span><br><span class="line">     a[j] &#x3D; a[i];</span><br><span class="line">     a[i] &#x3D; temp;</span><br><span class="line">            &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>冒泡法排序</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (int j &#x3D; 0; j &lt; a.length; j++) &#123;&#x2F;&#x2F;</span><br><span class="line">  for (int i &#x3D; 0; i &lt; a.length-j-1; i++) &#123;&#x2F;&#x2F;-1防止数组下标越界</span><br><span class="line">&#x2F;&#x2F;-j是因为每内循环一次，最大的就放在后面了，就不需要比较了</span><br><span class="line">    if(a[i]&gt;a[i+1])&#123; &#x2F;&#x2F;如果前面的大于后面的就互换 </span><br><span class="line">     int temp &#x3D; a[i];</span><br><span class="line">     a[i] &#x3D; a[i+1];</span><br><span class="line">     a[i+1] &#x3D; temp;</span><br><span class="line">              &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="增强型for循环遍历"><a href="#增强型for循环遍历" class="headerlink" title="增强型for循环遍历"></a>增强型for循环遍历</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int [] values &#x3D; new int[];</span><br><span class="line">for (int each : values) &#123;</span><br><span class="line">   System.out.println(each);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="复制数组："><a href="#复制数组：" class="headerlink" title="复制数组："></a>复制数组：</h3><p>把一个数组的值，复制到另一个数组中<br>System.arraycopy(src, srcPos, dest, destPos, length)<br>src: 源数组<br>srcPos: 从源数组复制数据的起始位置<br>dest: 目标数组<br>destPos: 复制到目标数组的起始位置<br>length: 复制的长度</p>
-<p>这是一个二维数组，里面的每一个元素，都是一个一维数组<br>所以二维数组又叫数组的数组<br>int b[][] = new int[][]{<br>   {1,2,3},<br>   {4,5,6},<br>   {7,8,9}<br>};</p>
-<h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><p>Arrays是针对数组的工具类，可以进行 排序，查找，复制填充等功能。 大大提高了开发人员的工作效率。</p>
-<h3 id="copyOfRange-数组复制"><a href="#copyOfRange-数组复制" class="headerlink" title="copyOfRange    数组复制"></a>copyOfRange    数组复制</h3><p>与使用System.arraycopy进行数组复制类似的，Arrays提供了一个copyOfRange方法进行数组复制。<br>// copyOfRange(int[] original, int from, int to)<br>// 第一个参数表示源数组<br>// 第二个参数表示开始位置(取得到)<br>// 第三个参数表示结束位置(取不到)</p>
-<h3 id="toString-转换为字符串"><a href="#toString-转换为字符串" class="headerlink" title="toString()    转换为字符串"></a>toString()    转换为字符串</h3><p>//int a[] = new int[] { 18, 62, 68, 82, 65, 9 };<br> //String content = Arrays.toString(a);<br>sort    排序<br>在前面章节学习了 选择法排序 和 冒泡法排序，Arrays工具类提供了一个sort方法，只需要一行代码即可完成排序功能。</p>
-<h3 id="Arrays-sort-a"><a href="#Arrays-sort-a" class="headerlink" title="Arrays.sort(a);"></a>Arrays.sort(a);</h3><p>binarySearch    搜索<br>//使用binarySearch之前，必须先使用sort进行排序<br>//如果数组中有多个相同的元素，查找的结果是不确定的<br>int a[] = new int[] { 18, 62, 68, 82, 65, 9 };<br>Arrays.sort(a);<br>System.out.println(“数字 62出现的位置:”+Arrays.binarySearch(a, 62));</p>
-<h3 id="equals-判断是否相同"><a href="#equals-判断是否相同" class="headerlink" title="equals    判断是否相同"></a>equals    判断是否相同</h3><p>//比较两个数组的内容是否一样<br>System.out.println(Arrays.equals(a, b));</p>
-<h3 id="fill-填充"><a href="#fill-填充" class="headerlink" title="fill    填充"></a>fill    填充</h3><p>//使用同一个值，填充整个数组<br>int a[] = new int[10];<br>Arrays.fill(a, 5);</p>
-<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import java.util.Arrays;</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line"> * 练习-二维数组排序</span><br><span class="line"> * 首先定义一个5*8的二维数组，然后使用随机数填充满</span><br><span class="line"> * 借助Arrays的方法对二维数组进行排序</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class Exercise_TwoDimensionSort &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int a[][] &#x3D; new int[5][8];</span><br><span class="line">		int []b &#x3D; new int [40];&#x2F;&#x2F;这里必须赋值</span><br><span class="line">&#x2F;&#x2F;		int b &#x3D; (int)(Math.random()*100);</span><br><span class="line">&#x2F;&#x2F;		Arrays.fill(a, b);  二维不能填充；</span><br><span class="line">		System.out.println(&quot;排序前：&quot;);</span><br><span class="line">		for (int i &#x3D; 0; i &lt;5; i++) &#123;</span><br><span class="line">			for (int j &#x3D; 0; j &lt;8; j++) &#123;</span><br><span class="line">				a[i][j] &#x3D;(int)(Math.random()*100);&#x2F;&#x2F;给二维数组赋值；</span><br><span class="line">				System.out.print(+a[i][j]+&quot;\t&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">		for (int i &#x3D; 0; i &lt;5; i++) &#123;</span><br><span class="line">			</span><br><span class="line">			System.arraycopy(a[i], 0, b, i*8, a[i].length);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		Arrays.sort(b);</span><br><span class="line">		System.out.println(&quot;排序后：&quot;+Arrays.toString(b));</span><br><span class="line">		for (int i &#x3D; 0; i &lt; 5; i++) &#123;</span><br><span class="line">			System.arraycopy(b, i*8, a[i],0,8);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println(&quot;新的二维数组：&quot;);</span><br><span class="line">		for (int i &#x3D; 0; i &lt;5; i++) &#123;</span><br><span class="line">			for (int j &#x3D; 0; j &lt; 8; j++) &#123;</span><br><span class="line">				System.out.print(a[i][j]+&quot;\t&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://how2j.cn/p/5505" target="_blank" rel="noopener">原文来源</a></p>
+<h3 id="变量和常量命名规范"><a href="#变量和常量命名规范" class="headerlink" title="变量和常量命名规范"></a>变量和常量命名规范</h3><p>（规范是程序员的基本准则,不规范会直接损害你的个人形象）<br>所有变量、方法、类名：见名知意<br>类成员变量：首字母小写和驼峰原则（monthSalary）<br>局部变量：首字母小写和驼峰原则<br>常量：大写字母和下划线:MAX_VALUE<br>类名：首字母大写和驼峰原则（Man,GoodMan）<br>方法名：首字母小写和驼峰原则:run(),runRun()<br>//变量本质上就是代表一个“可操作的存储空间”，空间位置是确定的，但是里面放置什么值不确定。我们可通过变量名来访问“对应的存储空间”，<br>//从而操纵这个“存储空间”存储的值。<br>//java是一种强制 型语言，每个变量都必须声明其书局类型。变量的数据类型决定了变量占据存储空间的大小。比如 int a = 3; 表示a变量的空间大小为4个字节</p>
+<h3 id="标识符的命名规则："><a href="#标识符的命名规则：" class="headerlink" title="标识符的命名规则："></a>标识符的命名规则：</h3><p>标识符必须以字母、下划线_、美元符号$开头。<br>标识符其它部分可以是字母、下划线“_”、美元符“$”和数字的任意组合。<br>Java 标识符大小写敏感，且长度无限制。<br>标识符不可以是Java的关键字。</p>
 ]]></content>
       <categories>
         <category>java</category>
@@ -363,21 +378,6 @@
 <h3 id="带符号右移-gt-gt"><a href="#带符号右移-gt-gt" class="headerlink" title="带符号右移 &gt;&gt;"></a>带符号右移 &gt;&gt;</h3><p>对于正数， 带符号右移 &gt;&gt; 会把所有的位右移，并在最前面补0<br>对于负数， 带符号右移 &gt;&gt; 会把所有的位右移，并在最前面补1</p>
 <h3 id="无符号右移-gt-gt-gt"><a href="#无符号右移-gt-gt-gt" class="headerlink" title="无符号右移&gt;&gt;&gt;"></a>无符号右移&gt;&gt;&gt;</h3><p>如果是一个负数，那么对应的二进制的第一位是1<br>无符号右移&gt;&gt;&gt;会把第一位的1也向右移动，导致移动后，第一位变成0<br>这样就会使得负数在无符号右移后，得到一个正数</p>
 <h3 id="自增-自减"><a href="#自增-自减" class="headerlink" title="自增 自减"></a>自增 自减</h3><p>++ –<br>i++  先赋值再自增<br>++i先自增再赋值</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>标识符</title>
-    <url>/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/</url>
-    <content><![CDATA[<p>java标识符的命名规范<br><a href="https://www.sxt.cn/Java_jQuery_in_action/Java_Identifier.html" target="_blank" rel="noopener">原文来源</a></p>
-<a id="more"></a>
-<h3 id="变量和常量命名规范"><a href="#变量和常量命名规范" class="headerlink" title="变量和常量命名规范"></a>变量和常量命名规范</h3><p>（规范是程序员的基本准则,不规范会直接损害你的个人形象）<br>所有变量、方法、类名：见名知意<br>类成员变量：首字母小写和驼峰原则（monthSalary）<br>局部变量：首字母小写和驼峰原则<br>常量：大写字母和下划线:MAX_VALUE<br>类名：首字母大写和驼峰原则（Man,GoodMan）<br>方法名：首字母小写和驼峰原则:run(),runRun()<br>//变量本质上就是代表一个“可操作的存储空间”，空间位置是确定的，但是里面放置什么值不确定。我们可通过变量名来访问“对应的存储空间”，<br>//从而操纵这个“存储空间”存储的值。<br>//java是一种强制 型语言，每个变量都必须声明其书局类型。变量的数据类型决定了变量占据存储空间的大小。比如 int a = 3; 表示a变量的空间大小为4个字节</p>
-<h3 id="标识符的命名规则："><a href="#标识符的命名规则：" class="headerlink" title="标识符的命名规则："></a>标识符的命名规则：</h3><p>标识符必须以字母、下划线_、美元符号$开头。<br>标识符其它部分可以是字母、下划线“_”、美元符“$”和数字的任意组合。<br>Java 标识符大小写敏感，且长度无限制。<br>标识符不可以是Java的关键字。</p>
 ]]></content>
       <categories>
         <category>java</category>

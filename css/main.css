@@ -1974,7 +1974,7 @@ a:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff7301;
+  background: #18ff22;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3176,10 +3176,6 @@ hr {
 }
 .post-toc ol a {
   color: #000;
-}
-.page-archive .content {
-/*background-color: rgba(243, 242, 238, 1) !important;*/
-  backgroun-image: url("https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/%E8%83%8C%E6%99%AF%E5%9B%BE/1.jpg");
 }
 .post-body {
   text-align: justify;
