@@ -121,7 +121,7 @@
 <meta property="og:site_name" content="小通">
 <meta property="og:description" content=".posts-expand .post-body img{         padding: 1px;     }      .footer{         display: none !important;     }       &#x2F;*不展示底部*&#x2F;      .footer-inner{          display: none !important;      }">
 <meta property="article:published_time" content="2020-04-24T12:50:11.000Z">
-<meta property="article:modified_time" content="2020-04-25T09:23:36.613Z">
+<meta property="article:modified_time" content="2020-04-25T09:42:02.756Z">
 <meta property="article:author" content="小通">
 <meta property="article:tag" content="小通博客">
 <meta name="twitter:card" content="summary">
@@ -624,7 +624,7 @@ function loadXMLDoc(xmlUrl)
     return xmlDoc; 
 }
 
-xmlDoc=loadXMLDoc("https://photos-1301263664.cos.ap-chengdu.myqcloud.com");
+xmlDoc=loadXMLDoc("https://photos-1301263664.cos.ap-nanjing.myqcloud.com");
 
 var urls = xmlDoc.getElementsByTagName('Key');
 var date = xmlDoc.getElementsByTagName('LastModified');
@@ -657,14 +657,14 @@ for (var i = 0; i < content.length; i++) {
     box.appendChild(conBox);
     var item=document.createElement("div");
     var title=content[i][0].url;
-    item.innerHTML="<button class=title style=background:url(https://photos-1301263664.cos.ap-chengdu.myqcloud.com/" + title + "封面.jpg"+");background-repeat:no-repeat;><span style=display:inline;><strong style=color:#f0f3f6; >" + title.substring(0,title.length - 1) + "</strong></span></button>";
+    item.innerHTML="<button class=title style=background:url(https://photos-1301263664.cos.ap-nanjing.myqcloud.com/" + title + "封面.jpg"+");background-repeat:no-repeat;><span style=display:inline;><strong style=color:#f0f3f6; >" + title.substring(0,title.length - 1) + "</strong></span></button>";
     conBox.appendChild(item);
 
         for (var j = 1; j < content[i].length && j < showNum+1; j++) {
             var con=content[i][j].url;
         var item=document.createElement("li");
         if(con.substring(0,con.length-4) != "封面"){
-            item.innerHTML="<div class=imgbox id=imgbox style=height:"+wid+"px;><img class=imgitem src=https://photos-1301263664.cos.ap-chengdu.myqcloud.com/" + title + con +" alt=" + con + "></div><span>" + con.substring(0,con.length-4);
+            item.innerHTML="<div class=imgbox id=imgbox style=height:"+wid+"px;><img class=imgitem src=https://photos-1301263664.cos.ap-nanjing.myqcloud.com/" + title + con +" alt=" + con + "></div><span>" + con.substring(0,con.length-4);
             conBox.appendChild(item);
         }
     }
@@ -690,7 +690,7 @@ function moreClick(obj,cur,cont,title){
     for ( ; j < cont.length && j < Number(showNum) + Number(begin); j++) {
         var con=cont[j].url;
         var item=document.createElement("li");
-        item.innerHTML="<div class=imgbox id=imgbox style=height:"+wid+"px;><img class=imgitem src=https://photos-1301263664.cos.ap-chengdu.myqcloud.com/"+title+con+" alt="+con+"></div><span>"+con.substring(0,con.length-4);
+        item.innerHTML="<div class=imgbox id=imgbox style=height:"+wid+"px;><img class=imgitem src=https://photos-1301263664.cos.ap-nanjing.myqcloud.com/"+title+con+" alt="+con+"></div><span>"+con.substring(0,con.length-4);
         parent.appendChild(item);
         var v=item.getElementsByTagName('img');
         v[0].id=imgid;
