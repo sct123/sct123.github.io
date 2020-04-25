@@ -1974,7 +1974,7 @@ a:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2518ff;
+  background: #3b6bcd;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3150,7 +3150,7 @@ hr {
 }
 .header {
   background-image: linear-gradient(90deg, #e45636 0, #e6e990 15%, #ef4e7b 30%, #a166ab 44%, #5073b8 58%, #1098ad 72%, #07b39b 86%, #6dba82 100%) !important;
-  background-color: #eef2f3;
+/*background-color: #eee;*/
 }
 .footer {
 /*background-image: linear-gradient(90deg,#f79533 0,#f37055 15%,#ef4e7b 30%,#a166ab 44%,#5073b8 58%,#1098ad 72%,#07b39b 86%,#6dba82 100%) !important;*/
@@ -3607,7 +3607,7 @@ li.nav-item.nav-level-6 {
 }
 @media (max-width: 767px) {
   .header {
-    background-color: #222;
+    background-image: linear-gradient(90deg, #e45636 0, #e6e990 15%, #ef4e7b 30%, #a166ab 44%, #5073b8 58%, #1098ad 72%, #07b39b 86%, #6dba82 100%) !important;
     border-bottom: 1px #eee;
     left: 0;
     top: 0;
