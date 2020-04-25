@@ -228,6 +228,29 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo的使用</title>
+    <url>/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>记录一些我学到hexo命令</p>
+<a id="more"></a>
+<h2 id="Hexo学到的东西"><a href="#Hexo学到的东西" class="headerlink" title="Hexo学到的东西"></a>Hexo学到的东西</h2><h3 id="hexo命令1-本地部署"><a href="#hexo命令1-本地部署" class="headerlink" title="hexo命令1-本地部署"></a>hexo命令1-本地部署</h3><pre><code class="bash">$ hexo init &lt;folder&gt; <span class="comment">#init是初始化一个hexo文件夹</span></code></pre>
+<pre><code class="bash">$ <span class="built_in">cd</span> &lt;folder&gt;  <span class="comment">#注意一定要打开文件夹才能进行部署</span></code></pre>
+<pre><code class="bash">$ npm install    <span class="comment">#部署之前进行安装</span></code></pre>
+<pre><code class="bash">$ hexo g   <span class="comment">#生成静态网页</span></code></pre>
+<pre><code class="bash">$ hexo s      <span class="comment">#启动服务器 启动之后会默认给一个网址进去就是我们部署的网页了</span></code></pre>
+<h3 id="更换hexo主题"><a href="#更换hexo主题" class="headerlink" title="更换hexo主题"></a>更换hexo主题</h3><pre><code class="bash"> 把你想更换的主题放在themes目录下。官网有很多好看的主题：https://hexo.io/themes/
+
+ 然后修改站点目录下的_config.yml配置文件找到themes: landscape(默认主题)
+
+修改成你在themes下放好的主题，就完成了</code></pre>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo添加rss订阅功能</title>
     <url>/2020/04/24/hexo%E6%B7%BB%E5%8A%A0rss%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD/</url>
     <content><![CDATA[<p>hexo如何添加rss功能呢？</p>
@@ -249,29 +272,6 @@
 <p>配置完成后直接在根目录下运行hexo g<br>就会在你博客的pubilc 文件夹下发现atom.xml文件了</p>
 <p>参考文章：<a href="https://blog.csdn.net/weixin_34292287/article/details/88931060" target="_blank" rel="noopener">https://blog.csdn.net/weixin_34292287/article/details/88931060</a></p>
 ]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo的使用</title>
-    <url>/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>记录一些我学到hexo命令</p>
-<a id="more"></a>
-<h2 id="Hexo学到的东西"><a href="#Hexo学到的东西" class="headerlink" title="Hexo学到的东西"></a>Hexo学到的东西</h2><h3 id="hexo命令1-本地部署"><a href="#hexo命令1-本地部署" class="headerlink" title="hexo命令1-本地部署"></a>hexo命令1-本地部署</h3><pre><code class="bash">$ hexo init &lt;folder&gt; <span class="comment">#init是初始化一个hexo文件夹</span></code></pre>
-<pre><code class="bash">$ <span class="built_in">cd</span> &lt;folder&gt;  <span class="comment">#注意一定要打开文件夹才能进行部署</span></code></pre>
-<pre><code class="bash">$ npm install    <span class="comment">#部署之前进行安装</span></code></pre>
-<pre><code class="bash">$ hexo g   <span class="comment">#生成静态网页</span></code></pre>
-<pre><code class="bash">$ hexo s      <span class="comment">#启动服务器 启动之后会默认给一个网址进去就是我们部署的网页了</span></code></pre>
-<h3 id="更换hexo主题"><a href="#更换hexo主题" class="headerlink" title="更换hexo主题"></a>更换hexo主题</h3><pre><code class="bash"> 把你想更换的主题放在themes目录下。官网有很多好看的主题：https://hexo.io/themes/
-
- 然后修改站点目录下的_config.yml配置文件找到themes: landscape(默认主题)
-
-修改成你在themes下放好的主题，就完成了</code></pre>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
       <tags>
         <tag>hexo</tag>
       </tags>
@@ -353,6 +353,21 @@
       </tags>
   </entry>
   <entry>
+    <title>标识符</title>
+    <url>/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/</url>
+    <content><![CDATA[<p>java标识符的命名规范<br><a href="https://www.sxt.cn/Java_jQuery_in_action/Java_Identifier.html" target="_blank" rel="noopener">原文来源</a></p>
+<a id="more"></a>
+<h3 id="变量和常量命名规范"><a href="#变量和常量命名规范" class="headerlink" title="变量和常量命名规范"></a>变量和常量命名规范</h3><p>（规范是程序员的基本准则,不规范会直接损害你的个人形象）<br>所有变量、方法、类名：见名知意<br>类成员变量：首字母小写和驼峰原则（monthSalary）<br>局部变量：首字母小写和驼峰原则<br>常量：大写字母和下划线:MAX_VALUE<br>类名：首字母大写和驼峰原则（Man,GoodMan）<br>方法名：首字母小写和驼峰原则:run(),runRun()<br>//变量本质上就是代表一个“可操作的存储空间”，空间位置是确定的，但是里面放置什么值不确定。我们可通过变量名来访问“对应的存储空间”，<br>//从而操纵这个“存储空间”存储的值。<br>//java是一种强制 型语言，每个变量都必须声明其书局类型。变量的数据类型决定了变量占据存储空间的大小。比如 int a = 3; 表示a变量的空间大小为4个字节</p>
+<h3 id="标识符的命名规则："><a href="#标识符的命名规则：" class="headerlink" title="标识符的命名规则："></a>标识符的命名规则：</h3><p>标识符必须以字母、下划线_、美元符号$开头。<br>标识符其它部分可以是字母、下划线“_”、美元符“$”和数字的任意组合。<br>Java 标识符大小写敏感，且长度无限制。<br>标识符不可以是Java的关键字。</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java运算符的优先级</title>
     <url>/2020/04/24/java%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
     <content><![CDATA[<p>java运算符的优先级</p>
@@ -363,21 +378,6 @@
 <h3 id="带符号右移-gt-gt"><a href="#带符号右移-gt-gt" class="headerlink" title="带符号右移 &gt;&gt;"></a>带符号右移 &gt;&gt;</h3><p>对于正数， 带符号右移 &gt;&gt; 会把所有的位右移，并在最前面补0<br>对于负数， 带符号右移 &gt;&gt; 会把所有的位右移，并在最前面补1</p>
 <h3 id="无符号右移-gt-gt-gt"><a href="#无符号右移-gt-gt-gt" class="headerlink" title="无符号右移&gt;&gt;&gt;"></a>无符号右移&gt;&gt;&gt;</h3><p>如果是一个负数，那么对应的二进制的第一位是1<br>无符号右移&gt;&gt;&gt;会把第一位的1也向右移动，导致移动后，第一位变成0<br>这样就会使得负数在无符号右移后，得到一个正数</p>
 <h3 id="自增-自减"><a href="#自增-自减" class="headerlink" title="自增 自减"></a>自增 自减</h3><p>++ –<br>i++  先赋值再自增<br>++i先自增再赋值</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>标识符</title>
-    <url>/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/</url>
-    <content><![CDATA[<p>java标识符的命名规范<br><a href="https://www.sxt.cn/Java_jQuery_in_action/Java_Identifier.html" target="_blank" rel="noopener">原文来源</a></p>
-<a id="more"></a>
-<h3 id="变量和常量命名规范"><a href="#变量和常量命名规范" class="headerlink" title="变量和常量命名规范"></a>变量和常量命名规范</h3><p>（规范是程序员的基本准则,不规范会直接损害你的个人形象）<br>所有变量、方法、类名：见名知意<br>类成员变量：首字母小写和驼峰原则（monthSalary）<br>局部变量：首字母小写和驼峰原则<br>常量：大写字母和下划线:MAX_VALUE<br>类名：首字母大写和驼峰原则（Man,GoodMan）<br>方法名：首字母小写和驼峰原则:run(),runRun()<br>//变量本质上就是代表一个“可操作的存储空间”，空间位置是确定的，但是里面放置什么值不确定。我们可通过变量名来访问“对应的存储空间”，<br>//从而操纵这个“存储空间”存储的值。<br>//java是一种强制 型语言，每个变量都必须声明其书局类型。变量的数据类型决定了变量占据存储空间的大小。比如 int a = 3; 表示a变量的空间大小为4个字节</p>
-<h3 id="标识符的命名规则："><a href="#标识符的命名规则：" class="headerlink" title="标识符的命名规则："></a>标识符的命名规则：</h3><p>标识符必须以字母、下划线_、美元符号$开头。<br>标识符其它部分可以是字母、下划线“_”、美元符“$”和数字的任意组合。<br>Java 标识符大小写敏感，且长度无限制。<br>标识符不可以是Java的关键字。</p>
 ]]></content>
       <categories>
         <category>java</category>
