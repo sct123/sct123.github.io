@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mykindle.xyz/"/>
-  <updated>2020-04-23T16:55:44.121Z</updated>
+  <updated>2020-04-25T11:00:09.225Z</updated>
   <id>https://mykindle.xyz/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>cos对象存储拒绝访问解决方法（腾讯云）</title>
+    <link href="https://mykindle.xyz/2020/04/25/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%8B%92%E7%BB%9D%E8%AE%BF%E9%97%AE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+    <id>https://mykindle.xyz/2020/04/25/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%8B%92%E7%BB%9D%E8%AE%BF%E9%97%AE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</id>
+    <published>2020-04-25T10:30:48.000Z</published>
+    <updated>2020-04-25T11:00:09.225Z</updated>
+    
+    <content type="html"><![CDATA[<p>昨天一直在图床的测试，然后访问的时候一直提示Access Denied，emmm我太菜了。当时因为我看不懂英HHHHH。直接百度了.cors跨域访问也设置了,访问权限公有读也设置了,为什么还不能访问呢？</p><a id="more"></a><p><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/Cache_-724e899b7d8e5fa2..jpg" alt="Images text"><br><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/Cache_-7c3e6ea07bcce2db..jpg" alt="Images text"><br><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/cors.PNG" alt="images text"></p><p>经过广大的网友大佬们的帮助找到了问题1如果你没有在基础配置里设置防盗链,或者权限里面设置Policy权限,访问对象链接就会报错Access Denied,没有权限。设置方法可以官网给的提示。<br><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/%E5%AF%B9%E8%B1%A1%E6%9D%83%E9%99%90.jpg" alt="image text"><br><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/%E6%9D%83%E9%99%90.jpg" alt="image text"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;昨天一直在图床的测试，然后访问的时候一直提示Access Denied，emmm我太菜了。当时因为我看不懂英HHHHH。直接百度了.cors跨域访问也设置了,访问权限公有读也设置了,为什么还不能访问呢？&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="博客" scheme="https://mykindle.xyz/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="cos" scheme="https://mykindle.xyz/tags/cos/"/>
+    
+  </entry>
   
   <entry>
     <title>标识符</title>
