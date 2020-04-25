@@ -1974,7 +1974,7 @@ a:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #3b6bcd;
+  background: #bddbd6;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3626,7 +3626,7 @@ li.nav-item.nav-level-6 {
     padding: 10px;
     width: 100% !important;
     margin-bottom: 30px !important;
-    background-color: #fff;
+    background-color: #eef2f3;
   }
   .site-meta {
     margin-left: 10px;
