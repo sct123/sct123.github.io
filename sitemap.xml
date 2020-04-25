@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://mykindle.xyz/about/index.html</loc>
+    
+    <lastmod>2020-04-25T15:04:56.822Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://mykindle.xyz/2020/04/25/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%8B%92%E7%BB%9D%E8%AE%BF%E9%97%AE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</loc>
     
     <lastmod>2020-04-25T11:00:09.225Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://mykindle.xyz/photos/index.html</loc>
     
     <lastmod>2020-04-25T09:47:26.709Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://mykindle.xyz/about/index.html</loc>
-    
-    <lastmod>2020-04-25T09:40:46.619Z</lastmod>
     
   </url>
   
