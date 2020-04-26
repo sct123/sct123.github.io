@@ -5,9 +5,9 @@
   <subtitle>你终究会成为你正在成为的人，你的每一个选择都是来自你人生意义的诘问。</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://mykindle.xyz/"/>
+  <link href="https://howsyc.cn/"/>
   <updated>2020-04-25T11:00:09.225Z</updated>
-  <id>https://mykindle.xyz/</id>
+  <id>https://howsyc.cn/</id>
   
   <author>
     <name>小通</name>
@@ -18,31 +18,31 @@
   
   <entry>
     <title>cos对象存储拒绝访问解决方法（腾讯云）</title>
-    <link href="https://mykindle.xyz/2020/04/25/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%8B%92%E7%BB%9D%E8%AE%BF%E9%97%AE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
-    <id>https://mykindle.xyz/2020/04/25/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%8B%92%E7%BB%9D%E8%AE%BF%E9%97%AE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</id>
+    <link href="https://howsyc.cn/2020/04/25/cosnew/"/>
+    <id>https://howsyc.cn/2020/04/25/cosnew/</id>
     <published>2020-04-25T10:30:48.000Z</published>
     <updated>2020-04-25T11:00:09.225Z</updated>
     
-    <content type="html"><![CDATA[<p>昨天一直在图床的测试，然后访问的时候一直提示Access Denied，emmm我太菜了。当时因为我看不懂英HHHHH。直接百度了.cors跨域访问也设置了,访问权限公有读也设置了,为什么还不能访问呢？</p><a id="more"></a><p><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/Cache_-724e899b7d8e5fa2..jpg" alt="Images text"><br><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/Cache_-7c3e6ea07bcce2db..jpg" alt="Images text"><br><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/cors.PNG" alt="images text"></p><p>经过广大的网友大佬们的帮助找到了问题1如果你没有在基础配置里设置防盗链,或者权限里面设置Policy权限,访问对象链接就会报错Access Denied,没有权限。设置方法可以官网给的提示。<br><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/%E5%AF%B9%E8%B1%A1%E6%9D%83%E9%99%90.jpg" alt="image text"><br><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/%E6%9D%83%E9%99%90.jpg" alt="image text"></p>]]></content>
+    <content type="html"><![CDATA[<!-- build time:Mon Apr 27 2020 01:58:17 GMT+0800 (GMT+08:00) --><p>昨天一直在图床的测试，然后访问的时候一直提示Access Denied，emmm我太菜了。当时因为我看不懂英HHHHH。直接百度了.cors跨域访问也设置了,访问权限公有读也设置了,为什么还不能访问呢？</p><a id="more"></a><p><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/Cache_-724e899b7d8e5fa2..jpg" alt="Images text"><br><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/Cache_-7c3e6ea07bcce2db..jpg" alt="Images text"><br><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/cors.PNG" alt="images text"></p><p>经过广大的网友大佬们的帮助找到了问题1如果你没有在基础配置里设置防盗链,或者权限里面设置Policy权限,访问对象链接就会报错Access Denied,没有权限。设置方法可以官网给的提示。<br><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/%E5%AF%B9%E8%B1%A1%E6%9D%83%E9%99%90.jpg" alt="image text"><br><img src="https://kaifan-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE/%E6%9D%83%E9%99%90.jpg" alt="image text"></p><!-- rebuild by neat -->]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;昨天一直在图床的测试，然后访问的时候一直提示Access Denied，emmm我太菜了。当时因为我看不懂英HHHHH。直接百度了.cors跨域访问也设置了,访问权限公有读也设置了,为什么还不能访问呢？&lt;/p&gt;
+      &lt;!-- build time:Mon Apr 27 2020 01:58:17 GMT+0800 (GMT+08:00) --&gt;&lt;p&gt;昨天一直在图床的测试，然后访问的时候一直提示Access Denied，emmm我太菜了。当时因为我看不懂英HHHHH。直接百度了.cors跨域访问也设置了,访问权限公有读也设置了,为什么还不能访问呢？&lt;/p&gt;
     
     </summary>
     
     
-      <category term="博客" scheme="https://mykindle.xyz/categories/%E5%8D%9A%E5%AE%A2/"/>
+      <category term="博客" scheme="https://howsyc.cn/categories/%E5%8D%9A%E5%AE%A2/"/>
     
     
-      <category term="cos" scheme="https://mykindle.xyz/tags/cos/"/>
+      <category term="cos" scheme="https://howsyc.cn/tags/cos/"/>
     
   </entry>
   
   <entry>
     <title>标识符</title>
-    <link href="https://mykindle.xyz/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/"/>
-    <id>https://mykindle.xyz/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/</id>
+    <link href="https://howsyc.cn/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/"/>
+    <id>https://howsyc.cn/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/</id>
     <published>2020-04-23T16:55:43.926Z</published>
     <updated>2020-04-23T16:55:44.121Z</updated>
     
@@ -55,17 +55,17 @@
     </summary>
     
     
-      <category term="java" scheme="https://mykindle.xyz/categories/java/"/>
+      <category term="java" scheme="https://howsyc.cn/categories/java/"/>
     
     
-      <category term="java" scheme="https://mykindle.xyz/tags/java/"/>
+      <category term="java" scheme="https://howsyc.cn/tags/java/"/>
     
   </entry>
   
   <entry>
     <title>java运算符的优先级</title>
-    <link href="https://mykindle.xyz/2020/04/24/java%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
-    <id>https://mykindle.xyz/2020/04/24/java%E8%BF%90%E7%AE%97%E7%AC%A6/</id>
+    <link href="https://howsyc.cn/2020/04/24/java%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
+    <id>https://howsyc.cn/2020/04/24/java%E8%BF%90%E7%AE%97%E7%AC%A6/</id>
     <published>2020-04-23T16:55:43.921Z</published>
     <updated>2020-04-23T16:55:44.127Z</updated>
     
@@ -78,17 +78,17 @@
     </summary>
     
     
-      <category term="java" scheme="https://mykindle.xyz/categories/java/"/>
+      <category term="java" scheme="https://howsyc.cn/categories/java/"/>
     
     
-      <category term="java" scheme="https://mykindle.xyz/tags/java/"/>
+      <category term="java" scheme="https://howsyc.cn/tags/java/"/>
     
   </entry>
   
   <entry>
     <title>java数组</title>
-    <link href="https://mykindle.xyz/2020/04/24/java%E6%95%B0%E7%BB%84%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>https://mykindle.xyz/2020/04/24/java%E6%95%B0%E7%BB%84%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <link href="https://howsyc.cn/2020/04/24/java%E6%95%B0%E7%BB%84%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://howsyc.cn/2020/04/24/java%E6%95%B0%E7%BB%84%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
     <published>2020-04-23T16:55:43.919Z</published>
     <updated>2020-04-23T16:55:44.116Z</updated>
     
@@ -101,17 +101,17 @@
     </summary>
     
     
-      <category term="java" scheme="https://mykindle.xyz/categories/java/"/>
+      <category term="java" scheme="https://howsyc.cn/categories/java/"/>
     
     
-      <category term="java" scheme="https://mykindle.xyz/tags/java/"/>
+      <category term="java" scheme="https://howsyc.cn/tags/java/"/>
     
   </entry>
   
   <entry>
     <title>java数据类型</title>
-    <link href="https://mykindle.xyz/2020/04/24/java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
-    <id>https://mykindle.xyz/2020/04/24/java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</id>
+    <link href="https://howsyc.cn/2020/04/24/java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+    <id>https://howsyc.cn/2020/04/24/java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</id>
     <published>2020-04-23T16:55:43.916Z</published>
     <updated>2020-04-23T16:55:44.111Z</updated>
     
@@ -124,17 +124,17 @@
     </summary>
     
     
-      <category term="java" scheme="https://mykindle.xyz/categories/java/"/>
+      <category term="java" scheme="https://howsyc.cn/categories/java/"/>
     
     
-      <category term="java" scheme="https://mykindle.xyz/tags/java/"/>
+      <category term="java" scheme="https://howsyc.cn/tags/java/"/>
     
   </entry>
   
   <entry>
     <title>控制语句</title>
-    <link href="https://mykindle.xyz/2020/04/24/java%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B/"/>
-    <id>https://mykindle.xyz/2020/04/24/java%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B/</id>
+    <link href="https://howsyc.cn/2020/04/24/java%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B/"/>
+    <id>https://howsyc.cn/2020/04/24/java%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B/</id>
     <published>2020-04-23T16:55:43.914Z</published>
     <updated>2020-04-23T16:55:44.106Z</updated>
     
@@ -147,17 +147,17 @@
     </summary>
     
     
-      <category term="java" scheme="https://mykindle.xyz/categories/java/"/>
+      <category term="java" scheme="https://howsyc.cn/categories/java/"/>
     
     
-      <category term="java" scheme="https://mykindle.xyz/tags/java/"/>
+      <category term="java" scheme="https://howsyc.cn/tags/java/"/>
     
   </entry>
   
   <entry>
     <title>hexo添加rss订阅功能</title>
-    <link href="https://mykindle.xyz/2020/04/24/hexo%E6%B7%BB%E5%8A%A0rss%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD/"/>
-    <id>https://mykindle.xyz/2020/04/24/hexo%E6%B7%BB%E5%8A%A0rss%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD/</id>
+    <link href="https://howsyc.cn/2020/04/24/hexo%E6%B7%BB%E5%8A%A0rss%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD/"/>
+    <id>https://howsyc.cn/2020/04/24/hexo%E6%B7%BB%E5%8A%A0rss%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD/</id>
     <published>2020-04-23T16:55:43.912Z</published>
     <updated>2020-04-23T16:55:44.101Z</updated>
     
@@ -171,14 +171,14 @@
     
     
     
-      <category term="hexo" scheme="https://mykindle.xyz/tags/hexo/"/>
+      <category term="hexo" scheme="https://howsyc.cn/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>Hexo的使用</title>
-    <link href="https://mykindle.xyz/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>https://mykindle.xyz/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <link href="https://howsyc.cn/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://howsyc.cn/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
     <published>2020-04-23T16:55:43.909Z</published>
     <updated>2020-04-23T16:55:44.096Z</updated>
     
@@ -191,17 +191,17 @@
     </summary>
     
     
-      <category term="hexo" scheme="https://mykindle.xyz/categories/hexo/"/>
+      <category term="hexo" scheme="https://howsyc.cn/categories/hexo/"/>
     
     
-      <category term="hexo" scheme="https://mykindle.xyz/tags/hexo/"/>
+      <category term="hexo" scheme="https://howsyc.cn/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>ensp设备调试</title>
-    <link href="https://mykindle.xyz/2020/04/24/ensp%E8%AE%BE%E5%A4%87%E8%B0%83/"/>
-    <id>https://mykindle.xyz/2020/04/24/ensp%E8%AE%BE%E5%A4%87%E8%B0%83/</id>
+    <link href="https://howsyc.cn/2020/04/24/ensp%E8%AE%BE%E5%A4%87%E8%B0%83/"/>
+    <id>https://howsyc.cn/2020/04/24/ensp%E8%AE%BE%E5%A4%87%E8%B0%83/</id>
     <published>2020-04-23T16:55:43.900Z</published>
     <updated>2020-04-23T16:55:44.091Z</updated>
     
@@ -214,12 +214,12 @@
     </summary>
     
     
-      <category term="ensp" scheme="https://mykindle.xyz/categories/ensp/"/>
+      <category term="ensp" scheme="https://howsyc.cn/categories/ensp/"/>
     
     
-      <category term="ensp" scheme="https://mykindle.xyz/tags/ensp/"/>
+      <category term="ensp" scheme="https://howsyc.cn/tags/ensp/"/>
     
-      <category term="网络" scheme="https://mykindle.xyz/tags/%E7%BD%91%E7%BB%9C/"/>
+      <category term="网络" scheme="https://howsyc.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
