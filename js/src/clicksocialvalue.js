@@ -1,3 +1,3 @@
-// build time:Mon Apr 27 2020 04:25:57 GMT+0800 (GMT+08:00)
+// build time:Mon Apr 27 2020 04:30:11 GMT+0800 (GMT+08:00)
 (function(){var t=["富强","民主","文明","和谐","自由","平等","公正","法治","爱国","敬业","诚信","友善"],e=Math.floor(Math.random()*t.length);document.body.addEventListener("click",function(o){if(o.target.tagName=="A"){return}var a=o.pageX,l=o.pageY,r=document.createElement("span");r.textContent=t[e];e=(e+1)%t.length;r.style.cssText=["z-index: 9999999; position: absolute; font-weight: bold; color: #ff6651; top: ",l-20,"px; left: ",a,"px;"].join("");document.body.appendChild(r);n(r)});function n(t){var e=0,n=parseInt(t.style.top),o=setInterval(a,16.7);function a(){if(e>180){clearInterval(o);t.parentNode.removeChild(t)}else{e+=2;t.style.top=n-e+"px";t.style.opacity=(180-e)/180}}}})();
 //rebuild by neat 
