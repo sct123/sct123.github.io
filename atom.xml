@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://howsyc.cn/"/>
-  <updated>2020-04-26T20:37:09.632Z</updated>
+  <updated>2020-04-30T16:38:41.698Z</updated>
   <id>https://howsyc.cn/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决hexo-s问题</title>
+    <link href="https://howsyc.cn/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/"/>
+    <id>https://howsyc.cn/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/</id>
+    <published>2020-04-30T16:37:02.150Z</published>
+    <updated>2020-04-30T16:38:41.698Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="解决hexo启动服务器后页面不显示"><a href="#解决hexo启动服务器后页面不显示" class="headerlink" title="解决hexo启动服务器后页面不显示"></a>解决hexo启动服务器后页面不显示</h3><p>今天打开电脑修改hexo主题的样式，在启动hexo s后打开页面的时候发现页面根本打不开,查看任务管理后才发现端口被占用！！！挺小白的问题，是我太菜。</p><a id="more"></a><p>一般解决方法都是在window的cmd下输入下面的命令来查看占用端口的进程,然后去任务管理器的进程选项结束进程.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ netstat -ano|findestr 4000(端口名)</span><br></pre></td></tr></table></figure><p>查看了<a href="https://hexo.io/docs/server" target="_blank" rel="noopener">官网文档</a>的server用法后发现，<br>其实还有更简单的方法：</p><h2 id="方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。"><a href="#方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。" class="headerlink" title="方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。"></a>方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server -p 5000</span><br></pre></td></tr></table></figure><h2 id="方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件-config-yml后直接配置端口："><a href="#方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件-config-yml后直接配置端口：" class="headerlink" title="方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件_config.yml后直接配置端口："></a>方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件_config.yml后直接配置端口：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 5000   ##端口号</span><br><span class="line">  compress: true   </span><br><span class="line">  header: true</span><br></pre></td></tr></table></figure><p>注意：在使用完hexo s的时候，记得关闭，否则再另开启一个也会出现被占用的问题。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;解决hexo启动服务器后页面不显示&quot;&gt;&lt;a href=&quot;#解决hexo启动服务器后页面不显示&quot; class=&quot;headerlink&quot; title=&quot;解决hexo启动服务器后页面不显示&quot;&gt;&lt;/a&gt;解决hexo启动服务器后页面不显示&lt;/h3&gt;&lt;p&gt;今天打开电脑修改hexo主题的样式，在启动hexo s后打开页面的时候发现页面根本打不开,查看任务管理后才发现端口被占用！！！挺小白的问题，是我太菜。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>本站换域名啦(公告)</title>

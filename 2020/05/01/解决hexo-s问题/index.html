@@ -114,14 +114,14 @@
 
 
 
-<meta name="description" content=".posts-expand .post-body img{         padding: 1px;     }      .footer{         display: none !important;     }       &#x2F;*不展示底部*&#x2F;      .footer-inner{          display: none !important;      }">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的图床">
-<meta property="og:url" content="https://howsyc.cn/photos/index.html">
+<meta name="description" content="解决hexo启动服务器后页面不显示今天打开电脑修改hexo主题的样式，在启动hexo s后打开页面的时候发现页面根本打不开,查看任务管理后才发现端口被占用！！！挺小白的问题，是我太菜。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决hexo-s问题">
+<meta property="og:url" content="https://howsyc.cn/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="小通">
-<meta property="og:description" content=".posts-expand .post-body img{         padding: 1px;     }      .footer{         display: none !important;     }       &#x2F;*不展示底部*&#x2F;      .footer-inner{          display: none !important;      }">
-<meta property="article:published_time" content="2020-04-24T12:50:11.000Z">
-<meta property="article:modified_time" content="2020-04-25T09:47:26.709Z">
+<meta property="og:description" content="解决hexo启动服务器后页面不显示今天打开电脑修改hexo主题的样式，在启动hexo s后打开页面的时候发现页面根本打不开,查看任务管理后才发现端口被占用！！！挺小白的问题，是我太菜。">
+<meta property="article:published_time" content="2020-04-30T16:37:02.150Z">
+<meta property="article:modified_time" content="2020-04-30T16:38:41.698Z">
 <meta property="article:author" content="小通">
 <meta property="article:tag" content="小通博客">
 <meta name="twitter:card" content="summary">
@@ -154,15 +154,13 @@
 
 
 
-  <link rel="canonical" href="https://howsyc.cn/photos/"/>
+  <link rel="canonical" href="https://howsyc.cn/2020/05/01/解决hexo-s问题/"/>
 
 
 
 
 
-  <title>
-  
-  我的图床 | 小通</title>
+  <title>解决hexo-s问题 - 小通的博客</title>
   
 
 
@@ -343,375 +341,253 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://howsyc.cn/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小通">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小通">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h2 class="post-title" itemprop="name headline">我的图床</h2>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <style type="text/css">
-    .posts-expand .post-body img{
-        padding: 1px;
-    }
-
-    .footer{
-        display: none !important;
-    }
-
-     /*不展示底部*/
-     .footer-inner{
-         display: none !important;
-     }
-
-    .v * {
-        color: #f4f4f4 !important;
-    }
-
-    .v .vwrap .vmark .valert .vcode {
-        background: #00050b !important;
-    }
-
-     /*不展示侧栏*/
-     .sidebar-toggle{
-         display: none !important;
-     }
-
-    /*修改相册页面内容宽度为全屏*/
-    .main-inner{
-        width: 100%;
-        margin-top: unset;
-    }
-
-    /*修改主体页面样式*/
-    .main {
-        padding-bottom: 150px;
-        margin-top: 0px;
-        background: #121212;
-    }
-
-    /*body体样式*/
-    body {
-        background-image: unset;
-        background-attachment: unset;
-        background-size: 100%;
-    }
-
-    .header{
-        background: rgba(28, 25, 25, 0.6);
-        border-bottom: unset;
-    }
-
-    .menu .menu-item a{
-        font-weight: 300;
-           color: #222;
-    }
-
-    .imgbox{
-      width: 100%;
-      overflow: hidden;
-      border-right: 0px solid #bcbcbc;
-    }
-
-    .box{
-        visibility: visible;
-        overflow: auto; 
-        zoom: 1;
-    }
-
-    .box li{
-        float: left;
-        width: 25%;  /*每个框占25%*/
-        position: relative;
-        overflow: hidden;
-        text-align: center;
-        list-style: none;
-        margin: 0;
-        /*display: inline;*/
-        padding: 0;
-        height: 400px;   /*固定高度*/
-    }
-
-    .box li span{
-        display: block;
-        padding: 4% 7% 10% 7%;
-        min-height: 80px;
-        background: #fff;
-        color: #fff;
-        font-size: 16px;
-        background: #121212;
-        font-weight: 600;
-        line-height: 26px;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-
-    img.imgitem{
-        padding: unset;
-        padding: unset;
-        border: unset;
-        position: relative;
-        padding: 0px;
-        width: 100%;
-        height: 350px;
-    }
-
-    div#comments.comments.v {
-        border: 0px;
-        margin: auto !important;
-        margin-top: unset;
-        margin-left: unset;
-        margin-right: unset;
-        width: 60%;
-        padding-top: 50px;
-    }
-
-    div#posts.posts-expand {
-        border: unset;
-        padding: unset;
-        margin-bottom: 10px;
-    }
-
-    .valine .vlist .vcard .vcomment-body .vhead .vname{
-        color: #fff;
-    }
-
-    .valine .vlist .vcard .vcomment-body .text-wrapper .vcomment p{
-        color: #fff;
-    }
-
-    .box p{
-        display: block;
-        background: #121212;
-        color: #fff;
-        font-size: 12px;
-        font-family: 'SwisMedium';
-        text-align: center;
-    }
-
-    .box span strong{
-        background: rgba(0,0,0,0.4);
-        padding: 20px;
-        font-family: serif, sans-serif;
-    }
-
-    .posts-expand .post-title {
-        display: none;
-    }
-    .title{
-        display: inline-block;
-        vertical-align: middle;
-        font: 85px/250px 'ChaletComprimeMilanSixty';
-        background-position: left bottom !important;
-        color: #fff;
-        background-size: 100% auto !important; 
-        -webkit-background-size: cover; 
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        width: 100%;
-        text-align: center;
-        border: unset;
-        height: 580px;
-        cursor: unset !important;
-        -webkit-box-sizing: border-box;
-        /*box-sizing: border-box;*/
-    }
-    .btn-more-posts{
-        display: inline-block;
-        vertical-align: middle;
-        font: 85px/250px 'ChaletComprimeMilanSixty';
-        color: #000;
-        width: 100%;
-        text-align: center;
-        border: unset;
-        height: 400px;
-        background-color: #121212;
-        /*-webkit-box-sizing: border-box;*/
-        /*box-sizing: border-box;*/
-    }
-
-@media (max-width: 767px){
-    .box li {
-        width: 100%;
-        height: auto;
-    }
-    .title {
-        height: 200px;
-    }
-
-    .posts-expand .post-body img{
-        box-sizing: none;
-        padding: 0px !important;
-    }
-
-    .box span {
-        min-height: 80px;
-        border-right: unset;
-        font-size: 17px;
-    }
-    .box p{
-        border-right: unset;
-        font-size: 12px;
-    }
-
-    .posts-expand {
-        margin: unset;
-    }
-    div#comments.comments.v {
-        width: 96%;
-        padding-top: 50px;
-    }
-}
-
-@media (min-width: 1300px){
-    .container .main-inner{
-        width: 100%;
-    }
-}
-
-</style>
-
-<!-- 主体部分 -->
-<div id="box" class="box"></div>
-
-<script type="text/javascript">
-
-function loadXMLDoc(xmlUrl) 
-{
-    try //Internet Explorer
-    {
-        xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
-    }
-    catch(e)
-    {
-      try //Firefox, Mozilla, Opera, etc.
-        {
-          xmlDoc=document.implementation.createDocument("","",null);
-        }
-      catch(e) {alert(e.message)}
-    }
-
-    try 
-    {
-          xmlDoc.async=false;
-          xmlDoc.load(xmlUrl);
-    }
-    catch(e) {
-        try //Google Chrome  
-          {  
-            var chromeXml = new XMLHttpRequest();
-            chromeXml.open("GET", xmlUrl, false);
-            chromeXml.send(null);
-            xmlDoc = chromeXml.responseXML.documentElement;                 
-            //alert(xmlDoc.childNodes[0].nodeName);
-            //return xmlDoc;    
-          }  
-          catch(e)  
-          {  
-              alert(e.message)  
-          }                
-    }
-    return xmlDoc; 
-}
-
-xmlDoc=loadXMLDoc("https://photos-1301263664.cos.ap-nanjing.myqcloud.com");
-
-var urls = xmlDoc.getElementsByTagName('Key');
-var date = xmlDoc.getElementsByTagName('LastModified');
-var wid = 350;
-var showNum = 21; //每个相册一次展示多少照片
-if ((window.innerWidth) > 1200) { wid = (window.innerWidth * 3) / 18;}
-var box = document.getElementById('box');
-var i = 0;
-
-var content = new Array();
-var tmp=0;
-var kkk=-1;
-for (var t = 0; t < urls.length ; t++) {
-    var bucket=urls[t].innerHTML;
-    var length=bucket.indexOf('/');
-    if(length===bucket.length-1){
-        kkk++;
-        content[kkk]=new Array();
-        content[kkk][0]={'url':bucket,'date':date[t].innerHTML.substring(0,10)};
-        tmp=1;
-    }
-    else {
-        content[kkk][tmp++]={'url':bucket.substring(length+1),'date':date[t].innerHTML.substring(0,10)};
-    }
-}
-
-for (var i = 0; i < content.length; i++) {
-    var conBox=document.createElement("div");
-    conBox.id='conBox'+i;
-    box.appendChild(conBox);
-    var item=document.createElement("div");
-    var title=content[i][0].url;
-    item.innerHTML="<button class=title style=background:url(https://photos-1301263664.cos.ap-nanjing.myqcloud.com/" + title + "封面.jpg"+");background-repeat:no-repeat;><span style=display:inline;><strong style=color:#f0f3f6; >" + title.substring(0,title.length - 1) + "</strong></span></button>";
-    conBox.appendChild(item);
-
-        for (var j = 1; j < content[i].length && j < showNum+1; j++) {
-            var con=content[i][j].url;
-        var item=document.createElement("li");
-        if(con.substring(0,con.length-4) != "封面"){
-            item.innerHTML="<div class=imgbox id=imgbox style=height:"+wid+"px;><img class=imgitem src=https://photos-1301263664.cos.ap-nanjing.myqcloud.com/" + title + con +" alt=" + con + "></div><span>" + con.substring(0,con.length-4);
-            conBox.appendChild(item);
-        }
-    }
-    if(content[i].length > showNum){
-        var moreItem=document.createElement("button");
-        moreItem.className = "btn-more-posts";
-        moreItem.id = "more" + i;
-        moreItem.value = showNum + 1;
-        let cur = i;
-        moreItem.onclick = function (){
-            moreClick(this,cur,content[cur],content[cur][0].url);
-        }
-        moreItem.innerHTML="<span style=display:inline;><strong style=color:#f0f3f6;>加载更多</strong></span>";
-        conBox.appendChild(moreItem);
-    }
-}
-
-function moreClick(obj,cur,cont,title){
-    var parent = obj.parentNode;
-    parent.removeChild(obj);
-    var j=obj.value;
-    var begin=j;
-    for ( ; j < cont.length && j < Number(showNum) + Number(begin); j++) {
-        var con=cont[j].url;
-        var item=document.createElement("li");
-        item.innerHTML="<div class=imgbox id=imgbox style=height:"+wid+"px;><img class=imgitem src=https://photos-1301263664.cos.ap-nanjing.myqcloud.com/"+title+con+" alt="+con+"></div><span>"+con.substring(0,con.length-4);
-        parent.appendChild(item);
-        var v=item.getElementsByTagName('img');
-        v[0].id=imgid;
-        imgid++;
-    }
-    if(cont.length > j){
-        obj.value=j;
-        parent.appendChild(obj);
-    }
-}
-</script>
+          <h2 class="post-title" itemprop="name headline">解决hexo-s问题</h2>
         
-      </div>
+
+        <div class="post-meta">
+      <!-- 增加置顶功能 -->
+	    
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <!-- 创建时间图标颜色 -->
+                <font color="blue"><i class="fa fa-calendar"></i></font>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-01T00:37:02+08:00">
+                <font color="blue">2020-05-01</font>
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+
+            
+          
+
+          
+          
+             <span id="/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/" class="leancloud_visitors" data-flag-title="解决hexo-s问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <!-- 阅读量图标颜色 -->
+                 <font color="red"><i class="fa fa-eye"></i></font>
+               </span>
+               
+                 <font color="red"><span class="leancloud-visitors-count"></span>
+                 <span>℃</span></font>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                   <!-- 字数统计图标颜色 -->
+                  <font color="green"><i class="fa fa-file-word-o"></i></font>
+                </span>
+                
+                <font color="green"><span title="字数">
+                  278
+                </span></font>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="解决hexo启动服务器后页面不显示"><a href="#解决hexo启动服务器后页面不显示" class="headerlink" title="解决hexo启动服务器后页面不显示"></a>解决hexo启动服务器后页面不显示</h3><p>今天打开电脑修改hexo主题的样式，在启动hexo s后打开页面的时候发现页面根本打不开,查看任务管理后才发现端口被占用！！！挺小白的问题，是我太菜。</p>
+<a id="more"></a>
+<p>一般解决方法都是在window的cmd下输入下面的命令来查看占用端口的进程,然后去任务管理器的进程选项结束进程.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ netstat -ano|findestr 4000(端口名)</span><br></pre></td></tr></table></figure>
+<p>查看了<a href="https://hexo.io/docs/server" target="_blank" rel="noopener">官网文档</a>的server用法后发现，<br>其实还有更简单的方法：</p>
+<h2 id="方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。"><a href="#方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。" class="headerlink" title="方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。"></a>方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server -p 5000</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件-config-yml后直接配置端口："><a href="#方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件-config-yml后直接配置端口：" class="headerlink" title="方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件_config.yml后直接配置端口："></a>方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件_config.yml后直接配置端口：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 5000   ##端口号</span><br><span class="line">  compress: true   </span><br><span class="line">  header: true</span><br></pre></td></tr></table></figure>
+<p>注意：在使用完hexo s的时候，记得关闭，否则再另开启一个也会出现被占用的问题。</p>
+
       
     </div>
+
+    
+      
+
+
+
+
+
+    
+
+
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果这篇文章对您很有帮助，不妨</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="小通 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="小通 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
   </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    小通
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://howsyc.cn/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/" title="解决hexo-s问题">https://howsyc.cn/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+    
+    	<div>
+	   
+             <div>
+    
+        <div style="margin-top: 30px;text-align:center;color: #ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-heart"></i>　感谢您的阅读　　　　-------------</div>
+    
+</div>
+           
+        </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/27/howsyc/" rel="next" title="本站换域名啦(公告)">
+                <i class="fa fa-chevron-left"></i> 本站换域名啦(公告)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+
+      <!-- 引入share.js -->
+      <div data-weibo-title="分享到微博" data-qq-title="分享到QQ" data-douban-title="分享到豆瓣" class="social-share" class="share-component" data-disabled="twitter,facebook" data-description="Share.js - 一键分享到微博，QQ空间，腾讯微博，人人，豆瓣">分享到：</div>
+  </div>
+
 
 
           </div>
@@ -747,8 +623,17 @@ function moreClick(obj,cur,cont,title){
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -844,6 +729,22 @@ function moreClick(obj,cur,cont,title){
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决hexo启动服务器后页面不显示"><span class="nav-number">1.</span> <span class="nav-text">解决hexo启动服务器后页面不显示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。"><span class="nav-number"></span> <span class="nav-text">方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件-config-yml后直接配置端口："><span class="nav-number"></span> <span class="nav-text">方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件_config.yml后直接配置端口：</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
