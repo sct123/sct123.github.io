@@ -1974,7 +1974,7 @@ a:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a7b346;
+  background: #ff47ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3154,8 +3154,8 @@ hr {
 }
 .footer {
 /*background-image: linear-gradient(90deg,#f79533 0,#f37055 15%,#ef4e7b 30%,#a166ab 44%,#5073b8 58%,#1098ad 72%,#07b39b 86%,#6dba82 100%) !important;*/
-  background-color: #f3f2ee;
-/*background: none !important;*/
+/*background-color: rgba(243, 242, 238, 1);*/
+  background: none !important;
 }
 .site-meta .site-title {
   font-size: 28px;
