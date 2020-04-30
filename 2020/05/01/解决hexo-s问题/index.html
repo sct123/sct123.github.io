@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="Java,hexo,next,个人博客,博客,编程,IT,CSS,javascript,前端,后端,web开发" />
+  <meta name="keywords" content="hexo," />
 
 
 
@@ -116,14 +116,14 @@
 
 <meta name="description" content="解决hexo启动服务器后页面不显示今天打开电脑修改hexo主题的样式，在启动hexo s后打开页面的时候发现页面根本打不开,查看任务管理后才发现端口被占用！！！挺小白的问题，是我太菜。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决hexo-s问题">
+<meta property="og:title" content="解决hexo启动服务器后页面不显示">
 <meta property="og:url" content="https://howsyc.cn/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="小通">
 <meta property="og:description" content="解决hexo启动服务器后页面不显示今天打开电脑修改hexo主题的样式，在启动hexo s后打开页面的时候发现页面根本打不开,查看任务管理后才发现端口被占用！！！挺小白的问题，是我太菜。">
 <meta property="article:published_time" content="2020-04-30T16:37:02.150Z">
-<meta property="article:modified_time" content="2020-04-30T16:38:41.698Z">
+<meta property="article:modified_time" content="2020-04-30T17:28:44.159Z">
 <meta property="article:author" content="小通">
-<meta property="article:tag" content="小通博客">
+<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
 
 
@@ -160,7 +160,7 @@
 
 
 
-  <title>解决hexo-s问题 - 小通的博客</title>
+  <title>解决hexo启动服务器后页面不显示 - 小通的博客</title>
   
 
 
@@ -370,7 +370,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">解决hexo-s问题</h2>
+          <h2 class="post-title" itemprop="name headline">解决hexo启动服务器后页面不显示</h2>
         
 
         <div class="post-meta">
@@ -394,6 +394,27 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <!-- 分类图标颜色 -->
+                <font color="#56b6e7"><i class="fa fa-folder-open"></i></font>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index">
+                    <font color="#56b6e7"><span itemprop="name">hexo</span></font>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -403,7 +424,7 @@
 
           
           
-             <span id="/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/" class="leancloud_visitors" data-flag-title="解决hexo-s问题">
+             <span id="/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/" class="leancloud_visitors" data-flag-title="解决hexo启动服务器后页面不显示">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <!-- 阅读量图标颜色 -->
@@ -454,15 +475,15 @@
       
 
       
-        <h3 id="解决hexo启动服务器后页面不显示"><a href="#解决hexo启动服务器后页面不显示" class="headerlink" title="解决hexo启动服务器后页面不显示"></a>解决hexo启动服务器后页面不显示</h3><p>今天打开电脑修改hexo主题的样式，在启动hexo s后打开页面的时候发现页面根本打不开,查看任务管理后才发现端口被占用！！！挺小白的问题，是我太菜。</p>
+        <h2 id="解决hexo启动服务器后页面不显示"><a href="#解决hexo启动服务器后页面不显示" class="headerlink" title="解决hexo启动服务器后页面不显示"></a>解决hexo启动服务器后页面不显示</h2><p>今天打开电脑修改hexo主题的样式，在启动hexo s后打开页面的时候发现页面根本打不开,查看任务管理后才发现端口被占用！！！挺小白的问题，是我太菜。</p>
 <a id="more"></a>
 <p>一般解决方法都是在window的cmd下输入下面的命令来查看占用端口的进程,然后去任务管理器的进程选项结束进程.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ netstat -ano|findestr 4000(端口名)</span><br></pre></td></tr></table></figure>
 <p>查看了<a href="https://hexo.io/docs/server" target="_blank" rel="noopener">官网文档</a>的server用法后发现，<br>其实还有更简单的方法：</p>
-<h2 id="方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。"><a href="#方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。" class="headerlink" title="方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。"></a>方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server -p 5000</span><br></pre></td></tr></table></figure>
+<h3 id="方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。"><a href="#方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。" class="headerlink" title="方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。"></a>方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server -p 5000</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件-config-yml后直接配置端口："><a href="#方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件-config-yml后直接配置端口：" class="headerlink" title="方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件_config.yml后直接配置端口："></a>方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件_config.yml后直接配置端口：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 5000   ##端口号</span><br><span class="line">  compress: true   </span><br><span class="line">  header: true</span><br></pre></td></tr></table></figure>
+<h3 id="方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件-config-yml后直接配置端口："><a href="#方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件-config-yml后直接配置端口：" class="headerlink" title="方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件_config.yml后直接配置端口："></a>方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件_config.yml后直接配置端口：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 5000   ##端口号</span><br><span class="line">  compress: true   </span><br><span class="line">  header: true</span><br></pre></td></tr></table></figure>
 <p>注意：在使用完hexo s的时候，记得关闭，否则再另开启一个也会出现被占用的问题。</p>
 
       
@@ -470,6 +491,30 @@
 
     
       
+
+  <div class="popular-posts-header">📚&nbsp;&nbsp;相关文章</div>
+  <ul class="popular-posts">
+  
+    <div class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\2020\04\24\hexo-的使用\" rel="bookmark">🏷️&nbsp;&nbsp;&nbsp;&nbsp;Hexo的使用</a></div>
+      
+    </div>
+  
+    <div class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\2020\04\24\hexo添加rss订阅功能\" rel="bookmark">🏷️&nbsp;&nbsp;&nbsp;&nbsp;hexo添加rss订阅功能</a></div>
+      
+    </div>
+  
+  </ul>
+  <style type="text/css">
+    a:hover{
+      text-decoration: none;
+    }
+  </style>
 
 
 
@@ -524,7 +569,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://howsyc.cn/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/" title="解决hexo-s问题">https://howsyc.cn/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/</a>
+    <a href="https://howsyc.cn/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/" title="解决hexo启动服务器后页面不显示">https://howsyc.cn/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -546,6 +591,12 @@
         </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
+          
+        </div>
       
 
       
@@ -739,7 +790,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决hexo启动服务器后页面不显示"><span class="nav-number">1.</span> <span class="nav-text">解决hexo启动服务器后页面不显示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。"><span class="nav-number"></span> <span class="nav-text">方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件-config-yml后直接配置端口："><span class="nav-number"></span> <span class="nav-text">方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件_config.yml后直接配置端口：</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决hexo启动服务器后页面不显示"><span class="nav-number">1.</span> <span class="nav-text">解决hexo启动服务器后页面不显示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。"><span class="nav-number">1.1.</span> <span class="nav-text">方法1：使用-p选项可以设置不同的端口。再打开网页就大公告成了。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件-config-yml后直接配置端口："><span class="nav-number">1.2.</span> <span class="nav-text">方法2：如果每次4000端口都被占用的话，方法一这样设置会很麻烦。所以直接在根目录下的配置文件_config.yml后直接配置端口：</span></a></li></ol></li></ol></div>
             
 
           </div>
