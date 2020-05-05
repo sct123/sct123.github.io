@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://howsyc.cn/messageboard/index.html</loc>
+    
+    <lastmod>2020-05-05T13:03:59.305Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://howsyc.cn/2020/05/05/EOFException/</loc>
     
-    <lastmod>2020-05-05T12:05:16.111Z</lastmod>
+    <lastmod>2020-05-05T12:06:16.818Z</lastmod>
     
   </url>
   
@@ -54,13 +61,6 @@
     <loc>https://howsyc.cn/2020/04/24/java%E8%BF%90%E7%AE%97%E7%AC%A6/</loc>
     
     <lastmod>2020-05-05T05:59:52.131Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://howsyc.cn/messageboard/index.html</loc>
-    
-    <lastmod>2020-05-05T05:41:17.811Z</lastmod>
     
   </url>
   
