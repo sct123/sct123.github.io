@@ -1,3 +1,3 @@
-// build time:Wed May 06 2020 01:22:25 GMT+0800 (GMT+08:00)
+// build time:Thu May 07 2020 02:17:51 GMT+0800 (GMT+08:00)
 window._bd_share_main.F.module("share/combine_api",function(n,a,i){var e=(n("base/tangram").T,n("base/class").Class),s=n("share/api_base");a.CombineApi=e.create(function(n){var a=this,i=null,e=null;a.setApi=function(n,a){i=n,e=a},a._init=function(){i&&e&&i.on("sharecompleted",function(n){})}},s.ApiBase)});
 //rebuild by neat 
