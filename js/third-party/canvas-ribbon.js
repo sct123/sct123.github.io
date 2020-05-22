@@ -1,3 +1,107 @@
-// build time:Fri May 22 2020 21:36:21 GMT+0800 (GMT+08:00)
-!function(){function e(e,t,n){return n===!0?e.getAttribute(t)||n:Number(e.getAttribute(t))||n}function t(){for(r.clearRect(0,0,f,s),c=[{x:0,y:.7*s+u},{x:0,y:.7*s-u}];c[1].x<f+u;)n(c[0],c[1])}function n(e,t){r.beginPath(),r.moveTo(e.x,e.y),r.lineTo(t.x,t.y);var n=t.x+(2*y()-.25)*u,o=i(t.y);r.lineTo(n,o),r.closePath(),b-=m/-50,r.fillStyle="#"+(127*x(b)+128<<16|127*x(b+m/3)+128<<8|127*x(b+m/3*2)+128).toString(16),r.fill(),c[0]=c[1],c[1]={x:n,y:o}}function i(e){return d=e+(2*y()-1.1)*u,d>s||d<0?i(e):d}var o=document.getElementById("ribbon"),a=o.getAttribute("mobile");if("false"!=a||!/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)){config={z:e(o,"zIndex",-1),a:e(o,"alpha",.6),s:e(o,"size",90),c:e(o,"data-click",!0)};var c,d,l=document.createElement("canvas"),r=l.getContext("2d"),g=window.devicePixelRatio||1,f=window.innerWidth,s=window.innerHeight,u=config.s,h=Math,b=0,m=2*h.PI,x=h.cos,y=h.random;l.id="ribbon-canvas",l.width=f*g,l.height=s*g,r.scale(g,g),r.globalAlpha=config.a,l.style.cssText="opacity: "+config.a+";position:fixed;top:0;left:0;z-index: "+config.z+";width:100%;height:100%;pointer-events:none;",document.getElementsByTagName("body")[0].appendChild(l),"false"!==config.c&&(document.onclick=t,document.ontouchstart=t),t()}}();
-//rebuild by neat 
+/**
+ * Copyright (c) 2016 hustcc
+ * License: MIT
+ * Version: v1.0.1
+ * GitHub: https://github.com/hustcc/ribbon.js
+ **/
+
+!(function() {
+  var script = document.getElementById("ribbon");
+  var mb = script.getAttribute("mobile");
+  if (
+    mb == "false" &&
+    /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)
+  ) {
+    return;
+  }
+
+  config = {
+    z: attr(script, "zIndex", -1), // z-index
+    a: attr(script, "alpha", 0.6), // alpha
+    s: attr(script, "size", 90), // size
+    c: attr(script, "data-click", true) // click-to-change
+  };
+
+  function attr(node, attr, default_value) {
+    if (default_value === true) {
+      return node.getAttribute(attr) || default_value;
+    }
+    return Number(node.getAttribute(attr)) || default_value;
+  }
+
+  var canvas = document.createElement("canvas"),
+    g2d = canvas.getContext("2d"),
+    pr = window.devicePixelRatio || 1,
+    width = window.innerWidth,
+    height = window.innerHeight,
+    f = config.s,
+    q,
+    t,
+    m = Math,
+    r = 0,
+    pi = m.PI * 2,
+    cos = m.cos,
+    random = m.random;
+  canvas.id = "ribbon-canvas";
+  canvas.width = width * pr;
+  canvas.height = height * pr;
+  g2d.scale(pr, pr);
+  g2d.globalAlpha = config.a;
+  canvas.style.cssText =
+    "opacity: " +
+    config.a +
+    ";position:fixed;top:0;left:0;z-index: " +
+    config.z +
+    ";width:100%;height:100%;pointer-events:none;";
+  // create canvas
+  document.getElementsByTagName("body")[0].appendChild(canvas);
+
+  function redraw() {
+    g2d.clearRect(0, 0, width, height);
+    q = [
+      {
+        x: 0,
+        y: height * 0.7 + f
+      },
+      {
+        x: 0,
+        y: height * 0.7 - f
+      }
+    ];
+    while (q[1].x < width + f) draw(q[0], q[1]);
+  }
+
+  function draw(i, j) {
+    g2d.beginPath();
+    g2d.moveTo(i.x, i.y);
+    g2d.lineTo(j.x, j.y);
+    var k = j.x + (random() * 2 - 0.25) * f,
+      n = line(j.y);
+    g2d.lineTo(k, n);
+    g2d.closePath();
+    r -= pi / -50;
+    g2d.fillStyle =
+      "#" +
+      (
+        ((cos(r) * 127 + 128) << 16) |
+        ((cos(r + pi / 3) * 127 + 128) << 8) |
+        (cos(r + (pi / 3) * 2) * 127 + 128)
+      ).toString(16);
+    g2d.fill();
+    q[0] = q[1];
+    q[1] = {
+      x: k,
+      y: n
+    };
+  }
+
+  function line(p) {
+    t = p + (random() * 2 - 1.1) * f;
+    return t > height || t < 0 ? line(p) : t;
+  }
+  if (config.c !== "false") {
+    document.onclick = redraw;
+    document.ontouchstart = redraw;
+  }
+  redraw();
+})();
