@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://howsyc.cn/artitalk/index.html</loc>
+    
+    <lastmod>2020-05-26T12:49:26.756Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://howsyc.cn/2020/04/24/java%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B/</loc>
+    
+    <lastmod>2020-05-26T12:00:00.708Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://howsyc.cn/2020/04/24/hexo%E6%B7%BB%E5%8A%A0rss%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD/</loc>
+    
+    <lastmod>2020-05-26T11:52:41.730Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://howsyc.cn/2020/05/05/EOFException/</loc>
+    
+    <lastmod>2020-05-26T11:51:15.058Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://howsyc.cn/music/index.html</loc>
     
     <lastmod>2020-05-26T09:03:55.783Z</lastmod>
@@ -12,13 +40,6 @@
     <loc>https://howsyc.cn/photos/index.html</loc>
     
     <lastmod>2020-05-26T08:56:39.864Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://howsyc.cn/artitalk/index.html</loc>
-    
-    <lastmod>2020-05-24T08:39:02.949Z</lastmod>
     
   </url>
   
@@ -72,13 +93,6 @@
   </url>
   
   <url>
-    <loc>https://howsyc.cn/2020/05/05/EOFException/</loc>
-    
-    <lastmod>2020-05-05T12:06:16.818Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://howsyc.cn/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2020-05-05T06:03:28.547Z</lastmod>
@@ -103,13 +117,6 @@
     <loc>https://howsyc.cn/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2020-05-05T06:02:15.220Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://howsyc.cn/2020/04/24/java%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B/</loc>
-    
-    <lastmod>2020-05-05T06:00:57.924Z</lastmod>
     
   </url>
   
@@ -159,13 +166,6 @@
     <loc>https://howsyc.cn/archives/index.html</loc>
     
     <lastmod>2020-04-23T17:11:40.629Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://howsyc.cn/2020/04/24/hexo%E6%B7%BB%E5%8A%A0rss%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD/</loc>
-    
-    <lastmod>2020-04-23T16:55:44.101Z</lastmod>
     
   </url>
   
