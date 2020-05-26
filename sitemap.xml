@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://howsyc.cn/photos/index.html</loc>
+    
+    <lastmod>2020-05-26T08:56:39.864Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://howsyc.cn/music/index.html</loc>
+    
+    <lastmod>2020-05-26T08:45:00.344Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://howsyc.cn/artitalk/index.html</loc>
     
     <lastmod>2020-05-24T08:39:02.949Z</lastmod>
@@ -30,13 +44,6 @@
   </url>
   
   <url>
-    <loc>https://howsyc.cn/music/index.html</loc>
-    
-    <lastmod>2020-05-22T14:22:20.111Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://howsyc.cn/tags/index.html</loc>
     
     <lastmod>2020-05-22T14:22:04.588Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>https://howsyc.cn/categories/index.html</loc>
     
     <lastmod>2020-05-22T14:21:08.312Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://howsyc.cn/photos/index.html</loc>
-    
-    <lastmod>2020-05-17T19:03:36.040Z</lastmod>
     
   </url>
   
