@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://howsyc.cn/"/>
-  <updated>2020-05-28T08:11:55.397Z</updated>
+  <updated>2020-05-28T08:39:18.736Z</updated>
   <id>https://howsyc.cn/</id>
   
   <author>
@@ -17,20 +17,17 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>最全win10程序员计算器使用</title>
+    <title>较为完整win10程序员计算器使用教程</title>
     <link href="https://howsyc.cn/2020/05/28/calc/"/>
     <id>https://howsyc.cn/2020/05/28/calc/</id>
     <published>2020-05-28T08:01:31.000Z</published>
-    <updated>2020-05-28T08:11:55.397Z</updated>
+    <updated>2020-05-28T08:39:18.736Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>前言：关于win10程序员计算器的使用，如有错误，欢迎指出。版本为10.1910.0.0<br>快捷进入win键+R  输入calc</p><p>HEX ：十六进制     DEC：十进制        OCT：八进制    BIN：二进制，注意这里的二进制为二进制补码形式<br>每输入一个数，进制转换会自动进行</p><p>QWORD：四字（64位）    DWORD：双字（32位）    WORD：字（16位）    BYTE：字节（8位）</p><p>CE：清除本次输入        C：清除所有输入，结束计算        MS：内存存储    M：查看内存<br><img src="https://s1.ax1x.com/2020/05/28/tZfqRx.png" alt=""></p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>前言：关于win10程序员计算器的使用，如有错误，欢迎指出。版本为10.1910.0.0</p><a id="more"></a><p>快捷进入win键+R  输入calc</p><p>HEX ：十六进制     DEC：十进制        OCT：八进制    BIN：二进制，注意这里的二进制为二进制补码形式<br>每输入一个数，进制转换会自动进行</p><p>QWORD：四字（64位）    DWORD：双字（32位）    WORD：字（16位）    BYTE：字节（8位）</p><p>CE：清除本次输入        C：清除所有输入，结束计算        MS：内存存储    M：查看内存<br><img src="https://s1.ax1x.com/2020/05/28/tZfqRx.png" alt=""></p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
+      &lt;p&gt;前言：关于win10程序员计算器的使用，如有错误，欢迎指出。版本为10.1910.0.0&lt;/p&gt;
     
     </summary>
     
