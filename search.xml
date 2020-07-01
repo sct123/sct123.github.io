@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>较为完整win10程序员计算器使用教程</title>
-    <url>/2020/05/28/calc/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>前言：关于win10程序员计算器的使用，如有错误，欢迎指出。版本为10.1910.0.0</p>
-<a id="more"></a>
-<p>快捷进入win键+R  输入calc</p>
-<p>HEX ：十六进制     DEC：十进制        OCT：八进制    BIN：二进制，注意这里的二进制为二进制补码形式<br>每输入一个数，进制转换会自动进行</p>
-<p>QWORD：四字（64位）    DWORD：双字（32位）    WORD：字（16位）    BYTE：字节（8位）</p>
-<p>CE：清除本次输入        C：清除所有输入，结束计算        MS：内存存储    M：查看内存<br><img src="https://s1.ax1x.com/2020/05/28/tZfqRx.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
     <title>java对象流 EOFException异常</title>
     <url>/2020/05/05/EOFException/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>这里描述的java.io.EOFException异常是在对象流（也就是ObjectInputStream，ObjectOutputStream）的使用过程中，抛出的。</p>
@@ -47,21 +36,6 @@
       </tags>
   </entry>
   <entry>
-    <title>cos对象存储拒绝访问解决方法（腾讯云）</title>
-    <url>/2020/04/25/cosnew/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>昨天一直在图床的测试，然后访问的时候一直提示Access Denied，emmm我太菜了。当时因为我看不懂英HHHHH。直接百度了.cors跨域访问也设置了,访问权限公有读也设置了,为什么还不能访问呢？</p>
-<a id="more"></a>
-<p><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/1.jpg" alt="Images text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/2.jpg" alt="Images text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/3.jpg" alt="images text"></p>
-<p>经过广大的网友大佬们的帮助找到了问题1如果你没有在基础配置里设置防盗链,或者权限里面设置Policy权限,访问对象链接就会报错Access Denied,没有权限。设置方法可以官网给的提示。<br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/4.jpg" alt="image text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/5.jpg" alt="image text"></p>
-]]></content>
-      <categories>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>cos</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java集合</title>
     <url>/2020/05/13/gather/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>java的具体集合和集合中的接口关系图</p>
@@ -90,13 +64,30 @@
       </tags>
   </entry>
   <entry>
-    <title>本站换域名啦(公告)</title>
-    <url>/2020/04/27/howsyc/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本站已换成howsyc.cn的新域名,how=好，syc=四叶草,象征着幸运,总得来说=好幸运。就是进入本站的朋友们都会被幸运女神保佑，气运十足，如果是学生考试加分等，如果是工作者一切顺利，早日涨薪，如果…..emmm编不下去了(滑稽)。祝每一位来到本站的朋友幸福快乐！旧域名mykindle.xyz点击后会自动跳转到新域名,换域名是因为听说小姨子后缀百度收录不太好，所以就直接换了,菜鸡小站希望以后有点收录，感谢来访的朋友们，呜呜呜底部的底部的访客数清空了。</p>
+    <title>cos对象存储拒绝访问解决方法（腾讯云）</title>
+    <url>/2020/04/25/cosnew/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>昨天一直在图床的测试，然后访问的时候一直提示Access Denied，emmm我太菜了。当时因为我看不懂英HHHHH。直接百度了.cors跨域访问也设置了,访问权限公有读也设置了,为什么还不能访问呢？</p>
+<a id="more"></a>
+<p><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/1.jpg" alt="Images text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/2.jpg" alt="Images text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/3.jpg" alt="images text"></p>
+<p>经过广大的网友大佬们的帮助找到了问题1如果你没有在基础配置里设置防盗链,或者权限里面设置Policy权限,访问对象链接就会报错Access Denied,没有权限。设置方法可以官网给的提示。<br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/4.jpg" alt="image text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/5.jpg" alt="image text"></p>
 ]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
       <tags>
-        <tag>博客</tag>
+        <tag>cos</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>较为完整win10程序员计算器使用教程</title>
+    <url>/2020/05/28/calc/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>前言：关于win10程序员计算器的使用，如有错误，欢迎指出。版本为10.1910.0.0</p>
+<a id="more"></a>
+<p>快捷进入win键+R  输入calc</p>
+<p>HEX ：十六进制     DEC：十进制        OCT：八进制    BIN：二进制，注意这里的二进制为二进制补码形式<br>每输入一个数，进制转换会自动进行</p>
+<p>QWORD：四字（64位）    DWORD：双字（32位）    WORD：字（16位）    BYTE：字节（8位）</p>
+<p>CE：清除本次输入        C：清除所有输入，结束计算        MS：内存存储    M：查看内存<br><img src="https://s1.ax1x.com/2020/05/28/tZfqRx.png" alt=""></p>
+]]></content>
   </entry>
   <entry>
     <title>Hexo的使用</title>
@@ -148,26 +139,12 @@
       </tags>
   </entry>
   <entry>
-    <title>java个人笔记</title>
-    <url>/2020/05/07/java-notes/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>前言：学完就忘怎么办？复习呗，qaq。本文章是我个人对javase基础的复习（汗）,一天复习一点点，奥利给！</p>
-<a id="more"></a>
-<h2 id="与equals的区别"><a href="#与equals的区别" class="headerlink" title="==与equals的区别"></a>==与equals的区别</h2><p>This article is written in 2020-5-7.</p>
-<h3 id="在Object类下（普通类）-和equals并没有什么区别，都是判断是否是同一个对象。"><a href="#在Object类下（普通类）-和equals并没有什么区别，都是判断是否是同一个对象。" class="headerlink" title="在Object类下（普通类）,==和equals并没有什么区别，都是判断是否是同一个对象。"></a>在Object类下（普通类）,==和equals并没有什么区别，都是判断是否是同一个对象。</h3><p>举例:   可以看得来==和equals并没有什么区别。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line">        Test t1 = <span class="keyword">new</span> Test(<span class="string">"好"</span>);</span><br><span class="line">        Test t2 = t1;     <span class="comment">//将t2指向t1,使t2和t1指向同一个对象</span></span><br><span class="line">        Test t3 = <span class="keyword">new</span> Test(<span class="string">"好"</span>); <span class="comment">//t3指向一个新的对象</span></span><br><span class="line">        <span class="comment">//虽然t1和t3的内容相同，但是并不是一个对象。所以打印结果为：false;</span></span><br><span class="line">        System.out.println(<span class="string">"==:  t1和t2是否同一个对象："</span>+t1==t2);</span><br><span class="line">        System.out.println(<span class="string">"==:  t1和t3是否同一个对象："</span>+t1==t3);</span><br><span class="line">        System.out.println(<span class="string">"equals:   t1和t2是否同一个对象："</span>+t1.equals(t2));</span><br><span class="line">        System.out.println(<span class="string">"equals    1和t3是否同一个对象："</span>+t1.equals.(t3));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">控制台输出结果为：</span><br><span class="line">==:  t1和t2是否同一个对象：<span class="keyword">true</span></span><br><span class="line">==:  t1和t3是否同一个对象：<span class="keyword">false</span></span><br><span class="line">equals:   t1和t2是否同一个对象：<span class="keyword">true</span></span><br><span class="line">equals    <span class="number">1</span>和t3是否同一个对象：<span class="keyword">false</span></span><br></pre></td></tr></table></figure>
-<p>当然你也可以使用==来判断对象的值(内容)是否相同。如上例的t1.name和t3.name是否相同 判断结果肯定是true。</p>
-<h3 id="String类中-对equals方法进行了重写。使得equals方法可以用于判断内容是否相同。而-用于判断是否同一个对象-有个特性-。"><a href="#String类中-对equals方法进行了重写。使得equals方法可以用于判断内容是否相同。而-用于判断是否同一个对象-有个特性-。" class="headerlink" title="String类中,对equals方法进行了重写。使得equals方法可以用于判断内容是否相同。而==用于判断是否同一个对象(有个特性)。"></a>String类中,对equals方法进行了重写。使得equals方法可以用于判断内容是否相同。而==用于判断是否同一个对象(有个特性)。</h3><p>如下例子：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line">	    String a =<span class="string">"嘿嘿"</span>;</span><br><span class="line">	    String b =<span class="string">"嘿嘿"</span>;</span><br><span class="line">	    String c = <span class="keyword">new</span> String(a);</span><br><span class="line">	    System.out.println(a==b);<span class="comment">//打印结果为：true</span></span><br><span class="line">	    System.out.println(a==c);<span class="comment">//打印结果为：false</span></span><br><span class="line">	    System.out.println(a.equals(c));<span class="comment">//打印结果为：true</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h5><p>在引用a和引用b里，字符串的字面值相同。在第六行中使用==判断结果为true，</p>
-<p>是因为一般说来，编译器每碰到一个字符串的字面值，就会创建一个新的对象<br>所以在第3行会创建了一个新的字符串”嘿嘿”,</p>
-<p>但是在第4行，编译器发现已经存在现成的”嘿嘿”，那么就直接拿来使用，而没有进行重复创建。（这里可以将字面值当为一个对象理解）</p>
-<p>然而第5行虽然字面值和引用a,b相同，但是已经指向了一个新的对象，所以第7行判断结果为false。</p>
+    <title>本站换域名啦(公告)</title>
+    <url>/2020/04/27/howsyc/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本站已换成howsyc.cn的新域名,how=好，syc=四叶草,象征着幸运,总得来说=好幸运。就是进入本站的朋友们都会被幸运女神保佑，气运十足，如果是学生考试加分等，如果是工作者一切顺利，早日涨薪，如果…..emmm编不下去了(滑稽)。祝每一位来到本站的朋友幸福快乐！旧域名mykindle.xyz点击后会自动跳转到新域名,换域名是因为听说小姨子后缀百度收录不太好，所以就直接换了,菜鸡小站希望以后有点收录，感谢来访的朋友们，呜呜呜底部的底部的访客数清空了。</p>
 ]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
       <tags>
-        <tag>java</tag>
+        <tag>博客</tag>
       </tags>
   </entry>
   <entry>
@@ -184,6 +161,29 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*水仙花数定义：</span></span><br><span class="line"><span class="comment">1. 一定是3位数</span></span><br><span class="line"><span class="comment">2. 每一位的立方，加起来恰好是这个数本身，比如153=1*1*1+5*5*5+3*3*3</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Daffodil</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> daffodil;</span><br><span class="line">		System.out.println(<span class="string">"打印所有的水仙花数："</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> a = <span class="number">0</span>; a &lt; <span class="number">10</span>; a++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> b = <span class="number">0</span>; b &lt; <span class="number">10</span>; b++) &#123;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; <span class="number">10</span>; c++) &#123;</span><br><span class="line">					<span class="keyword">if</span> (a*<span class="number">100</span>+b*<span class="number">10</span>+c == (a*a*a)+(b*b*b)+(c*c*c)&amp;&amp;a*<span class="number">100</span>+b*<span class="number">10</span>+c&gt;<span class="number">99</span>) &#123;</span><br><span class="line">						daffodil =a*<span class="number">100</span>+b*<span class="number">10</span>+c;</span><br><span class="line">						System.out.println(daffodil);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><a href="https://how2j.cn/p/5504" target="_blank" rel="noopener">例题来源</a></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java个人笔记</title>
+    <url>/2020/05/07/java-notes/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>前言：学完就忘怎么办？复习呗，qaq。本文章是我个人对javase基础的复习（汗）,一天复习一点点，奥利给！</p>
+<a id="more"></a>
+<h2 id="与equals的区别"><a href="#与equals的区别" class="headerlink" title="==与equals的区别"></a>==与equals的区别</h2><p>This article is written in 2020-5-7.</p>
+<h3 id="在Object类下（普通类）-和equals并没有什么区别，都是判断是否是同一个对象。"><a href="#在Object类下（普通类）-和equals并没有什么区别，都是判断是否是同一个对象。" class="headerlink" title="在Object类下（普通类）,==和equals并没有什么区别，都是判断是否是同一个对象。"></a>在Object类下（普通类）,==和equals并没有什么区别，都是判断是否是同一个对象。</h3><p>举例:   可以看得来==和equals并没有什么区别。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line">        Test t1 = <span class="keyword">new</span> Test(<span class="string">"好"</span>);</span><br><span class="line">        Test t2 = t1;     <span class="comment">//将t2指向t1,使t2和t1指向同一个对象</span></span><br><span class="line">        Test t3 = <span class="keyword">new</span> Test(<span class="string">"好"</span>); <span class="comment">//t3指向一个新的对象</span></span><br><span class="line">        <span class="comment">//虽然t1和t3的内容相同，但是并不是一个对象。所以打印结果为：false;</span></span><br><span class="line">        System.out.println(<span class="string">"==:  t1和t2是否同一个对象："</span>+t1==t2);</span><br><span class="line">        System.out.println(<span class="string">"==:  t1和t3是否同一个对象："</span>+t1==t3);</span><br><span class="line">        System.out.println(<span class="string">"equals:   t1和t2是否同一个对象："</span>+t1.equals(t2));</span><br><span class="line">        System.out.println(<span class="string">"equals    1和t3是否同一个对象："</span>+t1.equals.(t3));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">控制台输出结果为：</span><br><span class="line">==:  t1和t2是否同一个对象：<span class="keyword">true</span></span><br><span class="line">==:  t1和t3是否同一个对象：<span class="keyword">false</span></span><br><span class="line">equals:   t1和t2是否同一个对象：<span class="keyword">true</span></span><br><span class="line">equals    <span class="number">1</span>和t3是否同一个对象：<span class="keyword">false</span></span><br></pre></td></tr></table></figure>
+<p>当然你也可以使用==来判断对象的值(内容)是否相同。如上例的t1.name和t3.name是否相同 判断结果肯定是true。</p>
+<h3 id="String类中-对equals方法进行了重写。使得equals方法可以用于判断内容是否相同。而-用于判断是否同一个对象-有个特性-。"><a href="#String类中-对equals方法进行了重写。使得equals方法可以用于判断内容是否相同。而-用于判断是否同一个对象-有个特性-。" class="headerlink" title="String类中,对equals方法进行了重写。使得equals方法可以用于判断内容是否相同。而==用于判断是否同一个对象(有个特性)。"></a>String类中,对equals方法进行了重写。使得equals方法可以用于判断内容是否相同。而==用于判断是否同一个对象(有个特性)。</h3><p>如下例子：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line">	    String a =<span class="string">"嘿嘿"</span>;</span><br><span class="line">	    String b =<span class="string">"嘿嘿"</span>;</span><br><span class="line">	    String c = <span class="keyword">new</span> String(a);</span><br><span class="line">	    System.out.println(a==b);<span class="comment">//打印结果为：true</span></span><br><span class="line">	    System.out.println(a==c);<span class="comment">//打印结果为：false</span></span><br><span class="line">	    System.out.println(a.equals(c));<span class="comment">//打印结果为：true</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h5><p>在引用a和引用b里，字符串的字面值相同。在第六行中使用==判断结果为true，</p>
+<p>是因为一般说来，编译器每碰到一个字符串的字面值，就会创建一个新的对象<br>所以在第3行会创建了一个新的字符串”嘿嘿”,</p>
+<p>但是在第4行，编译器发现已经存在现成的”嘿嘿”，那么就直接拿来使用，而没有进行重复创建。（这里可以将字面值当为一个对象理解）</p>
+<p>然而第5行虽然字面值和引用a,b相同，但是已经指向了一个新的对象，所以第7行判断结果为false。</p>
 ]]></content>
       <categories>
         <category>java</category>
@@ -441,21 +441,6 @@
       </tags>
   </entry>
   <entry>
-    <title>java标识符的命名规范</title>
-    <url>/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>java标识符的命名规范<br>（规范是程序员的基本准则,不规范会直接损害你的个人形象）</p>
-<a id="more"></a>
-<h3 id="变量和常量命名规范"><a href="#变量和常量命名规范" class="headerlink" title="变量和常量命名规范"></a>变量和常量命名规范</h3><p>所有变量、方法、类名：见名知意<br>类成员变量：首字母小写和驼峰原则（monthSalary）<br>局部变量：首字母小写和驼峰原则<br>常量：大写字母和下划线:MAX_VALUE<br>类名：首字母大写和驼峰原则（Man,GoodMan）<br>方法名：首字母小写和驼峰原则:run(),runRun()<br>//变量本质上就是代表一个“可操作的存储空间”，空间位置是确定的，但是里面放置什么值不确定。我们可通过变量名来访问“对应的存储空间”，<br>//从而操纵这个“存储空间”存储的值。<br>//java是一种强制 型语言，每个变量都必须声明其书局类型。变量的数据类型决定了变量占据存储空间的大小。比如 int a = 3; 表示a变量的空间大小为4个字节</p>
-<h3 id="标识符的命名规则："><a href="#标识符的命名规则：" class="headerlink" title="标识符的命名规则："></a>标识符的命名规则：</h3><p>标识符必须以字母、下划线_、美元符号$开头。<br>标识符其它部分可以是字母、下划线“_”、美元符“$”和数字的任意组合。<br>Java 标识符大小写敏感，且长度无限制。<br>标识符不可以是Java的关键字。<br><a href="https://www.sxt.cn/Java_jQuery_in_action/Java_Identifier.html" target="_blank" rel="noopener">原文来源</a></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>解决next主题菜单栏显示问号</title>
     <url>/2020/05/01/nexttubiao/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>菜单栏和翻页按钮小图标显示不出来的问题终于解决了。</p>
@@ -530,6 +515,21 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java标识符的命名规范</title>
+    <url>/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>java标识符的命名规范<br>（规范是程序员的基本准则,不规范会直接损害你的个人形象）</p>
+<a id="more"></a>
+<h3 id="变量和常量命名规范"><a href="#变量和常量命名规范" class="headerlink" title="变量和常量命名规范"></a>变量和常量命名规范</h3><p>所有变量、方法、类名：见名知意<br>类成员变量：首字母小写和驼峰原则（monthSalary）<br>局部变量：首字母小写和驼峰原则<br>常量：大写字母和下划线:MAX_VALUE<br>类名：首字母大写和驼峰原则（Man,GoodMan）<br>方法名：首字母小写和驼峰原则:run(),runRun()<br>//变量本质上就是代表一个“可操作的存储空间”，空间位置是确定的，但是里面放置什么值不确定。我们可通过变量名来访问“对应的存储空间”，<br>//从而操纵这个“存储空间”存储的值。<br>//java是一种强制 型语言，每个变量都必须声明其书局类型。变量的数据类型决定了变量占据存储空间的大小。比如 int a = 3; 表示a变量的空间大小为4个字节</p>
+<h3 id="标识符的命名规则："><a href="#标识符的命名规则：" class="headerlink" title="标识符的命名规则："></a>标识符的命名规则：</h3><p>标识符必须以字母、下划线_、美元符号$开头。<br>标识符其它部分可以是字母、下划线“_”、美元符“$”和数字的任意组合。<br>Java 标识符大小写敏感，且长度无限制。<br>标识符不可以是Java的关键字。<br><a href="https://www.sxt.cn/Java_jQuery_in_action/Java_Identifier.html" target="_blank" rel="noopener">原文来源</a></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
 </search>
