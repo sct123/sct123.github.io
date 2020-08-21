@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://howsyc.cn/"/>
-  <updated>2020-06-29T07:34:44.000Z</updated>
+  <updated>2020-08-21T17:29:19.783Z</updated>
   <id>https://howsyc.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>idea搭建maven中遇到的错误</title>
+    <link href="https://howsyc.cn/2020/08/21/mavenbuilderro/"/>
+    <id>https://howsyc.cn/2020/08/21/mavenbuilderro/</id>
+    <published>2020-08-21T15:32:48.000Z</published>
+    <updated>2020-08-21T17:29:19.783Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Maven项目架构管理工具：<br>Maven的核心思想：<strong>约定大于配置</strong>,有约束，不要去违反。(来自狂神老师的教导)<br>下面是我在 idea搭建maven中遇到的错误,可以还有错误忘记写了，不是很全面请见谅。</p><a id="more"></a><h3 id="1-maven默认web项目中的web-xml版本问题"><a href="#1-maven默认web项目中的web-xml版本问题" class="headerlink" title="1.maven默认web项目中的web.xml版本问题"></a>1.maven默认web项目中的web.xml版本问题</h3><p>   1.1问题：和启动tomcat版本冲突<br>   1.2解决方法：替换为tomcat的版本<br><img src="https://ftp.bmp.ovh/imgs/2020/08/88084f42b60aff28.png" alt=""></p><h3 id="2-Error-java-Compliation-falied-internal-java-compiler-error-或无效的项目发行版本-13"><a href="#2-Error-java-Compliation-falied-internal-java-compiler-error-或无效的项目发行版本-13" class="headerlink" title="2.Error:java:Compliation falied:internal java compiler error.或无效的项目发行版本:13"></a>2.Error:java:Compliation falied:internal java compiler error.或无效的项目发行版本:13</h3><p>解决方法：项目的和文件里的冲突了 改成一样的就好了<br>路径：Settings-&gt;Build,Execution,Deployment-&gt;Compiler-&gt;Java Compiler<br><img src="https://ftp.bmp.ovh/imgs/2020/08/721c99808cdab0ad.png" alt="compiler"></p><h3 id="3-警告：No-archetype-found-in-remote-catalog-Defaulting-to-internal-catalog"><a href="#3-警告：No-archetype-found-in-remote-catalog-Defaulting-to-internal-catalog" class="headerlink" title="3.警告：No archetype found in remote catalog. Defaulting to internal catalog."></a>3.警告：No archetype found in remote catalog. Defaulting to internal catalog.</h3><pre><code>解决方法：https://blog.csdn.net/AdminGuan/article/details/103216314</code></pre><h3 id="4-报错Cannot-resolve-plugin-org-apache-maven-plugins-maven-compiler-plugin-3-1"><a href="#4-报错Cannot-resolve-plugin-org-apache-maven-plugins-maven-compiler-plugin-3-1" class="headerlink" title="4.报错Cannot resolve plugin org.apache.maven.plugins:maven-compiler-plugin:3.1"></a>4.报错Cannot resolve plugin org.apache.maven.plugins:maven-compiler-plugin:3.1</h3><pre><code>报错原因：本地maven的配置文件和仓库地址不一致解决方法：注意选择自己的maven版本，将下面图中的override勾选，然后选择自己电脑本地的Maven配置文件和本地maven的仓库地址</code></pre><p><img src="https://ftp.bmp.ovh/imgs/2020/08/5e4ccaed2168a3d9.png" alt="maven仓库配置"></p><h3 id="IDEA中每次都要重复配置Maven"><a href="#IDEA中每次都要重复配置Maven" class="headerlink" title="IDEA中每次都要重复配置Maven"></a>IDEA中每次都要重复配置Maven</h3><p>解决方法：在IDEA中的全局默认配置中去配置<br>在左上角new那里的close project关闭项目，之后打开右下角的configure-&gt;Settings<br><img src="https://ftp.bmp.ovh/imgs/2020/08/75abf55bd8d62b0a.png" alt=""><br>找到Maven的仓库配置，注意选择自己的maven版本，将下面图中的override勾选，然后选择自己电脑本地的Maven配置文件和本地maven的仓库地址<br><img src="https://ftp.bmp.ovh/imgs/2020/08/3dfae78226506764.png" alt=""></p><p>参考文章：<br><a href="https://blog.csdn.net/qq_45309297/article/details/106436535" target="_blank" rel="noopener">https://blog.csdn.net/qq_45309297/article/details/106436535</a><br><a href="https://blog.csdn.net/AdminGuan/article/details/103216314" target="_blank" rel="noopener">https://blog.csdn.net/AdminGuan/article/details/103216314</a><br><a href="https://blog.csdn.net/AdminGuan/article/details/103216314" target="_blank" rel="noopener">https://blog.csdn.net/AdminGuan/article/details/103216314</a><br><a href="https://blog.csdn.net/weixin_42030357/article/details/92097971" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42030357/article/details/92097971</a><br><a href="https://www.cnblogs.com/loufangcheng/p/12861762.html" target="_blank" rel="noopener">https://www.cnblogs.com/loufangcheng/p/12861762.html</a></p><p>注意事项：<br>1.maven的pom.xml配置文件记得jdk版本改成你使用的版本(推荐1.8)</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Maven项目架构管理工具：&lt;br&gt;Maven的核心思想：&lt;strong&gt;约定大于配置&lt;/strong&gt;,有约束，不要去违反。(来自狂神老师的教导)&lt;br&gt;下面是我在 idea搭建maven中遇到的错误,可以还有错误忘记写了，不是很全面请见谅。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="https://howsyc.cn/categories/java/"/>
+    
+    
+      <category term="java" scheme="https://howsyc.cn/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>较为完整win10程序员计算器使用教程</title>
