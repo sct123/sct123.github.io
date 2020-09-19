@@ -47,12 +47,41 @@
 ]]></content>
   </entry>
   <entry>
-    <title>本站换域名啦(公告)</title>
-    <url>/2020/04/27/howsyc/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本站已换成howsyc.cn的新域名,how=好，syc=四叶草,象征着幸运,总得来说=好幸运。就是进入本站的朋友们都会被幸运女神保佑，气运十足，如果是学生考试加分等，如果是工作者一切顺利，早日涨薪，如果…..emmm编不下去了(滑稽)。祝每一位来到本站的朋友幸福快乐！旧域名mykindle.xyz点击后会自动跳转到新域名,换域名是因为听说小姨子后缀百度收录不太好，所以就直接换了,菜鸡小站希望以后有点收录，感谢来访的朋友们，呜呜呜底部的底部的访客数清空了。</p>
+    <title>cos对象存储拒绝访问解决方法（腾讯云）</title>
+    <url>/2020/04/25/cosnew/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>昨天一直在图床的测试，然后访问的时候一直提示Access Denied，emmm我太菜了。当时因为我看不懂英HHHHH。直接百度了.cors跨域访问也设置了,访问权限公有读也设置了,为什么还不能访问呢？</p>
+<a id="more"></a>
+<p><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/1.jpg" alt="Images text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/2.jpg" alt="Images text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/3.jpg" alt="images text"></p>
+<p>经过广大的网友大佬们的帮助找到了问题1如果你没有在基础配置里设置防盗链,或者权限里面设置Policy权限,访问对象链接就会报错Access Denied,没有权限。设置方法可以官网给的提示。<br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/4.jpg" alt="image text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/5.jpg" alt="image text"></p>
 ]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
       <tags>
-        <tag>博客</tag>
+        <tag>cos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo的使用</title>
+    <url>/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>记录一些我学到hexo命令</p>
+<a id="more"></a>
+<h2 id="Hexo学到的东西"><a href="#Hexo学到的东西" class="headerlink" title="Hexo学到的东西"></a>Hexo学到的东西</h2><h3 id="hexo命令1-本地部署"><a href="#hexo命令1-本地部署" class="headerlink" title="hexo命令1-本地部署"></a>hexo命令1-本地部署</h3><pre><code class="bash">$ hexo init &lt;folder&gt; <span class="comment">#init是初始化一个hexo文件夹</span></code></pre>
+<pre><code class="bash">$ <span class="built_in">cd</span> &lt;folder&gt;  <span class="comment">#注意一定要打开文件夹才能进行部署</span></code></pre>
+<pre><code class="bash">$ npm install    <span class="comment">#部署之前进行安装</span></code></pre>
+<pre><code class="bash">$ hexo g   <span class="comment">#生成静态网页</span></code></pre>
+<pre><code class="bash">$ hexo s      <span class="comment">#启动服务器 启动之后会默认给一个网址进去就是我们部署的网页了</span></code></pre>
+<h3 id="更换hexo主题"><a href="#更换hexo主题" class="headerlink" title="更换hexo主题"></a>更换hexo主题</h3><pre><code class="bash"> 把你想更换的主题放在themes目录下。官网有很多好看的主题：https://hexo.io/themes/
+
+ 然后修改站点目录下的_config.yml配置文件找到themes: landscape(默认主题)
+
+修改成你在themes下放好的主题，就完成了</code></pre>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -110,26 +139,12 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo的使用</title>
-    <url>/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>记录一些我学到hexo命令</p>
-<a id="more"></a>
-<h2 id="Hexo学到的东西"><a href="#Hexo学到的东西" class="headerlink" title="Hexo学到的东西"></a>Hexo学到的东西</h2><h3 id="hexo命令1-本地部署"><a href="#hexo命令1-本地部署" class="headerlink" title="hexo命令1-本地部署"></a>hexo命令1-本地部署</h3><pre><code class="bash">$ hexo init &lt;folder&gt; <span class="comment">#init是初始化一个hexo文件夹</span></code></pre>
-<pre><code class="bash">$ <span class="built_in">cd</span> &lt;folder&gt;  <span class="comment">#注意一定要打开文件夹才能进行部署</span></code></pre>
-<pre><code class="bash">$ npm install    <span class="comment">#部署之前进行安装</span></code></pre>
-<pre><code class="bash">$ hexo g   <span class="comment">#生成静态网页</span></code></pre>
-<pre><code class="bash">$ hexo s      <span class="comment">#启动服务器 启动之后会默认给一个网址进去就是我们部署的网页了</span></code></pre>
-<h3 id="更换hexo主题"><a href="#更换hexo主题" class="headerlink" title="更换hexo主题"></a>更换hexo主题</h3><pre><code class="bash"> 把你想更换的主题放在themes目录下。官网有很多好看的主题：https://hexo.io/themes/
-
- 然后修改站点目录下的_config.yml配置文件找到themes: landscape(默认主题)
-
-修改成你在themes下放好的主题，就完成了</code></pre>
+    <title>本站换域名啦(公告)</title>
+    <url>/2020/04/27/howsyc/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本站已换成howsyc.cn的新域名,how=好，syc=四叶草,象征着幸运,总得来说=好幸运。就是进入本站的朋友们都会被幸运女神保佑，气运十足，如果是学生考试加分等，如果是工作者一切顺利，早日涨薪，如果…..emmm编不下去了(滑稽)。祝每一位来到本站的朋友幸福快乐！旧域名mykindle.xyz点击后会自动跳转到新域名,换域名是因为听说小姨子后缀百度收录不太好，所以就直接换了,菜鸡小站希望以后有点收录，感谢来访的朋友们，呜呜呜底部的底部的访客数清空了。</p>
 ]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
       <tags>
-        <tag>hexo</tag>
+        <tag>博客</tag>
       </tags>
   </entry>
   <entry>
@@ -169,6 +184,72 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*水仙花数定义：</span></span><br><span class="line"><span class="comment">1. 一定是3位数</span></span><br><span class="line"><span class="comment">2. 每一位的立方，加起来恰好是这个数本身，比如153=1*1*1+5*5*5+3*3*3</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Daffodil</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> daffodil;</span><br><span class="line">		System.out.println(<span class="string">"打印所有的水仙花数："</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> a = <span class="number">0</span>; a &lt; <span class="number">10</span>; a++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> b = <span class="number">0</span>; b &lt; <span class="number">10</span>; b++) &#123;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; <span class="number">10</span>; c++) &#123;</span><br><span class="line">					<span class="keyword">if</span> (a*<span class="number">100</span>+b*<span class="number">10</span>+c == (a*a*a)+(b*b*b)+(c*c*c)&amp;&amp;a*<span class="number">100</span>+b*<span class="number">10</span>+c&gt;<span class="number">99</span>) &#123;</span><br><span class="line">						daffodil =a*<span class="number">100</span>+b*<span class="number">10</span>+c;</span><br><span class="line">						System.out.println(daffodil);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><a href="https://how2j.cn/p/5504" target="_blank" rel="noopener">例题来源</a></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java数据类型</title>
+    <url>/2020/04/24/java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>java的数据类型可分为两大类：<br>基本数据类型（primitive data type）和引用数据类型（referece data type)</p>
+<a id="more"></a>
+<h3 id="基本数据类型（primitive-data-type）："><a href="#基本数据类型（primitive-data-type）：" class="headerlink" title="基本数据类型（primitive data type）："></a>基本数据类型（primitive data type）：</h3><p>-整数类型（byte short int long）<br>型(java语言的整型常数默认为int型，声明long型常量可以后加 ‘l’或’L’)<br>浮点类型(float double)<br>字符型（char）<br>布尔型(boolean)        </p>
+<h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><p>类（class）(String是引用类型)<br>接口(interface)<br>数组</p>
+<p>$ //引用数据类型的大小统一为4个字节,记录的是其引用对象的地址</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th align="left">占用存储空间</th>
+<th align="center">表示范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td align="left">1字节</td>
+<td align="center">（=8位=2⑻=256字）    -2⑺ ~ 2⑺-1  （-128~127)</td>
+</tr>
+<tr>
+<td>short</td>
+<td align="left">2字节</td>
+<td align="center">-2⒂ ~ 2⒂-1      (-32768~32767)</td>
+</tr>
+<tr>
+<td>int</td>
+<td align="left">4字节</td>
+<td align="center">-2<em>(31幂)~2</em>(31幂)（ -2127283648~2147483647）（约21亿）</td>
+</tr>
+<tr>
+<td>long</td>
+<td align="left">8字节</td>
+<td align="center">-2<em>(63) ~ 2</em>(63)-1</td>
+</tr>
+<tr>
+<td>char</td>
+<td align="left">2字节</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>boolean</td>
+<td align="left">1位</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>float</td>
+<td align="left">4字节</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>double</td>
+<td align="left">8字节</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p> 基本数据类型的类型转换可分为：<br>自动类型转换：容量小的数据类型可以自动转换为容量大的数据类型<br>强制类型转换：用于显式的转换一个数值的类型，语法格式：(type)var</p>
 ]]></content>
       <categories>
         <category>java</category>
@@ -396,72 +477,6 @@
       </tags>
   </entry>
   <entry>
-    <title>java数据类型</title>
-    <url>/2020/04/24/java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>java的数据类型可分为两大类：<br>基本数据类型（primitive data type）和引用数据类型（referece data type)</p>
-<a id="more"></a>
-<h3 id="基本数据类型（primitive-data-type）："><a href="#基本数据类型（primitive-data-type）：" class="headerlink" title="基本数据类型（primitive data type）："></a>基本数据类型（primitive data type）：</h3><p>-整数类型（byte short int long）<br>型(java语言的整型常数默认为int型，声明long型常量可以后加 ‘l’或’L’)<br>浮点类型(float double)<br>字符型（char）<br>布尔型(boolean)        </p>
-<h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><p>类（class）(String是引用类型)<br>接口(interface)<br>数组</p>
-<p>$ //引用数据类型的大小统一为4个字节,记录的是其引用对象的地址</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th align="left">占用存储空间</th>
-<th align="center">表示范围</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>byte</td>
-<td align="left">1字节</td>
-<td align="center">（=8位=2⑻=256字）    -2⑺ ~ 2⑺-1  （-128~127)</td>
-</tr>
-<tr>
-<td>short</td>
-<td align="left">2字节</td>
-<td align="center">-2⒂ ~ 2⒂-1      (-32768~32767)</td>
-</tr>
-<tr>
-<td>int</td>
-<td align="left">4字节</td>
-<td align="center">-2<em>(31幂)~2</em>(31幂)（ -2127283648~2147483647）（约21亿）</td>
-</tr>
-<tr>
-<td>long</td>
-<td align="left">8字节</td>
-<td align="center">-2<em>(63) ~ 2</em>(63)-1</td>
-</tr>
-<tr>
-<td>char</td>
-<td align="left">2字节</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td>boolean</td>
-<td align="left">1位</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td>float</td>
-<td align="left">4字节</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td>double</td>
-<td align="left">8字节</td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<p> 基本数据类型的类型转换可分为：<br>自动类型转换：容量小的数据类型可以自动转换为容量大的数据类型<br>强制类型转换：用于显式的转换一个数值的类型，语法格式：(type)var</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>idea搭建maven中遇到的错误</title>
     <url>/2020/08/21/mavenbuilderro/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Maven项目架构管理工具：<br>Maven的核心思想：<strong>约定大于配置</strong>,有约束，不要去违反。(来自狂神老师的教导)<br>下面是我在 idea搭建maven中遇到的错误,可以还有错误忘记写了，不是很全面请见谅。</p>
@@ -475,6 +490,21 @@
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">    &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">    &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br></pre></td></tr></table></figure>
 
 <p>参考文章：<br><a href="https://blog.csdn.net/qq_45309297/article/details/106436535" target="_blank" rel="noopener">https://blog.csdn.net/qq_45309297/article/details/106436535</a><br><a href="https://blog.csdn.net/AdminGuan/article/details/103216314" target="_blank" rel="noopener">https://blog.csdn.net/AdminGuan/article/details/103216314</a><br><a href="https://blog.csdn.net/AdminGuan/article/details/103216314" target="_blank" rel="noopener">https://blog.csdn.net/AdminGuan/article/details/103216314</a><br><a href="https://blog.csdn.net/weixin_42030357/article/details/92097971" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42030357/article/details/92097971</a><br><a href="https://www.cnblogs.com/loufangcheng/p/12861762.html" target="_blank" rel="noopener">https://www.cnblogs.com/loufangcheng/p/12861762.html</a></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java标识符的命名规范</title>
+    <url>/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>java标识符的命名规范<br>（规范是程序员的基本准则,不规范会直接损害你的个人形象）</p>
+<a id="more"></a>
+<h3 id="变量和常量命名规范"><a href="#变量和常量命名规范" class="headerlink" title="变量和常量命名规范"></a>变量和常量命名规范</h3><p>所有变量、方法、类名：见名知意<br>类成员变量：首字母小写和驼峰原则（monthSalary）<br>局部变量：首字母小写和驼峰原则<br>常量：大写字母和下划线:MAX_VALUE<br>类名：首字母大写和驼峰原则（Man,GoodMan）<br>方法名：首字母小写和驼峰原则:run(),runRun()<br>//变量本质上就是代表一个“可操作的存储空间”，空间位置是确定的，但是里面放置什么值不确定。我们可通过变量名来访问“对应的存储空间”，<br>//从而操纵这个“存储空间”存储的值。<br>//java是一种强制 型语言，每个变量都必须声明其书局类型。变量的数据类型决定了变量占据存储空间的大小。比如 int a = 3; 表示a变量的空间大小为4个字节</p>
+<h3 id="标识符的命名规则："><a href="#标识符的命名规则：" class="headerlink" title="标识符的命名规则："></a>标识符的命名规则：</h3><p>标识符必须以字母、下划线_、美元符号$开头。<br>标识符其它部分可以是字母、下划线“_”、美元符“$”和数字的任意组合。<br>Java 标识符大小写敏感，且长度无限制。<br>标识符不可以是Java的关键字。<br><a href="https://www.sxt.cn/Java_jQuery_in_action/Java_Identifier.html" target="_blank" rel="noopener">原文来源</a></p>
 ]]></content>
       <categories>
         <category>java</category>
@@ -522,36 +552,6 @@
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cos对象存储拒绝访问解决方法（腾讯云）</title>
-    <url>/2020/04/25/cosnew/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>昨天一直在图床的测试，然后访问的时候一直提示Access Denied，emmm我太菜了。当时因为我看不懂英HHHHH。直接百度了.cors跨域访问也设置了,访问权限公有读也设置了,为什么还不能访问呢？</p>
-<a id="more"></a>
-<p><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/1.jpg" alt="Images text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/2.jpg" alt="Images text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/3.jpg" alt="images text"></p>
-<p>经过广大的网友大佬们的帮助找到了问题1如果你没有在基础配置里设置防盗链,或者权限里面设置Policy权限,访问对象链接就会报错Access Denied,没有权限。设置方法可以官网给的提示。<br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/4.jpg" alt="image text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/5.jpg" alt="image text"></p>
-]]></content>
-      <categories>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>cos</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java标识符的命名规范</title>
-    <url>/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>java标识符的命名规范<br>（规范是程序员的基本准则,不规范会直接损害你的个人形象）</p>
-<a id="more"></a>
-<h3 id="变量和常量命名规范"><a href="#变量和常量命名规范" class="headerlink" title="变量和常量命名规范"></a>变量和常量命名规范</h3><p>所有变量、方法、类名：见名知意<br>类成员变量：首字母小写和驼峰原则（monthSalary）<br>局部变量：首字母小写和驼峰原则<br>常量：大写字母和下划线:MAX_VALUE<br>类名：首字母大写和驼峰原则（Man,GoodMan）<br>方法名：首字母小写和驼峰原则:run(),runRun()<br>//变量本质上就是代表一个“可操作的存储空间”，空间位置是确定的，但是里面放置什么值不确定。我们可通过变量名来访问“对应的存储空间”，<br>//从而操纵这个“存储空间”存储的值。<br>//java是一种强制 型语言，每个变量都必须声明其书局类型。变量的数据类型决定了变量占据存储空间的大小。比如 int a = 3; 表示a变量的空间大小为4个字节</p>
-<h3 id="标识符的命名规则："><a href="#标识符的命名规则：" class="headerlink" title="标识符的命名规则："></a>标识符的命名规则：</h3><p>标识符必须以字母、下划线_、美元符号$开头。<br>标识符其它部分可以是字母、下划线“_”、美元符“$”和数字的任意组合。<br>Java 标识符大小写敏感，且长度无限制。<br>标识符不可以是Java的关键字。<br><a href="https://www.sxt.cn/Java_jQuery_in_action/Java_Identifier.html" target="_blank" rel="noopener">原文来源</a></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
 </search>
