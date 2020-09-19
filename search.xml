@@ -47,31 +47,18 @@
       </tags>
   </entry>
   <entry>
-    <title>java集合</title>
-    <url>/2020/05/13/gather/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>java的具体集合和集合中的接口关系图</p>
+    <title>cos对象存储拒绝访问解决方法（腾讯云）</title>
+    <url>/2020/04/25/cosnew/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>昨天一直在图床的测试，然后访问的时候一直提示Access Denied，emmm我太菜了。当时因为我看不懂英HHHHH。直接百度了.cors跨域访问也设置了,访问权限公有读也设置了,为什么还不能访问呢？</p>
 <a id="more"></a>
-<h3 id="集合常用方法"><a href="#集合常用方法" class="headerlink" title="集合常用方法"></a>集合常用方法</h3><p>add    增加<br>contains    判断是否存在<br>get    获取指定位置的对象<br>indexOf    获取对象所处的位置<br>remove    删除<br>set    替换<br>size    获取大小<br>toArray    转换为数组<br>addAll    把另一个容器所有对象都加进来<br>clear    清空</p>
-<h4 id="Collections类"><a href="#Collections类" class="headerlink" title="Collections类"></a>Collections类</h4><p>Collections是一个类，容器的工具类,就如同Arrays是数组的工具类<br>reverse    反转<br>shuffle    混淆<br>sort    排序<br>swap    交换<br>rotate    滚动<br>synchronizedList    线程安全化</p>
-<h3 id="集合框架中的接口"><a href="#集合框架中的接口" class="headerlink" title="集合框架中的接口"></a>集合框架中的接口</h3><p><img src="https://ftp.bmp.ovh/imgs/2020/05/06e273f2a35d2ac8.jpg" alt=""><br>Collection是 Set List Queue和 Deque的接口<br>Queue: 先进先出队列<br>Deque: 双向链表</p>
-<p>注：Collection和Map之间没有关系，Collection是放一个一个对象的，Map 是放键值对的<br>注：Deque 继承 Queue,间接的继承了 Collection</p>
-<p>List 是一个有序集合。元 素 会 增 加 到 容 器 中 的 特 定 位 置 。 可 以 采 用两种方式访问元素 ：</p>
-<p>使用迭代器访问，或者使用一个整数索引来访问。<br>后一种方法称为随机访问( random access) , 因为这样可以按任意顺序访问元素。<br>与之不同 ， 使用迭代器访问时 ，必须顺序地访问元素。</p>
-<p>Set 接口等同于 Collection 接口,不过其方法的行为有更严谨的定义。集 （ set )的 add 方法不允许增加重复的元素。<br>要适当地定义集的 equals 方法 ： 只要两个集包含同样的元素就认为是相等的，而不要求这些元素有同样的顺序 。</p>
-<p>hashCode 方法的定义要保证包含相同元素的两个集会得到相同的散列码。</p>
-<p>SortedSet 和 SortedMap 接口会提供用于排序的比较器对象， 这两个接口定义了可以得到集合子集视图的方法。</p>
-<p> Java SE 6 引人了接口 NavigableSet 和 NavigableMap ,<br>其中包含一些用于搜索和遍历有序集和映射的方法。(理想情况下,这些方法本应当直接包含在 SortedSet和 SortedMap接口中。)TreeSet 和 TreeMap 类实现了这些接口。</p>
-<p>标记接口 RandomAccess：为了避免对链表完成随机访问操作 –Java SE 1.4 引入。</p>
-<h3 id="具体的集合"><a href="#具体的集合" class="headerlink" title="具体的集合"></a>具体的集合</h3><p><img src="https://ftp.bmp.ovh/imgs/2020/05/c828167783de519d.jpg" alt=""></p>
-<p>ArrayList                                 一种可以动态增长和缩减的索引序列<br>LinkedList            一种可以在任何位置进行高效地插人和删除操作的有序序列<br>ArrayDeque        一种用循环数组实现的双端队列<br>HashSet            一种没有重复元素的无序集合<br>TreeSet            — 种有序集<br>EnumSet            一种包含枚举类型值的集<br>LinkedHashSet        一种可以记住元素插人次序的集<br>PriorityQueue        一种允许高效删除最小元素的集合<br>HashMap            一种存储键 / 值关联的数据结构<br>TreeMap            — 种键值有序排列的映射表<br>EnumMap            一种键值属于枚举类型的映射表<br>LinkedHashMap        一种可以记住键 / 值项添加次序的映射表<br>WeakHashMap        一种其值无用武之地后可以被垃圾回收器回收的映射表<br>IdentityHashMap        一种用 = 而不是用 equals 比较键值的映射表</p>
-<p>Hashtable、Vector线程安全的类</p>
-<p>本文章参考《core java第十版》与 <a href="https://how2j.cn/p/5752" target="_blank" rel="noopener">how2j</a></p>
+<p><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/1.jpg" alt="Images text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/2.jpg" alt="Images text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/3.jpg" alt="images text"></p>
+<p>经过广大的网友大佬们的帮助找到了问题1如果你没有在基础配置里设置防盗链,或者权限里面设置Policy权限,访问对象链接就会报错Access Denied,没有权限。设置方法可以官网给的提示。<br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/4.jpg" alt="image text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/5.jpg" alt="image text"></p>
 ]]></content>
       <categories>
-        <category>java</category>
+        <category>博客</category>
       </categories>
       <tags>
-        <tag>java</tag>
+        <tag>cos</tag>
       </tags>
   </entry>
   <entry>
@@ -98,18 +85,31 @@
       </tags>
   </entry>
   <entry>
-    <title>cos对象存储拒绝访问解决方法（腾讯云）</title>
-    <url>/2020/04/25/cosnew/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>昨天一直在图床的测试，然后访问的时候一直提示Access Denied，emmm我太菜了。当时因为我看不懂英HHHHH。直接百度了.cors跨域访问也设置了,访问权限公有读也设置了,为什么还不能访问呢？</p>
+    <title>java集合</title>
+    <url>/2020/05/13/gather/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>java的具体集合和集合中的接口关系图</p>
 <a id="more"></a>
-<p><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/1.jpg" alt="Images text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/2.jpg" alt="Images text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/3.jpg" alt="images text"></p>
-<p>经过广大的网友大佬们的帮助找到了问题1如果你没有在基础配置里设置防盗链,或者权限里面设置Policy权限,访问对象链接就会报错Access Denied,没有权限。设置方法可以官网给的提示。<br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/4.jpg" alt="image text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/cos%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/5.jpg" alt="image text"></p>
+<h3 id="集合常用方法"><a href="#集合常用方法" class="headerlink" title="集合常用方法"></a>集合常用方法</h3><p>add    增加<br>contains    判断是否存在<br>get    获取指定位置的对象<br>indexOf    获取对象所处的位置<br>remove    删除<br>set    替换<br>size    获取大小<br>toArray    转换为数组<br>addAll    把另一个容器所有对象都加进来<br>clear    清空</p>
+<h4 id="Collections类"><a href="#Collections类" class="headerlink" title="Collections类"></a>Collections类</h4><p>Collections是一个类，容器的工具类,就如同Arrays是数组的工具类<br>reverse    反转<br>shuffle    混淆<br>sort    排序<br>swap    交换<br>rotate    滚动<br>synchronizedList    线程安全化</p>
+<h3 id="集合框架中的接口"><a href="#集合框架中的接口" class="headerlink" title="集合框架中的接口"></a>集合框架中的接口</h3><p><img src="https://ftp.bmp.ovh/imgs/2020/05/06e273f2a35d2ac8.jpg" alt=""><br>Collection是 Set List Queue和 Deque的接口<br>Queue: 先进先出队列<br>Deque: 双向链表</p>
+<p>注：Collection和Map之间没有关系，Collection是放一个一个对象的，Map 是放键值对的<br>注：Deque 继承 Queue,间接的继承了 Collection</p>
+<p>List 是一个有序集合。元 素 会 增 加 到 容 器 中 的 特 定 位 置 。 可 以 采 用两种方式访问元素 ：</p>
+<p>使用迭代器访问，或者使用一个整数索引来访问。<br>后一种方法称为随机访问( random access) , 因为这样可以按任意顺序访问元素。<br>与之不同 ， 使用迭代器访问时 ，必须顺序地访问元素。</p>
+<p>Set 接口等同于 Collection 接口,不过其方法的行为有更严谨的定义。集 （ set )的 add 方法不允许增加重复的元素。<br>要适当地定义集的 equals 方法 ： 只要两个集包含同样的元素就认为是相等的，而不要求这些元素有同样的顺序 。</p>
+<p>hashCode 方法的定义要保证包含相同元素的两个集会得到相同的散列码。</p>
+<p>SortedSet 和 SortedMap 接口会提供用于排序的比较器对象， 这两个接口定义了可以得到集合子集视图的方法。</p>
+<p> Java SE 6 引人了接口 NavigableSet 和 NavigableMap ,<br>其中包含一些用于搜索和遍历有序集和映射的方法。(理想情况下,这些方法本应当直接包含在 SortedSet和 SortedMap接口中。)TreeSet 和 TreeMap 类实现了这些接口。</p>
+<p>标记接口 RandomAccess：为了避免对链表完成随机访问操作 –Java SE 1.4 引入。</p>
+<h3 id="具体的集合"><a href="#具体的集合" class="headerlink" title="具体的集合"></a>具体的集合</h3><p><img src="https://ftp.bmp.ovh/imgs/2020/05/c828167783de519d.jpg" alt=""></p>
+<p>ArrayList                                 一种可以动态增长和缩减的索引序列<br>LinkedList            一种可以在任何位置进行高效地插人和删除操作的有序序列<br>ArrayDeque        一种用循环数组实现的双端队列<br>HashSet            一种没有重复元素的无序集合<br>TreeSet            — 种有序集<br>EnumSet            一种包含枚举类型值的集<br>LinkedHashSet        一种可以记住元素插人次序的集<br>PriorityQueue        一种允许高效删除最小元素的集合<br>HashMap            一种存储键 / 值关联的数据结构<br>TreeMap            — 种键值有序排列的映射表<br>EnumMap            一种键值属于枚举类型的映射表<br>LinkedHashMap        一种可以记住键 / 值项添加次序的映射表<br>WeakHashMap        一种其值无用武之地后可以被垃圾回收器回收的映射表<br>IdentityHashMap        一种用 = 而不是用 equals 比较键值的映射表</p>
+<p>Hashtable、Vector线程安全的类</p>
+<p>本文章参考《core java第十版》与 <a href="https://how2j.cn/p/5752" target="_blank" rel="noopener">how2j</a></p>
 ]]></content>
       <categories>
-        <category>博客</category>
+        <category>java</category>
       </categories>
       <tags>
-        <tag>cos</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -139,15 +139,6 @@
       </tags>
   </entry>
   <entry>
-    <title>本站换域名啦(公告)</title>
-    <url>/2020/04/27/howsyc/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本站已换成howsyc.cn的新域名,how=好，syc=四叶草,象征着幸运,总得来说=好幸运。就是进入本站的朋友们都会被幸运女神保佑，气运十足，如果是学生考试加分等，如果是工作者一切顺利，早日涨薪，如果…..emmm编不下去了(滑稽)。祝每一位来到本站的朋友幸福快乐！旧域名mykindle.xyz点击后会自动跳转到新域名,换域名是因为听说小姨子后缀百度收录不太好，所以就直接换了,菜鸡小站希望以后有点收录，感谢来访的朋友们，呜呜呜底部的底部的访客数清空了。</p>
-]]></content>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>java个人笔记</title>
     <url>/2020/05/07/java-notes/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>前言：学完就忘怎么办？复习呗，qaq。本文章是我个人对javase基础的复习（汗）,一天复习一点点，奥利给！</p>
@@ -168,6 +159,15 @@
       </categories>
       <tags>
         <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>本站换域名啦(公告)</title>
+    <url>/2020/04/27/howsyc/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本站已换成howsyc.cn的新域名,how=好，syc=四叶草,象征着幸运,总得来说=好幸运。就是进入本站的朋友们都会被幸运女神保佑，气运十足，如果是学生考试加分等，如果是工作者一切顺利，早日涨薪，如果…..emmm编不下去了(滑稽)。祝每一位来到本站的朋友幸福快乐！旧域名mykindle.xyz点击后会自动跳转到新域名,换域名是因为听说小姨子后缀百度收录不太好，所以就直接换了,菜鸡小站希望以后有点收录，感谢来访的朋友们，呜呜呜底部的底部的访客数清空了。</p>
+]]></content>
+      <tags>
+        <tag>博客</tag>
       </tags>
   </entry>
   <entry>
@@ -259,6 +259,28 @@
       </tags>
   </entry>
   <entry>
+    <title>idea搭建maven中遇到的错误</title>
+    <url>/2020/08/21/mavenbuilderro/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Maven项目架构管理工具：<br>Maven的核心思想：<strong>约定大于配置</strong>,有约束，不要去违反。(来自狂神老师的教导)<br>下面是我在 idea搭建maven中遇到的错误,可以还有错误忘记写了，不是很全面请见谅。</p>
+<a id="more"></a>
+<h3 id="maven默认web项目中的web-xml版本问题"><a href="#maven默认web项目中的web-xml版本问题" class="headerlink" title="maven默认web项目中的web.xml版本问题"></a>maven默认web项目中的web.xml版本问题</h3><p>   1.1问题：和启动tomcat版本冲突<br>   1.2解决方法：替换为tomcat的版本<br><img src="https://ftp.bmp.ovh/imgs/2020/08/88084f42b60aff28.png" alt=""></p>
+<h3 id="Error-java-Compliation-falied-internal-java-compiler-error-或无效的项目发行版本-13"><a href="#Error-java-Compliation-falied-internal-java-compiler-error-或无效的项目发行版本-13" class="headerlink" title="Error:java:Compliation falied:internal java compiler error.或无效的项目发行版本:13"></a>Error:java:Compliation falied:internal java compiler error.或无效的项目发行版本:13</h3><p>解决方法：项目的和文件里的冲突了 改成一样的就好了<br>路径：Settings-&gt;Build,Execution,Deployment-&gt;Compiler-&gt;Java Compiler<br><img src="https://ftp.bmp.ovh/imgs/2020/08/721c99808cdab0ad.png" alt="compiler"></p>
+<h3 id="警告：No-archetype-found-in-remote-catalog-Defaulting-to-internal-catalog"><a href="#警告：No-archetype-found-in-remote-catalog-Defaulting-to-internal-catalog" class="headerlink" title="警告：No archetype found in remote catalog. Defaulting to internal catalog."></a>警告：No archetype found in remote catalog. Defaulting to internal catalog.</h3><pre><code>解决方法：https://blog.csdn.net/AdminGuan/article/details/103216314</code></pre><h3 id="报错Cannot-resolve-plugin-org-apache-maven-plugins-maven-compiler-plugin-3-1"><a href="#报错Cannot-resolve-plugin-org-apache-maven-plugins-maven-compiler-plugin-3-1" class="headerlink" title="报错Cannot resolve plugin org.apache.maven.plugins:maven-compiler-plugin:3.1"></a>报错Cannot resolve plugin org.apache.maven.plugins:maven-compiler-plugin:3.1</h3><pre><code>报错原因：本地maven的配置文件和仓库地址不一致
+解决方法：注意选择自己的maven版本，将下面图中的override勾选，然后选择自己电脑本地的Maven配置文件和本地maven的仓库地址</code></pre><p><img src="https://ftp.bmp.ovh/imgs/2020/08/5e4ccaed2168a3d9.png" alt="maven仓库配置"></p>
+<h3 id="IDEA中每次都要重复配置Maven"><a href="#IDEA中每次都要重复配置Maven" class="headerlink" title="IDEA中每次都要重复配置Maven"></a>IDEA中每次都要重复配置Maven</h3><p>解决方法：在IDEA中的全局默认配置中去配置<br>在左上角new那里的close project关闭项目，之后打开右下角的configure-&gt;Settings<br><img src="https://ftp.bmp.ovh/imgs/2020/08/75abf55bd8d62b0a.png" alt=""><br>找到Maven的仓库配置，注意选择自己的maven版本，将下面图中的override勾选，然后选择自己电脑本地的Maven配置文件和本地maven的仓库地址<br><img src="https://ftp.bmp.ovh/imgs/2020/08/3dfae78226506764.png" alt=""></p>
+<h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h3><p>1.maven的pom.xml配置文件记得jdk版本改成你使用的版本(推荐1.8)</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">    &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">    &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br></pre></td></tr></table></figure>
+
+<p>参考文章：<br><a href="https://blog.csdn.net/qq_45309297/article/details/106436535" target="_blank" rel="noopener">https://blog.csdn.net/qq_45309297/article/details/106436535</a><br><a href="https://blog.csdn.net/AdminGuan/article/details/103216314" target="_blank" rel="noopener">https://blog.csdn.net/AdminGuan/article/details/103216314</a><br><a href="https://blog.csdn.net/AdminGuan/article/details/103216314" target="_blank" rel="noopener">https://blog.csdn.net/AdminGuan/article/details/103216314</a><br><a href="https://blog.csdn.net/weixin_42030357/article/details/92097971" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42030357/article/details/92097971</a><br><a href="https://www.cnblogs.com/loufangcheng/p/12861762.html" target="_blank" rel="noopener">https://www.cnblogs.com/loufangcheng/p/12861762.html</a></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java数组</title>
     <url>/2020/04/24/java%E6%95%B0%E7%BB%84%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>数组，以及Arrays.方法的使用</p>
@@ -292,6 +314,26 @@
       </categories>
       <tags>
         <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决next主题菜单栏显示问号</title>
+    <url>/2020/05/01/nexttubiao/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>菜单栏和翻页按钮小图标显示不出来的问题终于解决了。</p>
+<a id="more"></a>
+<h3 id="解决next主题菜单栏显示问号"><a href="#解决next主题菜单栏显示问号" class="headerlink" title="解决next主题菜单栏显示问号"></a>解决next主题菜单栏显示问号</h3><p><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/%E5%9B%BE%E6%A0%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/1.jpg" alt="image text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/%E5%9B%BE%E6%A0%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/2.jpg" alt="image text"><br><img src="" alt="image text"><br>修改主题配置文件下(themes/_config.yml)的menu，每一个路径后面加||然后加图标</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F;||home</span><br><span class="line">  # about: &#x2F;about&#x2F;||user</span><br><span class="line">  # tags: &#x2F;tags&#x2F;||tags</span><br><span class="line">  #categories: &#x2F;categories&#x2F; || th</span><br><span class="line">  archives: &#x2F;archives&#x2F;||archive</span><br><span class="line">  top: &#x2F;top&#x2F;||signal</span><br><span class="line">  links: &#x2F;links&#x2F;||user-plus</span><br><span class="line">  #schedule: &#x2F;schedule&#x2F; || calendar</span><br><span class="line">  # books: &#x2F;books&#x2F;||book</span><br><span class="line">  messageboard: &#x2F;messageboard&#x2F; ||comment</span><br><span class="line">  #sitemap: &#x2F;sitemap.xml || sitemap</span><br><span class="line">  #commonweal: &#x2F;404&#x2F; || heartbeat</span><br><span class="line"></span><br><span class="line"># Enable&#x2F;Disable menu icons.</span><br><span class="line">menu_icons:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
+<p>注意: /与||之间是没有空格的!</p>
+<h3 id="解决next主题下翻页按钮图标无法显示问题"><a href="#解决next主题下翻页按钮图标无法显示问题" class="headerlink" title="解决next主题下翻页按钮图标无法显示问题"></a>解决next主题下翻页按钮图标无法显示问题</h3><p>修改themes/layout/_partials/pagination.swig文件，直接改为&lt;与&gt;</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#123;</span><br><span class="line">     paginator(&#123;</span><br><span class="line">       prev_text: &#39;&lt;&#39;,</span><br><span class="line">       next_text: &#39;&gt;&#39;,</span><br><span class="line">       mid_size: 1</span><br><span class="line">     &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>参考文章：<br><a href="https://www.cnblogs.com/xiejava/p/12456273.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiejava/p/12456273.html</a><br><a href="https://blog.csdn.net/qq_36852780/article/details/104657642" target="_blank" rel="noopener">https://blog.csdn.net/qq_36852780/article/details/104657642</a></p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -477,43 +519,6 @@
       </tags>
   </entry>
   <entry>
-    <title>idea搭建maven中遇到的错误</title>
-    <url>/2020/08/21/mavenbuilderro/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Maven项目架构管理工具：<br>Maven的核心思想：<strong>约定大于配置</strong>,有约束，不要去违反。(来自狂神老师的教导)<br>下面是我在 idea搭建maven中遇到的错误,可以还有错误忘记写了，不是很全面请见谅。</p>
-<a id="more"></a>
-<h3 id="maven默认web项目中的web-xml版本问题"><a href="#maven默认web项目中的web-xml版本问题" class="headerlink" title="maven默认web项目中的web.xml版本问题"></a>maven默认web项目中的web.xml版本问题</h3><p>   1.1问题：和启动tomcat版本冲突<br>   1.2解决方法：替换为tomcat的版本<br><img src="https://ftp.bmp.ovh/imgs/2020/08/88084f42b60aff28.png" alt=""></p>
-<h3 id="Error-java-Compliation-falied-internal-java-compiler-error-或无效的项目发行版本-13"><a href="#Error-java-Compliation-falied-internal-java-compiler-error-或无效的项目发行版本-13" class="headerlink" title="Error:java:Compliation falied:internal java compiler error.或无效的项目发行版本:13"></a>Error:java:Compliation falied:internal java compiler error.或无效的项目发行版本:13</h3><p>解决方法：项目的和文件里的冲突了 改成一样的就好了<br>路径：Settings-&gt;Build,Execution,Deployment-&gt;Compiler-&gt;Java Compiler<br><img src="https://ftp.bmp.ovh/imgs/2020/08/721c99808cdab0ad.png" alt="compiler"></p>
-<h3 id="警告：No-archetype-found-in-remote-catalog-Defaulting-to-internal-catalog"><a href="#警告：No-archetype-found-in-remote-catalog-Defaulting-to-internal-catalog" class="headerlink" title="警告：No archetype found in remote catalog. Defaulting to internal catalog."></a>警告：No archetype found in remote catalog. Defaulting to internal catalog.</h3><pre><code>解决方法：https://blog.csdn.net/AdminGuan/article/details/103216314</code></pre><h3 id="报错Cannot-resolve-plugin-org-apache-maven-plugins-maven-compiler-plugin-3-1"><a href="#报错Cannot-resolve-plugin-org-apache-maven-plugins-maven-compiler-plugin-3-1" class="headerlink" title="报错Cannot resolve plugin org.apache.maven.plugins:maven-compiler-plugin:3.1"></a>报错Cannot resolve plugin org.apache.maven.plugins:maven-compiler-plugin:3.1</h3><pre><code>报错原因：本地maven的配置文件和仓库地址不一致
-解决方法：注意选择自己的maven版本，将下面图中的override勾选，然后选择自己电脑本地的Maven配置文件和本地maven的仓库地址</code></pre><p><img src="https://ftp.bmp.ovh/imgs/2020/08/5e4ccaed2168a3d9.png" alt="maven仓库配置"></p>
-<h3 id="IDEA中每次都要重复配置Maven"><a href="#IDEA中每次都要重复配置Maven" class="headerlink" title="IDEA中每次都要重复配置Maven"></a>IDEA中每次都要重复配置Maven</h3><p>解决方法：在IDEA中的全局默认配置中去配置<br>在左上角new那里的close project关闭项目，之后打开右下角的configure-&gt;Settings<br><img src="https://ftp.bmp.ovh/imgs/2020/08/75abf55bd8d62b0a.png" alt=""><br>找到Maven的仓库配置，注意选择自己的maven版本，将下面图中的override勾选，然后选择自己电脑本地的Maven配置文件和本地maven的仓库地址<br><img src="https://ftp.bmp.ovh/imgs/2020/08/3dfae78226506764.png" alt=""></p>
-<h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h3><p>1.maven的pom.xml配置文件记得jdk版本改成你使用的版本(推荐1.8)</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">    &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">    &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br></pre></td></tr></table></figure>
-
-<p>参考文章：<br><a href="https://blog.csdn.net/qq_45309297/article/details/106436535" target="_blank" rel="noopener">https://blog.csdn.net/qq_45309297/article/details/106436535</a><br><a href="https://blog.csdn.net/AdminGuan/article/details/103216314" target="_blank" rel="noopener">https://blog.csdn.net/AdminGuan/article/details/103216314</a><br><a href="https://blog.csdn.net/AdminGuan/article/details/103216314" target="_blank" rel="noopener">https://blog.csdn.net/AdminGuan/article/details/103216314</a><br><a href="https://blog.csdn.net/weixin_42030357/article/details/92097971" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42030357/article/details/92097971</a><br><a href="https://www.cnblogs.com/loufangcheng/p/12861762.html" target="_blank" rel="noopener">https://www.cnblogs.com/loufangcheng/p/12861762.html</a></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java标识符的命名规范</title>
-    <url>/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>java标识符的命名规范<br>（规范是程序员的基本准则,不规范会直接损害你的个人形象）</p>
-<a id="more"></a>
-<h3 id="变量和常量命名规范"><a href="#变量和常量命名规范" class="headerlink" title="变量和常量命名规范"></a>变量和常量命名规范</h3><p>所有变量、方法、类名：见名知意<br>类成员变量：首字母小写和驼峰原则（monthSalary）<br>局部变量：首字母小写和驼峰原则<br>常量：大写字母和下划线:MAX_VALUE<br>类名：首字母大写和驼峰原则（Man,GoodMan）<br>方法名：首字母小写和驼峰原则:run(),runRun()<br>//变量本质上就是代表一个“可操作的存储空间”，空间位置是确定的，但是里面放置什么值不确定。我们可通过变量名来访问“对应的存储空间”，<br>//从而操纵这个“存储空间”存储的值。<br>//java是一种强制 型语言，每个变量都必须声明其书局类型。变量的数据类型决定了变量占据存储空间的大小。比如 int a = 3; 表示a变量的空间大小为4个字节</p>
-<h3 id="标识符的命名规则："><a href="#标识符的命名规则：" class="headerlink" title="标识符的命名规则："></a>标识符的命名规则：</h3><p>标识符必须以字母、下划线_、美元符号$开头。<br>标识符其它部分可以是字母、下划线“_”、美元符“$”和数字的任意组合。<br>Java 标识符大小写敏感，且长度无限制。<br>标识符不可以是Java的关键字。<br><a href="https://www.sxt.cn/Java_jQuery_in_action/Java_Identifier.html" target="_blank" rel="noopener">原文来源</a></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>解决hexo启动服务器后页面不显示</title>
     <url>/2020/05/01/%E8%A7%A3%E5%86%B3hexo-s%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="解决hexo启动服务器后页面不显示"><a href="#解决hexo启动服务器后页面不显示" class="headerlink" title="解决hexo启动服务器后页面不显示"></a>解决hexo启动服务器后页面不显示</h2><p>今天打开电脑修改hexo主题的样式，在启动hexo s后打开页面的时候发现页面根本打不开,查看任务管理后才发现端口被占用！！！挺小白的问题，是我太菜。</p>
@@ -535,23 +540,18 @@
       </tags>
   </entry>
   <entry>
-    <title>解决next主题菜单栏显示问号</title>
-    <url>/2020/05/01/nexttubiao/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>菜单栏和翻页按钮小图标显示不出来的问题终于解决了。</p>
+    <title>java标识符的命名规范</title>
+    <url>/2020/04/24/%E6%A0%87%E8%AF%86%E7%AC%A6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>java标识符的命名规范<br>（规范是程序员的基本准则,不规范会直接损害你的个人形象）</p>
 <a id="more"></a>
-<h3 id="解决next主题菜单栏显示问号"><a href="#解决next主题菜单栏显示问号" class="headerlink" title="解决next主题菜单栏显示问号"></a>解决next主题菜单栏显示问号</h3><p><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/%E5%9B%BE%E6%A0%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/1.jpg" alt="image text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/%E5%9B%BE%E6%A0%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/2.jpg" alt="image text"><br><img src="" alt="image text"><br>修改主题配置文件下(themes/_config.yml)的menu，每一个路径后面加||然后加图标</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F;||home</span><br><span class="line">  # about: &#x2F;about&#x2F;||user</span><br><span class="line">  # tags: &#x2F;tags&#x2F;||tags</span><br><span class="line">  #categories: &#x2F;categories&#x2F; || th</span><br><span class="line">  archives: &#x2F;archives&#x2F;||archive</span><br><span class="line">  top: &#x2F;top&#x2F;||signal</span><br><span class="line">  links: &#x2F;links&#x2F;||user-plus</span><br><span class="line">  #schedule: &#x2F;schedule&#x2F; || calendar</span><br><span class="line">  # books: &#x2F;books&#x2F;||book</span><br><span class="line">  messageboard: &#x2F;messageboard&#x2F; ||comment</span><br><span class="line">  #sitemap: &#x2F;sitemap.xml || sitemap</span><br><span class="line">  #commonweal: &#x2F;404&#x2F; || heartbeat</span><br><span class="line"></span><br><span class="line"># Enable&#x2F;Disable menu icons.</span><br><span class="line">menu_icons:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
-<p>注意: /与||之间是没有空格的!</p>
-<h3 id="解决next主题下翻页按钮图标无法显示问题"><a href="#解决next主题下翻页按钮图标无法显示问题" class="headerlink" title="解决next主题下翻页按钮图标无法显示问题"></a>解决next主题下翻页按钮图标无法显示问题</h3><p>修改themes/layout/_partials/pagination.swig文件，直接改为&lt;与&gt;</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#123;</span><br><span class="line">     paginator(&#123;</span><br><span class="line">       prev_text: &#39;&lt;&#39;,</span><br><span class="line">       next_text: &#39;&gt;&#39;,</span><br><span class="line">       mid_size: 1</span><br><span class="line">     &#125;)</span><br></pre></td></tr></table></figure>
-
-<p>参考文章：<br><a href="https://www.cnblogs.com/xiejava/p/12456273.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiejava/p/12456273.html</a><br><a href="https://blog.csdn.net/qq_36852780/article/details/104657642" target="_blank" rel="noopener">https://blog.csdn.net/qq_36852780/article/details/104657642</a></p>
+<h3 id="变量和常量命名规范"><a href="#变量和常量命名规范" class="headerlink" title="变量和常量命名规范"></a>变量和常量命名规范</h3><p>所有变量、方法、类名：见名知意<br>类成员变量：首字母小写和驼峰原则（monthSalary）<br>局部变量：首字母小写和驼峰原则<br>常量：大写字母和下划线:MAX_VALUE<br>类名：首字母大写和驼峰原则（Man,GoodMan）<br>方法名：首字母小写和驼峰原则:run(),runRun()<br>//变量本质上就是代表一个“可操作的存储空间”，空间位置是确定的，但是里面放置什么值不确定。我们可通过变量名来访问“对应的存储空间”，<br>//从而操纵这个“存储空间”存储的值。<br>//java是一种强制 型语言，每个变量都必须声明其书局类型。变量的数据类型决定了变量占据存储空间的大小。比如 int a = 3; 表示a变量的空间大小为4个字节</p>
+<h3 id="标识符的命名规则："><a href="#标识符的命名规则：" class="headerlink" title="标识符的命名规则："></a>标识符的命名规则：</h3><p>标识符必须以字母、下划线_、美元符号$开头。<br>标识符其它部分可以是字母、下划线“_”、美元符“$”和数字的任意组合。<br>Java 标识符大小写敏感，且长度无限制。<br>标识符不可以是Java的关键字。<br><a href="https://www.sxt.cn/Java_jQuery_in_action/Java_Identifier.html" target="_blank" rel="noopener">原文来源</a></p>
 ]]></content>
       <categories>
-        <category>hexo</category>
+        <category>java</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
+        <tag>java</tag>
       </tags>
   </entry>
 </search>
