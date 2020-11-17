@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://howsyc.cn/2020/11/17/servletcontext/</loc>
+    
+    <lastmod>2020-11-17T09:15:30.872Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://howsyc.cn/2020/11/16/jspIncludeEncoding/</loc>
+    
+    <lastmod>2020-11-17T09:15:05.642Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://howsyc.cn/2020/11/17/JSPIntro/</loc>
+    
+    <lastmod>2020-11-17T09:14:49.529Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://howsyc.cn/2020/11/17/Servlet/</loc>
+    
+    <lastmod>2020-11-17T09:14:26.368Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://howsyc.cn/2020/08/21/mavenbuilderro/</loc>
+    
+    <lastmod>2020-11-17T09:02:37.389Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://howsyc.cn/2020/11/17/ReqOrResp/</loc>
+    
+    <lastmod>2020-11-17T09:00:37.130Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://howsyc.cn/shuoshuo/index.html</loc>
     
     <lastmod>2020-10-02T12:25:15.915Z</lastmod>
@@ -12,13 +54,6 @@
     <loc>https://howsyc.cn/music/index.html</loc>
     
     <lastmod>2020-08-26T15:16:58.720Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://howsyc.cn/2020/08/21/mavenbuilderro/</loc>
-    
-    <lastmod>2020-08-21T17:49:12.743Z</lastmod>
     
   </url>
   
