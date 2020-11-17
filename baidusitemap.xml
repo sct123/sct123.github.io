@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://howsyc.cn/2020/11/17/servletcontext/</loc>
-    <lastmod>2020-11-17</lastmod>
-  </url>  <url>
     <loc>https://howsyc.cn/2020/11/16/jspIncludeEncoding/</loc>
     <lastmod>2020-11-17</lastmod>
   </url>  <url>
-    <loc>https://howsyc.cn/2020/11/17/JSPIntro/</loc>
+    <loc>https://howsyc.cn/2020/11/17/servletcontext/</loc>
     <lastmod>2020-11-17</lastmod>
   </url>  <url>
     <loc>https://howsyc.cn/2020/11/17/Servlet/</loc>
     <lastmod>2020-11-17</lastmod>
   </url>  <url>
-    <loc>https://howsyc.cn/2020/08/21/mavenbuilderro/</loc>
+    <loc>https://howsyc.cn/2020/11/17/ReqOrResp/</loc>
     <lastmod>2020-11-17</lastmod>
   </url>  <url>
-    <loc>https://howsyc.cn/2020/11/17/ReqOrResp/</loc>
+    <loc>https://howsyc.cn/2020/11/17/JSPIntro/</loc>
+    <lastmod>2020-11-17</lastmod>
+  </url>  <url>
+    <loc>https://howsyc.cn/2020/08/21/mavenbuilderro/</loc>
     <lastmod>2020-11-17</lastmod>
   </url>  <url>
     <loc>https://howsyc.cn/2020/05/28/calc/</loc>
