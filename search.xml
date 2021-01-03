@@ -1,6 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>java对象流 EOFException异常</title>
+    <url>/2020/05/05/EOFException/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>这里描述的java.io.EOFException异常是在对象流（也就是ObjectInputStream，ObjectOutputStream）的使用过程中，抛出的。</p>
+<a id="more"></a>
+<p>什么是对象流？</p>
+<p>对象流指的是可以直接把一个对象以流的形式传输给其他的介质，比如硬盘<br>一个对象以流的形式进行传输，叫做序列化。该对象所对应的类，必须是实现Serializable接口。<a href="https://how2j.cn/p/5689" target="_blank" rel="noopener">详细学习</a></p>
+<p>如果你使用使用对象流那么必须配套使用,因为用对象流的方式写人文件，文件的开头会有序列头，就像协议一样，是规定好的。如下是用java写人的Hero对象:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">        序列头     对象                数值</span><br><span class="line">序列头?            Hero        I hpL namet Ljava/lang/String;xp  ht garen</span><br></pre></td></tr></table></figure>
+<h3 id="对象流不同于普通的字节流，当对象流中没有数据时，程序却尝试读取异常，会报EOF错误；而字节流就不会出现这种情况，字节流会返回-1-。"><a href="#对象流不同于普通的字节流，当对象流中没有数据时，程序却尝试读取异常，会报EOF错误；而字节流就不会出现这种情况，字节流会返回-1-。" class="headerlink" title="对象流不同于普通的字节流，当对象流中没有数据时，程序却尝试读取异常，会报EOF错误；而字节流就不会出现这种情况，字节流会返回-1 。"></a>对象流不同于普通的字节流，当对象流中没有数据时，程序却尝试读取异常，会报EOF错误；而字节流就不会出现这种情况，字节流会返回-1 。</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1. 初始化Object流语句</span></span><br><span class="line">FileInputStream fis = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">FileOututStream fos = <span class="keyword">new</span> FileOutputStream(file);</span><br><span class="line">dis = <span class="keyword">new</span> ObjectInputStream(fis); <span class="comment">// 报错的就是这一行，第xx行</span></span><br><span class="line">dos = <span class="keyword">new</span> ObjectOutputStream(fos);</span><br><span class="line"></span><br><span class="line">java.io.EOFException</span><br><span class="line">	at java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:<span class="number">2681</span>)</span><br><span class="line">	at java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:<span class="number">3156</span>)</span><br><span class="line">	at java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:<span class="number">862</span>)</span><br><span class="line">	at java.io.ObjectInputStream.&lt;init&gt;(ObjectInputStream.java:<span class="number">358</span>)</span><br><span class="line">	at Test.main(Test.java:xx行) <span class="comment">// 第xx行报错</span></span><br></pre></td></tr></table></figure>
+<p>因为ObjectInputStream构造函数会从传入的InputStream来读取数据。首先会读取序列化流的头部(serialization stream header)并验证头部。此构造器会一直地”阻塞”，直到与之对应的ObjectOutputStream写入了序列化头部。(阻塞并不完全正确，详细见<a href="https://blog.csdn.net/qq_37206105/article/details/90461717" target="_blank" rel="noopener">Canliture</a>的文章)，</p>
+<p>所以我们先实例化ObjectOutputStream，再实例化 ObjectInputStream，保证在在同一资源的对象流ObjectInputStream能够及时读取到序列化头而不至于阻塞或者引发EOF异常(阻塞对应于Socket IO，EOF异常对应于文件IO)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">dos = <span class="keyword">new</span> ObjectOutputStream(fos);</span><br><span class="line">dis = <span class="keyword">new</span> ObjectInputStream(fis);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="ObjectInputStream写入的数据，在ObjectOutputStream上读取时，应该按照相同的数据类型依次读取，否则数据类型不等会抛出EOFException"><a href="#ObjectInputStream写入的数据，在ObjectOutputStream上读取时，应该按照相同的数据类型依次读取，否则数据类型不等会抛出EOFException" class="headerlink" title="ObjectInputStream写入的数据，在ObjectOutputStream上读取时，应该按照相同的数据类型依次读取，否则数据类型不等会抛出EOFException"></a>ObjectInputStream写入的数据，在ObjectOutputStream上读取时，应该按照相同的数据类型依次读取，否则数据类型不等会抛出EOFException</h3><p>下文的错误把dis.readInt() 改为 dis.readObject()就能解决</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"> File f0 = <span class="keyword">new</span> File(<span class="string">"kkk.out"</span>);</span><br><span class="line"> FileInputStream fis = <span class="keyword">null</span>;</span><br><span class="line"> FileOutputStream fos = <span class="keyword">null</span>;</span><br><span class="line"> ObjectInputStream dis = <span class="keyword">null</span>;</span><br><span class="line"> ObjectOutputStream dos = <span class="keyword">null</span>;</span><br><span class="line"> <span class="keyword">try</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(!f0.exists())f0.createNewFile();</span><br><span class="line"></span><br><span class="line">     fos = <span class="keyword">new</span> FileOutputStream(f0);</span><br><span class="line">     fis = <span class="keyword">new</span> FileInputStream(f0);</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 1. 初始化Object流语句</span></span><br><span class="line">     dis = <span class="keyword">new</span> ObjectInputStream(fis);</span><br><span class="line">     dos = <span class="keyword">new</span> ObjectOutputStream(fos);</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 2. 写"对象"语句</span></span><br><span class="line">     dos.writeInt(<span class="number">1</span>);                             <span class="comment">//异常处</span></span><br><span class="line">     dos.writeObject(<span class="keyword">new</span> Integer(<span class="number">3</span>));         </span><br><span class="line"></span><br><span class="line">     <span class="comment">// 3. 读取，输出语句</span></span><br><span class="line">     System.out.println(dis.readInt() + <span class="string">","</span>+ dis.readInt());</span><br><span class="line"> &#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">     e.printStackTrace();</span><br><span class="line">     <span class="keyword">if</span>(fos != <span class="keyword">null</span>) fos.close();</span><br><span class="line">     <span class="keyword">if</span>(fis != <span class="keyword">null</span>) fis.close();</span><br><span class="line">     <span class="keyword">if</span>(dos != <span class="keyword">null</span>) dos.close();</span><br><span class="line">     <span class="keyword">if</span>(dis != <span class="keyword">null</span>) dis.close();</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>1.对象流不同于普通的字节流，当对象流中没有数据时，程序却尝试读取数据，会报EOFException；而字节流就不会出现这种情况，字节流会返回-1</p>
+<p>2.ObjectInputStream写入的数据，在ObjectOutputStream上读取时，应该按照相同的数据类型依次读取，否则数据类型不等会抛出EOFException</p>
+<p>3.最好在实际使用的过程中，我们先实例化ObjectOutputStream，再实例化 ObjectInputStream，这是由这两个类的设计思想所决定的。如此能保证在同一资源的对象流ObjectInputStream能够及时读取到序列化头而不至于阻塞或者引发EOF异常(阻塞对应于Socket IO，EOF异常对应于文件IO)</p>
+<p>如果想从源码上了解问题请点击下放的原文链接</p>
+<p>原文链接：<a href="https://blog.csdn.net/qq_37206105/article/details/90461717" target="_blank" rel="noopener">Canliture</a></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JSP</title>
+    <url>/2020/11/17/JSPIntro/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1-什么是JSP？"><a href="#1-什么是JSP？" class="headerlink" title="1.什么是JSP？"></a>1.什么是JSP？</h3><p>Java Server Pages,java服务器端页面，一种动态网页开发技术。它使用JSP标签在HTML网页中插入Java代码。标签通常以&lt;%开头以%&gt;结束。</p>
+<p>JSP是一种Java servlet，主要用于实现Java web应用程序的用户界面部分。网页开发者们通过结合HTML代码、XHTML代码、XML元素以及嵌入JSP操作和命令来编写JSP。</p>
+<a id="more"></a>
+
+<h3 id="2-JSP原理"><a href="#2-JSP原理" class="headerlink" title="2.JSP原理"></a>2.JSP原理</h3><h5 id="JSP是怎么执行的？"><a href="#JSP是怎么执行的？" class="headerlink" title="JSP是怎么执行的？"></a>JSP是怎么执行的？</h5><p>服务器内部工作</p>
+<p>tomcat中有一个work目录；</p>
+<p>IDEA中使用Tomcat的会在IDEA中的Tomcat中生成一个work目录或者项目目录/work:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\Amdministrator\AppData\Local\JetBrains\IntelliJIdea2020.1\tomcat\Unnamed_javawev_jsp\work\Catalina\localhost\ROOT\org\apache\jsp</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgchr.com/i/DVRcVg" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/17/DVRcVg.png" alt="DVRcVg.png"></a></p>
+<p>打开java类， 发现 jsp 继承了HttpJspBase</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">index_jsp</span> <span class="keyword">extends</span> <span class="title">org</span>.<span class="title">apache</span>.<span class="title">jasper</span>.<span class="title">runtime</span>.<span class="title">HttpJspBase</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">org</span>.<span class="title">apache</span>.<span class="title">jasper</span>.<span class="title">runtime</span>.<span class="title">JspSourceDependent</span>,</span></span><br><span class="line"><span class="class">                 <span class="title">org</span>.<span class="title">apache</span>.<span class="title">jasper</span>.<span class="title">runtime</span>.<span class="title">JspSourceImports</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+
+<p>而HttpJspBase继承了Servlet</p>
+<p><a href="https://imgchr.com/i/DVhGrV" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/17/DVhGrV.png" alt="DVhGrV.png"></a></p>
+<p><strong>所以浏览器向服务器发送请求，不管访问什么资源，其实都是在访问Servlet！</strong></p>
+<p>JSP最终也会被转换成为一个Java类！</p>
+<p>类内的_jspService()方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">_jspService</span><span class="params">(<span class="keyword">final</span> javax.servlet.http.HttpServletRequest request, <span class="keyword">final</span> javax.servlet.http.HttpServletResponse response)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> java.io.IOException, javax.servlet.ServletException </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!javax.servlet.DispatcherType.ERROR.equals(request.getDispatcherType())) &#123;</span><br><span class="line">      <span class="keyword">final</span> java.lang.String _jspx_method = request.getMethod();</span><br><span class="line">      <span class="keyword">if</span> (<span class="string">"OPTIONS"</span>.equals(_jspx_method)) &#123;</span><br><span class="line">        response.setHeader(<span class="string">"Allow"</span>,<span class="string">"GET, HEAD, POST, OPTIONS"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (!<span class="string">"GET"</span>.equals(_jspx_method) &amp;&amp; !<span class="string">"POST"</span>.equals(_jspx_method) &amp;&amp; !<span class="string">"HEAD"</span>.equals(_jspx_method)) &#123;</span><br><span class="line">        response.setHeader(<span class="string">"Allow"</span>,<span class="string">"GET, HEAD, POST, OPTIONS"</span>);</span><br><span class="line">        response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, <span class="string">"JSP 只允许 GET、POST 或 HEAD。Jasper 还允许 OPTIONS"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//一些内置对象</span></span><br><span class="line">    <span class="keyword">final</span> javax.servlet.jsp.PageContext pageContext;</span><br><span class="line">    <span class="keyword">final</span> javax.servlet.ServletContext application;</span><br><span class="line">    <span class="keyword">final</span> javax.servlet.ServletConfig config;</span><br><span class="line">    javax.servlet.jsp.JspWriter out = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">final</span> java.lang.Object page = <span class="keyword">this</span>;</span><br><span class="line">    javax.servlet.jsp.JspWriter _jspx_out = <span class="keyword">null</span>;</span><br><span class="line">    javax.servlet.jsp.PageContext _jspx_page_context = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      response.setContentType(<span class="string">"text/html; charset=UTF-8"</span>);</span><br><span class="line">      pageContext = _jspxFactory.getPageContext(<span class="keyword">this</span>, request, response,</span><br><span class="line">      			<span class="keyword">null</span>, <span class="keyword">false</span>, <span class="number">8192</span>, <span class="keyword">true</span>);</span><br><span class="line">      _jspx_page_context = pageContext;</span><br><span class="line">      application = pageContext.getServletContext();</span><br><span class="line">      config = pageContext.getServletConfig();</span><br><span class="line">      out = pageContext.getOut();</span><br><span class="line">      _jspx_out = out;</span><br><span class="line">	<span class="comment">//编写的html代码最终也是转换为out.write的形式输出</span></span><br><span class="line">      out.write(<span class="string">"\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"\r\n"</span>);</span><br><span class="line"></span><br><span class="line">java.text.SimpleDateFormat sdf = <span class="keyword">new</span> java.text.SimpleDateFormat(<span class="string">"yyyy"</span>);</span><br><span class="line">request.setAttribute(<span class="string">"year"</span>, sdf.format(<span class="keyword">new</span> java.util.Date()));</span><br><span class="line">request.setAttribute(<span class="string">"tomcatUrl"</span>, <span class="string">"https://tomcat.apache.org/"</span>);</span><br><span class="line">request.setAttribute(<span class="string">"tomcatDocUrl"</span>, <span class="string">"/docs/"</span>);</span><br><span class="line">request.setAttribute(<span class="string">"tomcatExamplesUrl"</span>, <span class="string">"/examples/"</span>);</span><br><span class="line"></span><br><span class="line">      out.write(<span class="string">"\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"&lt;!DOCTYPE html&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"&lt;html lang=\"en\"&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"    &lt;head&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"        &lt;meta charset=\"UTF-8\" /&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"        &lt;title&gt;"</span>);</span><br><span class="line">      out.print(request.getServletContext().getServerInfo() );</span><br><span class="line">      out.write(<span class="string">"&lt;/title&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"        &lt;link href=\"favicon.ico\" rel=\"icon\" type=\"image/x-icon\" /&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"        &lt;link href=\"favicon.ico\" rel=\"shortcut icon\" type=\"image/x-icon\" /&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"        &lt;link href=\"tomcat.css\" rel=\"stylesheet\" type=\"text/css\" /&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"    &lt;/head&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"    &lt;body&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"        &lt;div id=\"wrapper\"&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"            &lt;div id=\"navigation\" class=\"curved container\"&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"                &lt;span id=\"nav-home\"&gt;&lt;a href=\""</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="3-JSP基本语法"><a href="#3-JSP基本语法" class="headerlink" title="3.JSP基本语法"></a>3.JSP基本语法</h3><p>脚本程序可以包含任意量的Java语句、变量、方法或表达式，只要它们在脚本语言中是有效的。</p>
+<h5 id="脚本程序的语法格式："><a href="#脚本程序的语法格式：" class="headerlink" title="脚本程序的语法格式："></a><strong>脚本程序的语法格式：</strong></h5><figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;% 代码片段 %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>或者，您也可以编写与其等价的XML语句，就像下面这样：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;jsp:scriptlet&gt;</span><br><span class="line">   代码片段</span><br><span class="line">&lt;/jsp:scriptlet&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>任何文本、HTML标签、JSP元素必须写在脚本程序的外面。</strong></p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;&lt;title&gt;Hello World&lt;&#x2F;title&gt;&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">Hello World!&lt;br&#x2F;&gt;</span><br><span class="line">&lt;%</span><br><span class="line">out.println(&quot;Your IP address is &quot; + request.getRemoteAddr());</span><br><span class="line">%&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="jsp声明："><a href="#jsp声明：" class="headerlink" title="jsp声明："></a><strong>jsp声明：</strong></h5><p>JSP声明的语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%! declaration; [ declaration; ]+ ... %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>或者，您也可以编写与其等价的XML语句，就像下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;jsp:declaration&gt;</span><br><span class="line">   代码片段</span><br><span class="line">&lt;&#x2F;jsp:declaration&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="JSP表达式："><a href="#JSP表达式：" class="headerlink" title="JSP表达式："></a><strong>JSP表达式：</strong></h5><p>一个JSP表达式中包含的脚本语言表达式，先被转化成String，然后插入到表达式出现的地方。</p>
+<p>由于表达式的值会被转化成String，所以您可以在一个文本行中使用表达式而不用去管它是否是HTML标签。</p>
+<p>表达式元素中可以包含任何符合Java语言规范的表达式，但是不能使用分号来结束表达式。</p>
+<p>JSP表达式的语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%&#x3D; 表达式 %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>同样，您也可以编写与之等价的XML语句：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;jsp:expression&gt;</span><br><span class="line">   表达式</span><br><span class="line">&lt;&#x2F;jsp:expression&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="JSP注释："><a href="#JSP注释：" class="headerlink" title="JSP注释："></a><strong>JSP注释：</strong></h5><figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%-- --%&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%%&gt;</span><br><span class="line">&lt;%=%&gt;</span><br><span class="line">&lt;%!%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%--注释--%&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-JSP指令"><a href="#4-JSP指令" class="headerlink" title="4.JSP指令"></a>4.JSP指令</h3><p>JSP指令用来设置与整个JSP页面相关的属性。一般写在头部位置</p>
+<h5 id="JSP指令语法格式："><a href="#JSP指令语法格式：" class="headerlink" title="JSP指令语法格式："></a>JSP指令语法格式：</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%@ directive attribute&#x3D;&quot;value&quot; %&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="这里有三种指令标签："><a href="#这里有三种指令标签：" class="headerlink" title="这里有三种指令标签："></a>这里有三种指令标签：</h5><table>
+<thead>
+<tr>
+<th align="left"><strong>指令</strong></th>
+<th align="left"><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">&lt;%@ page … %&gt;</td>
+<td align="left">定义页面的依赖属性，比如脚本语言、error页面、缓存需求等等</td>
+</tr>
+<tr>
+<td align="left">&lt;%@ include … %&gt;</td>
+<td align="left">包含其他文件</td>
+</tr>
+<tr>
+<td align="left">&lt;%@ taglib … %&gt;</td>
+<td align="left">引入标签库的定义，可以是自定义标签</td>
+</tr>
+</tbody></table>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;%<span class="meta">@page</span> args.... %&gt;</span><br><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">""</span>%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%--<span class="meta">@include</span>会将两个页面合二为一--%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">"common/header.jsp"</span>%&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;网页主体&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">"common/footer.jsp"</span>%&gt;</span><br><span class="line"></span><br><span class="line">&lt;hr&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;%--jSP标签</span><br><span class="line">    jsp:include：拼接页面，本质还是三个</span><br><span class="line">    --%&gt;</span><br><span class="line">&lt;jsp:include page=<span class="string">"/common/header.jsp"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;网页主体&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;jsp:include page=<span class="string">"/common/footer.jsp"</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-JSP九大内置对象详解"><a href="#5-JSP九大内置对象详解" class="headerlink" title="5.JSP九大内置对象详解"></a>5.JSP九大内置对象详解</h3><h4 id="JSP内置对象-9个内置对象"><a href="#JSP内置对象-9个内置对象" class="headerlink" title="JSP内置对象(9个内置对象):"></a>JSP内置对象(9个内置对象):</h4><p>1.PageContext javax.servlet.jsp.PageContext JSP的页面容器<br>2.request    javax.servlet.http.HttpServletrequest 获取用户的请求信息<br>3.response javax.servlet.http.HttpServletResponse 服务器向客户端的回应信息<br>4.session javax.servlet.http.HttpSession 用来保存每一个用户的信息<br>5.application javax.servlet.ServletContext 表示所有用户的共享信息<br>6.config javax.servlet.ServletConfig 服务器配置信息，可以取得初始化参数<br>7.out javax.servlet.jsp.jspWriter 页面输出<br>8.page java.lang.object)<br>9.exception java.lang.Throwable </p>
+<h4 id="九种对象简介："><a href="#九种对象简介：" class="headerlink" title="九种对象简介："></a>九种对象简介：</h4><ol>
+<li><strong>out对象</strong>：用于向客户端、浏览器输出数据。</li>
+<li><strong>request对象</strong>：封装了来自客户端、浏览器的各种信息。</li>
+<li><strong>response对象</strong>：封装了服务器的响应信息。</li>
+<li><strong>exception对象</strong>：封装了jsp程序执行过程中发生的异常和错误信息。</li>
+<li><strong>config（SerlvetConfig）对象</strong>：封装了应用程序的配置信息。</li>
+<li><strong>page对象</strong>：指向了当前jsp程序本身。</li>
+<li><strong>session对象</strong>：用来保存会话信息。也就是说，可以实现在同一用户的不同请求之间共享数</li>
+<li><strong>application（ServletContext）对象</strong>：代表了当前应用程序的上下文。可以在不同的用户之间共享信息。</li>
+<li><strong>pageContext对象</strong>：提供了对jsp页面所有对象以及命名空间的访问。</li>
+</ol>
+<h4 id="四种属性范围"><a href="#四种属性范围" class="headerlink" title="四种属性范围:"></a><strong>四种属性范围:</strong></h4><p>page(pageContext):只在一个页面中保存属性。 跳转之后无效。<br>request:只在一次请求中有效，服务器跳转之后有效。 客户端跳转无效<br>session:再一次会话中有效。服务器跳转、客户端跳转都有效。 网页关闭重新打开无效<br>application：在整个服务器上保存，所有用户都可使用。 重启服务器后无效</p>
+<p>注意：如果设置过多的application属性范围会影响服务器性能。</p>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">pageContext.PAGE_SCOPE</span><br><span class="line">pageContext.REQUEST_SCOPE</span><br><span class="line">pageContext.SESSION_SCOPE</span><br><span class="line">pageContext.APPLICATION_SCOPE</span><br><span class="line">pageContext.setAttribute(<span class="string">"name"</span>, <span class="string">"liuyang"</span>,pageContext.APPLICATION_SCOPE);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="6-JSP标签、JSTL标签、EL表达式"><a href="#6-JSP标签、JSTL标签、EL表达式" class="headerlink" title="6.JSP标签、JSTL标签、EL表达式"></a>6.JSP标签、JSTL标签、EL表达式</h3><p><strong>依赖</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- JSTL表达式的依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet.jsp.jstl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstl-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- standard标签库 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>taglibs<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>standard<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="jsp标签"><a href="#jsp标签" class="headerlink" title="jsp标签"></a>jsp标签</h4><p>JSP行为标签使用XML语法结构来控制servlet引擎。它能够动态插入一个文件，重用JavaBean组件，引导用户去另一个页面，为Java插件产生相关的HTML等等。</p>
+<p>行为标签只有一种语法格式，它严格遵守XML标准：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;jsp:action_name attribute&#x3D;&quot;value&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>行为标签基本上是一些预先就定义好的函数，下表罗列出了一些可用的JSP行为标签：：</p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>语法</strong></th>
+<th align="left"><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">jsp:include</td>
+<td align="left">用于在当前页面中包含静态或动态资源</td>
+</tr>
+<tr>
+<td align="left">jsp:useBean</td>
+<td align="left">寻找和初始化一个JavaBean组件</td>
+</tr>
+<tr>
+<td align="left">jsp:setProperty</td>
+<td align="left">设置 JavaBean组件的值</td>
+</tr>
+<tr>
+<td align="left">jsp:getProperty</td>
+<td align="left">将 JavaBean组件的值插入到 output中</td>
+</tr>
+<tr>
+<td align="left">jsp:forward</td>
+<td align="left">从一个JSP文件向另一个文件传递一个包含用户请求的request对象</td>
+</tr>
+<tr>
+<td align="left">jsp:plugin</td>
+<td align="left">用于在生成的HTML页面中包含Applet和JavaBean对象</td>
+</tr>
+<tr>
+<td align="left">jsp:element</td>
+<td align="left">动态创建一个XML元素</td>
+</tr>
+<tr>
+<td align="left">jsp:attribute</td>
+<td align="left">定义动态创建的XML元素的属性</td>
+</tr>
+<tr>
+<td align="left">jsp:body</td>
+<td align="left">定义动态创建的XML元素的主体</td>
+</tr>
+<tr>
+<td align="left">jsp:text</td>
+<td align="left">用于封装模板数据</td>
+</tr>
+</tbody></table>
+<h4 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式:${ }"></a>EL表达式:${ }</h4><ul>
+<li><strong>获取数据</strong></li>
+<li><strong>执行运算</strong></li>
+<li><strong>获取web开发的常用对象</strong></li>
+</ul>
+<h4 id="JSTL标签"><a href="#JSTL标签" class="headerlink" title="JSTL标签"></a>JSTL标签</h4><p>JSP标准标签库（JSTL）是一个JSP标签集合，它封装了JSP应用的通用核心功能。</p>
+<p>JSTL支持通用的、结构化的任务，比如迭代，条件判断，XML文档操作，国际化标签，SQL标签。 除了这些，它还提供了一个框架来使用集成JSTL的自定义标签。</p>
+<p>根据JSTL标签所提供的功能，可以将其分为5个类别。</p>
+<ul>
+<li><strong>核心标签</strong></li>
+<li><strong>格式化标签</strong></li>
+<li><strong>SQL 标签</strong></li>
+<li><strong>XML 标签</strong></li>
+<li><strong>JSTL 函数</strong></li>
+</ul>
+<p>核心标签是最常用的 JSTL标签。引用核心标签库的语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%@ taglib prefix&#x3D;&quot;c&quot; uri&#x3D;&quot;http:&#x2F;&#x2F;java.sun.com&#x2F;jsp&#x2F;jstl&#x2F;core&quot; %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>使用任何库，你必须在每个 JSP 文件中的头部包含 <strong><taglib></strong> 标签。</p>
+<p><strong>在Tomcat 也需要引入 jstl的包，否则会报错：JSTL解析错误</strong></p>
+<p>c:if</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;h4&gt;if测试&lt;/h4&gt;</span><br><span class="line"></span><br><span class="line">&lt;hr&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action=<span class="string">"coreif.jsp"</span> method=<span class="string">"get"</span>&gt;</span><br><span class="line">    &lt;%--</span><br><span class="line">    EL表达式获取表单中的数据</span><br><span class="line">    $&#123;param.参数名&#125;</span><br><span class="line">    --%&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> name=<span class="string">"username"</span> value=<span class="string">"$&#123;param.username&#125;"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"submit"</span> value=<span class="string">"登录"</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;%--判断如果提交的用户名是管理员，则登录成功--%&gt;</span><br><span class="line">&lt;c:<span class="keyword">if</span> test=<span class="string">"$&#123;param.username=='admin'&#125;"</span> <span class="keyword">var</span>=<span class="string">"isAdmin"</span>&gt;</span><br><span class="line">    &lt;c:out value=<span class="string">"管理员欢迎您！"</span>/&gt;</span><br><span class="line">&lt;/c:if&gt;</span><br><span class="line"></span><br><span class="line">&lt;%--自闭合标签--%&gt;</span><br><span class="line">&lt;c:out value=<span class="string">"$&#123;isAdmin&#125;"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>javaEE</category>
+      </categories>
+      <tags>
+        <tag>jsp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Servlet</title>
+    <url>/2020/11/17/Servlet/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1-Servlet简介"><a href="#1-Servlet简介" class="headerlink" title="1.Servlet简介"></a>1.Servlet简介</h3><ul>
+<li>Servlet就是sun公司开发动态web的一门技术</li>
+<li>Sun在这些API中提供一个接口叫做：Servlet，如果你想开发一个Servlet程序，只需要完成两个小步骤：<ul>
+<li>编写一个类，实现Servlet接口</li>
+<li>把开发好的Java类部署到web服务器中。</li>
+</ul>
+</li>
+</ul>
+<p><strong>把实现了Servlet接口的Java程序称为，Servlet</strong></p>
+<a id="more"></a>
+<h3 id="2-Servlet的创建"><a href="#2-Servlet的创建" class="headerlink" title="2.Servlet的创建"></a>2.Servlet的创建</h3><h5 id="1-在pom-xml中添加依赖"><a href="#1-在pom-xml中添加依赖" class="headerlink" title="1.在pom.xml中添加依赖"></a>1.在pom.xml中添加依赖</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet.jsp<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet.jsp-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-创建java类实现Servlet-接口-直接继承HttpServlet"><a href="#2-创建java类实现Servlet-接口-直接继承HttpServlet" class="headerlink" title="2.创建java类实现Servlet 接口(直接继承HttpServlet)"></a>2.创建java类实现Servlet 接口(直接继承HttpServlet)</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//由于get或者post只是请求实现的不同的方式，可以相互调用，业务逻辑都一样；</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//ServletOutputStream outputStream = resp.getOutputStream();</span></span><br><span class="line">        PrintWriter writer = resp.getWriter(); <span class="comment">//响应流</span></span><br><span class="line">        writer.print(<span class="string">"Hello,Serlvet"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-web-xml中添加映射"><a href="#3-web-xml中添加映射" class="headerlink" title="3.web.xml中添加映射"></a>3.web.xml中添加映射</h5><pre><code>&lt;!--注册Servlet--&gt;
+&lt;servlet&gt;
+    &lt;servlet-name&gt;hello&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;cn.howsyc.servlet.HelloServlet&lt;/servlet-class&gt;
+&lt;/servlet&gt;
+&lt;!--Servlet的请求路径--&gt;
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;hello&lt;/servlet-name&gt;
+    &lt;!--‘/’不能少了--&gt;
+    &lt;url-pattern&gt;/hello&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;</code></pre><h5 id="4-配置tmocat"><a href="#4-配置tmocat" class="headerlink" title="4.配置tmocat"></a>4.配置tmocat</h5><p>注意：配置项目发布的路径就可以了</p>
+<h3 id="3-Servlet原理"><a href="#3-Servlet原理" class="headerlink" title="3.Servlet原理"></a>3.Servlet原理</h3><p><a href="https://imgchr.com/i/DVxQGq" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/17/DVxQGq.png" alt="DVxQGq.png"></a></p>
+<h3 id="4-Mapping问题："><a href="#4-Mapping问题：" class="headerlink" title="4.Mapping问题："></a>4.Mapping问题：</h3><h5 id="1-一个Servlet可以指定一个或多个映射路径"><a href="#1-一个Servlet可以指定一个或多个映射路径" class="headerlink" title="1.一个Servlet可以指定一个或多个映射路径"></a>1.一个Servlet可以指定一个或多个映射路径</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello2<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello3<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-一个Servlet可以指定通用映射路径"><a href="#2-一个Servlet可以指定通用映射路径" class="headerlink" title="2.一个Servlet可以指定通用映射路径"></a>2.一个Servlet可以指定通用映射路径</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--通用--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="3-可以指定默认请求路径及后缀"><a href="#3-可以指定默认请求路径及后缀" class="headerlink" title="3.可以指定默认请求路径及后缀"></a>3.可以指定默认请求路径及后缀</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--默认请求路径--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">&lt;!--可以自定义后缀实现请求映射</span></span><br><span class="line"><span class="comment">    注意点，*前面不能加项目映射的路径</span></span><br><span class="line"><span class="comment">    hello/xiaotong.howsyc</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.howsyc<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>4.优先级:1指定-&gt;2通用-&gt;3默认</p>
+<h5 id=""><a href="#" class="headerlink" title=""></a></h5>]]></content>
+      <categories>
+        <category>javaEE</category>
+      </categories>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Request与Response</title>
     <url>/2020/11/17/ReqOrResp/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>web服务器接收到客户端的http请求，针对这个请求，分别创建一个代表请求的HttpServletRequest对象，代表响应的一个HttpServletResponse；</p>
@@ -368,315 +643,6 @@
       </tags>
   </entry>
   <entry>
-    <title>java对象流 EOFException异常</title>
-    <url>/2020/05/05/EOFException/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>这里描述的java.io.EOFException异常是在对象流（也就是ObjectInputStream，ObjectOutputStream）的使用过程中，抛出的。</p>
-<a id="more"></a>
-<p>什么是对象流？</p>
-<p>对象流指的是可以直接把一个对象以流的形式传输给其他的介质，比如硬盘<br>一个对象以流的形式进行传输，叫做序列化。该对象所对应的类，必须是实现Serializable接口。<a href="https://how2j.cn/p/5689" target="_blank" rel="noopener">详细学习</a></p>
-<p>如果你使用使用对象流那么必须配套使用,因为用对象流的方式写人文件，文件的开头会有序列头，就像协议一样，是规定好的。如下是用java写人的Hero对象:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">        序列头     对象                数值</span><br><span class="line">序列头?            Hero        I hpL namet Ljava/lang/String;xp  ht garen</span><br></pre></td></tr></table></figure>
-<h3 id="对象流不同于普通的字节流，当对象流中没有数据时，程序却尝试读取异常，会报EOF错误；而字节流就不会出现这种情况，字节流会返回-1-。"><a href="#对象流不同于普通的字节流，当对象流中没有数据时，程序却尝试读取异常，会报EOF错误；而字节流就不会出现这种情况，字节流会返回-1-。" class="headerlink" title="对象流不同于普通的字节流，当对象流中没有数据时，程序却尝试读取异常，会报EOF错误；而字节流就不会出现这种情况，字节流会返回-1 。"></a>对象流不同于普通的字节流，当对象流中没有数据时，程序却尝试读取异常，会报EOF错误；而字节流就不会出现这种情况，字节流会返回-1 。</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1. 初始化Object流语句</span></span><br><span class="line">FileInputStream fis = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">FileOututStream fos = <span class="keyword">new</span> FileOutputStream(file);</span><br><span class="line">dis = <span class="keyword">new</span> ObjectInputStream(fis); <span class="comment">// 报错的就是这一行，第xx行</span></span><br><span class="line">dos = <span class="keyword">new</span> ObjectOutputStream(fos);</span><br><span class="line"></span><br><span class="line">java.io.EOFException</span><br><span class="line">	at java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:<span class="number">2681</span>)</span><br><span class="line">	at java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:<span class="number">3156</span>)</span><br><span class="line">	at java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:<span class="number">862</span>)</span><br><span class="line">	at java.io.ObjectInputStream.&lt;init&gt;(ObjectInputStream.java:<span class="number">358</span>)</span><br><span class="line">	at Test.main(Test.java:xx行) <span class="comment">// 第xx行报错</span></span><br></pre></td></tr></table></figure>
-<p>因为ObjectInputStream构造函数会从传入的InputStream来读取数据。首先会读取序列化流的头部(serialization stream header)并验证头部。此构造器会一直地”阻塞”，直到与之对应的ObjectOutputStream写入了序列化头部。(阻塞并不完全正确，详细见<a href="https://blog.csdn.net/qq_37206105/article/details/90461717" target="_blank" rel="noopener">Canliture</a>的文章)，</p>
-<p>所以我们先实例化ObjectOutputStream，再实例化 ObjectInputStream，保证在在同一资源的对象流ObjectInputStream能够及时读取到序列化头而不至于阻塞或者引发EOF异常(阻塞对应于Socket IO，EOF异常对应于文件IO)</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">dos = <span class="keyword">new</span> ObjectOutputStream(fos);</span><br><span class="line">dis = <span class="keyword">new</span> ObjectInputStream(fis);</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="ObjectInputStream写入的数据，在ObjectOutputStream上读取时，应该按照相同的数据类型依次读取，否则数据类型不等会抛出EOFException"><a href="#ObjectInputStream写入的数据，在ObjectOutputStream上读取时，应该按照相同的数据类型依次读取，否则数据类型不等会抛出EOFException" class="headerlink" title="ObjectInputStream写入的数据，在ObjectOutputStream上读取时，应该按照相同的数据类型依次读取，否则数据类型不等会抛出EOFException"></a>ObjectInputStream写入的数据，在ObjectOutputStream上读取时，应该按照相同的数据类型依次读取，否则数据类型不等会抛出EOFException</h3><p>下文的错误把dis.readInt() 改为 dis.readObject()就能解决</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"> File f0 = <span class="keyword">new</span> File(<span class="string">"kkk.out"</span>);</span><br><span class="line"> FileInputStream fis = <span class="keyword">null</span>;</span><br><span class="line"> FileOutputStream fos = <span class="keyword">null</span>;</span><br><span class="line"> ObjectInputStream dis = <span class="keyword">null</span>;</span><br><span class="line"> ObjectOutputStream dos = <span class="keyword">null</span>;</span><br><span class="line"> <span class="keyword">try</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(!f0.exists())f0.createNewFile();</span><br><span class="line"></span><br><span class="line">     fos = <span class="keyword">new</span> FileOutputStream(f0);</span><br><span class="line">     fis = <span class="keyword">new</span> FileInputStream(f0);</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 1. 初始化Object流语句</span></span><br><span class="line">     dis = <span class="keyword">new</span> ObjectInputStream(fis);</span><br><span class="line">     dos = <span class="keyword">new</span> ObjectOutputStream(fos);</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 2. 写"对象"语句</span></span><br><span class="line">     dos.writeInt(<span class="number">1</span>);                             <span class="comment">//异常处</span></span><br><span class="line">     dos.writeObject(<span class="keyword">new</span> Integer(<span class="number">3</span>));         </span><br><span class="line"></span><br><span class="line">     <span class="comment">// 3. 读取，输出语句</span></span><br><span class="line">     System.out.println(dis.readInt() + <span class="string">","</span>+ dis.readInt());</span><br><span class="line"> &#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">     e.printStackTrace();</span><br><span class="line">     <span class="keyword">if</span>(fos != <span class="keyword">null</span>) fos.close();</span><br><span class="line">     <span class="keyword">if</span>(fis != <span class="keyword">null</span>) fis.close();</span><br><span class="line">     <span class="keyword">if</span>(dos != <span class="keyword">null</span>) dos.close();</span><br><span class="line">     <span class="keyword">if</span>(dis != <span class="keyword">null</span>) dis.close();</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>1.对象流不同于普通的字节流，当对象流中没有数据时，程序却尝试读取数据，会报EOFException；而字节流就不会出现这种情况，字节流会返回-1</p>
-<p>2.ObjectInputStream写入的数据，在ObjectOutputStream上读取时，应该按照相同的数据类型依次读取，否则数据类型不等会抛出EOFException</p>
-<p>3.最好在实际使用的过程中，我们先实例化ObjectOutputStream，再实例化 ObjectInputStream，这是由这两个类的设计思想所决定的。如此能保证在同一资源的对象流ObjectInputStream能够及时读取到序列化头而不至于阻塞或者引发EOF异常(阻塞对应于Socket IO，EOF异常对应于文件IO)</p>
-<p>如果想从源码上了解问题请点击下放的原文链接</p>
-<p>原文链接：<a href="https://blog.csdn.net/qq_37206105/article/details/90461717" target="_blank" rel="noopener">Canliture</a></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Servlet</title>
-    <url>/2020/11/17/Servlet/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1-Servlet简介"><a href="#1-Servlet简介" class="headerlink" title="1.Servlet简介"></a>1.Servlet简介</h3><ul>
-<li>Servlet就是sun公司开发动态web的一门技术</li>
-<li>Sun在这些API中提供一个接口叫做：Servlet，如果你想开发一个Servlet程序，只需要完成两个小步骤：<ul>
-<li>编写一个类，实现Servlet接口</li>
-<li>把开发好的Java类部署到web服务器中。</li>
-</ul>
-</li>
-</ul>
-<p><strong>把实现了Servlet接口的Java程序称为，Servlet</strong></p>
-<a id="more"></a>
-<h3 id="2-Servlet的创建"><a href="#2-Servlet的创建" class="headerlink" title="2.Servlet的创建"></a>2.Servlet的创建</h3><h5 id="1-在pom-xml中添加依赖"><a href="#1-在pom-xml中添加依赖" class="headerlink" title="1.在pom.xml中添加依赖"></a>1.在pom.xml中添加依赖</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet.jsp<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet.jsp-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="2-创建java类实现Servlet-接口-直接继承HttpServlet"><a href="#2-创建java类实现Servlet-接口-直接继承HttpServlet" class="headerlink" title="2.创建java类实现Servlet 接口(直接继承HttpServlet)"></a>2.创建java类实现Servlet 接口(直接继承HttpServlet)</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//由于get或者post只是请求实现的不同的方式，可以相互调用，业务逻辑都一样；</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//ServletOutputStream outputStream = resp.getOutputStream();</span></span><br><span class="line">        PrintWriter writer = resp.getWriter(); <span class="comment">//响应流</span></span><br><span class="line">        writer.print(<span class="string">"Hello,Serlvet"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-web-xml中添加映射"><a href="#3-web-xml中添加映射" class="headerlink" title="3.web.xml中添加映射"></a>3.web.xml中添加映射</h5><pre><code>&lt;!--注册Servlet--&gt;
-&lt;servlet&gt;
-    &lt;servlet-name&gt;hello&lt;/servlet-name&gt;
-    &lt;servlet-class&gt;cn.howsyc.servlet.HelloServlet&lt;/servlet-class&gt;
-&lt;/servlet&gt;
-&lt;!--Servlet的请求路径--&gt;
-&lt;servlet-mapping&gt;
-    &lt;servlet-name&gt;hello&lt;/servlet-name&gt;
-    &lt;!--‘/’不能少了--&gt;
-    &lt;url-pattern&gt;/hello&lt;/url-pattern&gt;
-&lt;/servlet-mapping&gt;</code></pre><h5 id="4-配置tmocat"><a href="#4-配置tmocat" class="headerlink" title="4.配置tmocat"></a>4.配置tmocat</h5><p>注意：配置项目发布的路径就可以了</p>
-<h3 id="3-Servlet原理"><a href="#3-Servlet原理" class="headerlink" title="3.Servlet原理"></a>3.Servlet原理</h3><p><a href="https://imgchr.com/i/DVxQGq" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/17/DVxQGq.png" alt="DVxQGq.png"></a></p>
-<h3 id="4-Mapping问题："><a href="#4-Mapping问题：" class="headerlink" title="4.Mapping问题："></a>4.Mapping问题：</h3><h5 id="1-一个Servlet可以指定一个或多个映射路径"><a href="#1-一个Servlet可以指定一个或多个映射路径" class="headerlink" title="1.一个Servlet可以指定一个或多个映射路径"></a>1.一个Servlet可以指定一个或多个映射路径</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello2<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello3<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="2-一个Servlet可以指定通用映射路径"><a href="#2-一个Servlet可以指定通用映射路径" class="headerlink" title="2.一个Servlet可以指定通用映射路径"></a>2.一个Servlet可以指定通用映射路径</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--通用--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="3-可以指定默认请求路径及后缀"><a href="#3-可以指定默认请求路径及后缀" class="headerlink" title="3.可以指定默认请求路径及后缀"></a>3.可以指定默认请求路径及后缀</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--默认请求路径--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">&lt;!--可以自定义后缀实现请求映射</span></span><br><span class="line"><span class="comment">    注意点，*前面不能加项目映射的路径</span></span><br><span class="line"><span class="comment">    hello/xiaotong.howsyc</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.howsyc<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>4.优先级:1指定-&gt;2通用-&gt;3默认</p>
-<h5 id=""><a href="#" class="headerlink" title=""></a></h5>]]></content>
-      <categories>
-        <category>javaEE</category>
-      </categories>
-      <tags>
-        <tag>servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JSP</title>
-    <url>/2020/11/17/JSPIntro/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1-什么是JSP？"><a href="#1-什么是JSP？" class="headerlink" title="1.什么是JSP？"></a>1.什么是JSP？</h3><p>Java Server Pages,java服务器端页面，一种动态网页开发技术。它使用JSP标签在HTML网页中插入Java代码。标签通常以&lt;%开头以%&gt;结束。</p>
-<p>JSP是一种Java servlet，主要用于实现Java web应用程序的用户界面部分。网页开发者们通过结合HTML代码、XHTML代码、XML元素以及嵌入JSP操作和命令来编写JSP。</p>
-<a id="more"></a>
-
-<h3 id="2-JSP原理"><a href="#2-JSP原理" class="headerlink" title="2.JSP原理"></a>2.JSP原理</h3><h5 id="JSP是怎么执行的？"><a href="#JSP是怎么执行的？" class="headerlink" title="JSP是怎么执行的？"></a>JSP是怎么执行的？</h5><p>服务器内部工作</p>
-<p>tomcat中有一个work目录；</p>
-<p>IDEA中使用Tomcat的会在IDEA中的Tomcat中生成一个work目录或者项目目录/work:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\Amdministrator\AppData\Local\JetBrains\IntelliJIdea2020.1\tomcat\Unnamed_javawev_jsp\work\Catalina\localhost\ROOT\org\apache\jsp</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://imgchr.com/i/DVRcVg" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/17/DVRcVg.png" alt="DVRcVg.png"></a></p>
-<p>打开java类， 发现 jsp 继承了HttpJspBase</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">index_jsp</span> <span class="keyword">extends</span> <span class="title">org</span>.<span class="title">apache</span>.<span class="title">jasper</span>.<span class="title">runtime</span>.<span class="title">HttpJspBase</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">org</span>.<span class="title">apache</span>.<span class="title">jasper</span>.<span class="title">runtime</span>.<span class="title">JspSourceDependent</span>,</span></span><br><span class="line"><span class="class">                 <span class="title">org</span>.<span class="title">apache</span>.<span class="title">jasper</span>.<span class="title">runtime</span>.<span class="title">JspSourceImports</span> </span>&#123;</span><br></pre></td></tr></table></figure>
-
-<p>而HttpJspBase继承了Servlet</p>
-<p><a href="https://imgchr.com/i/DVhGrV" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/17/DVhGrV.png" alt="DVhGrV.png"></a></p>
-<p><strong>所以浏览器向服务器发送请求，不管访问什么资源，其实都是在访问Servlet！</strong></p>
-<p>JSP最终也会被转换成为一个Java类！</p>
-<p>类内的_jspService()方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">_jspService</span><span class="params">(<span class="keyword">final</span> javax.servlet.http.HttpServletRequest request, <span class="keyword">final</span> javax.servlet.http.HttpServletResponse response)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> java.io.IOException, javax.servlet.ServletException </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!javax.servlet.DispatcherType.ERROR.equals(request.getDispatcherType())) &#123;</span><br><span class="line">      <span class="keyword">final</span> java.lang.String _jspx_method = request.getMethod();</span><br><span class="line">      <span class="keyword">if</span> (<span class="string">"OPTIONS"</span>.equals(_jspx_method)) &#123;</span><br><span class="line">        response.setHeader(<span class="string">"Allow"</span>,<span class="string">"GET, HEAD, POST, OPTIONS"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (!<span class="string">"GET"</span>.equals(_jspx_method) &amp;&amp; !<span class="string">"POST"</span>.equals(_jspx_method) &amp;&amp; !<span class="string">"HEAD"</span>.equals(_jspx_method)) &#123;</span><br><span class="line">        response.setHeader(<span class="string">"Allow"</span>,<span class="string">"GET, HEAD, POST, OPTIONS"</span>);</span><br><span class="line">        response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, <span class="string">"JSP 只允许 GET、POST 或 HEAD。Jasper 还允许 OPTIONS"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//一些内置对象</span></span><br><span class="line">    <span class="keyword">final</span> javax.servlet.jsp.PageContext pageContext;</span><br><span class="line">    <span class="keyword">final</span> javax.servlet.ServletContext application;</span><br><span class="line">    <span class="keyword">final</span> javax.servlet.ServletConfig config;</span><br><span class="line">    javax.servlet.jsp.JspWriter out = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">final</span> java.lang.Object page = <span class="keyword">this</span>;</span><br><span class="line">    javax.servlet.jsp.JspWriter _jspx_out = <span class="keyword">null</span>;</span><br><span class="line">    javax.servlet.jsp.PageContext _jspx_page_context = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      response.setContentType(<span class="string">"text/html; charset=UTF-8"</span>);</span><br><span class="line">      pageContext = _jspxFactory.getPageContext(<span class="keyword">this</span>, request, response,</span><br><span class="line">      			<span class="keyword">null</span>, <span class="keyword">false</span>, <span class="number">8192</span>, <span class="keyword">true</span>);</span><br><span class="line">      _jspx_page_context = pageContext;</span><br><span class="line">      application = pageContext.getServletContext();</span><br><span class="line">      config = pageContext.getServletConfig();</span><br><span class="line">      out = pageContext.getOut();</span><br><span class="line">      _jspx_out = out;</span><br><span class="line">	<span class="comment">//编写的html代码最终也是转换为out.write的形式输出</span></span><br><span class="line">      out.write(<span class="string">"\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"\r\n"</span>);</span><br><span class="line"></span><br><span class="line">java.text.SimpleDateFormat sdf = <span class="keyword">new</span> java.text.SimpleDateFormat(<span class="string">"yyyy"</span>);</span><br><span class="line">request.setAttribute(<span class="string">"year"</span>, sdf.format(<span class="keyword">new</span> java.util.Date()));</span><br><span class="line">request.setAttribute(<span class="string">"tomcatUrl"</span>, <span class="string">"https://tomcat.apache.org/"</span>);</span><br><span class="line">request.setAttribute(<span class="string">"tomcatDocUrl"</span>, <span class="string">"/docs/"</span>);</span><br><span class="line">request.setAttribute(<span class="string">"tomcatExamplesUrl"</span>, <span class="string">"/examples/"</span>);</span><br><span class="line"></span><br><span class="line">      out.write(<span class="string">"\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"&lt;!DOCTYPE html&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"&lt;html lang=\"en\"&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"    &lt;head&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"        &lt;meta charset=\"UTF-8\" /&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"        &lt;title&gt;"</span>);</span><br><span class="line">      out.print(request.getServletContext().getServerInfo() );</span><br><span class="line">      out.write(<span class="string">"&lt;/title&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"        &lt;link href=\"favicon.ico\" rel=\"icon\" type=\"image/x-icon\" /&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"        &lt;link href=\"favicon.ico\" rel=\"shortcut icon\" type=\"image/x-icon\" /&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"        &lt;link href=\"tomcat.css\" rel=\"stylesheet\" type=\"text/css\" /&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"    &lt;/head&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"    &lt;body&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"        &lt;div id=\"wrapper\"&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"            &lt;div id=\"navigation\" class=\"curved container\"&gt;\r\n"</span>);</span><br><span class="line">      out.write(<span class="string">"                &lt;span id=\"nav-home\"&gt;&lt;a href=\""</span>);</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="3-JSP基本语法"><a href="#3-JSP基本语法" class="headerlink" title="3.JSP基本语法"></a>3.JSP基本语法</h3><p>脚本程序可以包含任意量的Java语句、变量、方法或表达式，只要它们在脚本语言中是有效的。</p>
-<h5 id="脚本程序的语法格式："><a href="#脚本程序的语法格式：" class="headerlink" title="脚本程序的语法格式："></a><strong>脚本程序的语法格式：</strong></h5><figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;% 代码片段 %&gt;</span><br></pre></td></tr></table></figure>
-
-<p>或者，您也可以编写与其等价的XML语句，就像下面这样：</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;jsp:scriptlet&gt;</span><br><span class="line">   代码片段</span><br><span class="line">&lt;/jsp:scriptlet&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>任何文本、HTML标签、JSP元素必须写在脚本程序的外面。</strong></p>
-<p>示例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;&lt;title&gt;Hello World&lt;&#x2F;title&gt;&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">Hello World!&lt;br&#x2F;&gt;</span><br><span class="line">&lt;%</span><br><span class="line">out.println(&quot;Your IP address is &quot; + request.getRemoteAddr());</span><br><span class="line">%&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="jsp声明："><a href="#jsp声明：" class="headerlink" title="jsp声明："></a><strong>jsp声明：</strong></h5><p>JSP声明的语法格式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%! declaration; [ declaration; ]+ ... %&gt;</span><br></pre></td></tr></table></figure>
-
-<p>或者，您也可以编写与其等价的XML语句，就像下面这样：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;jsp:declaration&gt;</span><br><span class="line">   代码片段</span><br><span class="line">&lt;&#x2F;jsp:declaration&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="JSP表达式："><a href="#JSP表达式：" class="headerlink" title="JSP表达式："></a><strong>JSP表达式：</strong></h5><p>一个JSP表达式中包含的脚本语言表达式，先被转化成String，然后插入到表达式出现的地方。</p>
-<p>由于表达式的值会被转化成String，所以您可以在一个文本行中使用表达式而不用去管它是否是HTML标签。</p>
-<p>表达式元素中可以包含任何符合Java语言规范的表达式，但是不能使用分号来结束表达式。</p>
-<p>JSP表达式的语法格式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%&#x3D; 表达式 %&gt;</span><br></pre></td></tr></table></figure>
-
-<p>同样，您也可以编写与之等价的XML语句：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;jsp:expression&gt;</span><br><span class="line">   表达式</span><br><span class="line">&lt;&#x2F;jsp:expression&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="JSP注释："><a href="#JSP注释：" class="headerlink" title="JSP注释："></a><strong>JSP注释：</strong></h5><figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%-- --%&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%%&gt;</span><br><span class="line">&lt;%=%&gt;</span><br><span class="line">&lt;%!%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%--注释--%&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="4-JSP指令"><a href="#4-JSP指令" class="headerlink" title="4.JSP指令"></a>4.JSP指令</h3><p>JSP指令用来设置与整个JSP页面相关的属性。一般写在头部位置</p>
-<h5 id="JSP指令语法格式："><a href="#JSP指令语法格式：" class="headerlink" title="JSP指令语法格式："></a>JSP指令语法格式：</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%@ directive attribute&#x3D;&quot;value&quot; %&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="这里有三种指令标签："><a href="#这里有三种指令标签：" class="headerlink" title="这里有三种指令标签："></a>这里有三种指令标签：</h5><table>
-<thead>
-<tr>
-<th align="left"><strong>指令</strong></th>
-<th align="left"><strong>描述</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">&lt;%@ page … %&gt;</td>
-<td align="left">定义页面的依赖属性，比如脚本语言、error页面、缓存需求等等</td>
-</tr>
-<tr>
-<td align="left">&lt;%@ include … %&gt;</td>
-<td align="left">包含其他文件</td>
-</tr>
-<tr>
-<td align="left">&lt;%@ taglib … %&gt;</td>
-<td align="left">引入标签库的定义，可以是自定义标签</td>
-</tr>
-</tbody></table>
-<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;%<span class="meta">@page</span> args.... %&gt;</span><br><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">""</span>%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%--<span class="meta">@include</span>会将两个页面合二为一--%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">"common/header.jsp"</span>%&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;网页主体&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">"common/footer.jsp"</span>%&gt;</span><br><span class="line"></span><br><span class="line">&lt;hr&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;%--jSP标签</span><br><span class="line">    jsp:include：拼接页面，本质还是三个</span><br><span class="line">    --%&gt;</span><br><span class="line">&lt;jsp:include page=<span class="string">"/common/header.jsp"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;网页主体&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;jsp:include page=<span class="string">"/common/footer.jsp"</span>/&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-JSP九大内置对象详解"><a href="#5-JSP九大内置对象详解" class="headerlink" title="5.JSP九大内置对象详解"></a>5.JSP九大内置对象详解</h3><h4 id="JSP内置对象-9个内置对象"><a href="#JSP内置对象-9个内置对象" class="headerlink" title="JSP内置对象(9个内置对象):"></a>JSP内置对象(9个内置对象):</h4><p>1.PageContext javax.servlet.jsp.PageContext JSP的页面容器<br>2.request    javax.servlet.http.HttpServletrequest 获取用户的请求信息<br>3.response javax.servlet.http.HttpServletResponse 服务器向客户端的回应信息<br>4.session javax.servlet.http.HttpSession 用来保存每一个用户的信息<br>5.application javax.servlet.ServletContext 表示所有用户的共享信息<br>6.config javax.servlet.ServletConfig 服务器配置信息，可以取得初始化参数<br>7.out javax.servlet.jsp.jspWriter 页面输出<br>8.page java.lang.object)<br>9.exception java.lang.Throwable </p>
-<h4 id="九种对象简介："><a href="#九种对象简介：" class="headerlink" title="九种对象简介："></a>九种对象简介：</h4><ol>
-<li><strong>out对象</strong>：用于向客户端、浏览器输出数据。</li>
-<li><strong>request对象</strong>：封装了来自客户端、浏览器的各种信息。</li>
-<li><strong>response对象</strong>：封装了服务器的响应信息。</li>
-<li><strong>exception对象</strong>：封装了jsp程序执行过程中发生的异常和错误信息。</li>
-<li><strong>config（SerlvetConfig）对象</strong>：封装了应用程序的配置信息。</li>
-<li><strong>page对象</strong>：指向了当前jsp程序本身。</li>
-<li><strong>session对象</strong>：用来保存会话信息。也就是说，可以实现在同一用户的不同请求之间共享数</li>
-<li><strong>application（ServletContext）对象</strong>：代表了当前应用程序的上下文。可以在不同的用户之间共享信息。</li>
-<li><strong>pageContext对象</strong>：提供了对jsp页面所有对象以及命名空间的访问。</li>
-</ol>
-<h4 id="四种属性范围"><a href="#四种属性范围" class="headerlink" title="四种属性范围:"></a><strong>四种属性范围:</strong></h4><p>page(pageContext):只在一个页面中保存属性。 跳转之后无效。<br>request:只在一次请求中有效，服务器跳转之后有效。 客户端跳转无效<br>session:再一次会话中有效。服务器跳转、客户端跳转都有效。 网页关闭重新打开无效<br>application：在整个服务器上保存，所有用户都可使用。 重启服务器后无效</p>
-<p>注意：如果设置过多的application属性范围会影响服务器性能。</p>
-<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">pageContext.PAGE_SCOPE</span><br><span class="line">pageContext.REQUEST_SCOPE</span><br><span class="line">pageContext.SESSION_SCOPE</span><br><span class="line">pageContext.APPLICATION_SCOPE</span><br><span class="line">pageContext.setAttribute(<span class="string">"name"</span>, <span class="string">"liuyang"</span>,pageContext.APPLICATION_SCOPE);</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="6-JSP标签、JSTL标签、EL表达式"><a href="#6-JSP标签、JSTL标签、EL表达式" class="headerlink" title="6.JSP标签、JSTL标签、EL表达式"></a>6.JSP标签、JSTL标签、EL表达式</h3><p><strong>依赖</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- JSTL表达式的依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet.jsp.jstl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstl-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- standard标签库 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>taglibs<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>standard<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="jsp标签"><a href="#jsp标签" class="headerlink" title="jsp标签"></a>jsp标签</h4><p>JSP行为标签使用XML语法结构来控制servlet引擎。它能够动态插入一个文件，重用JavaBean组件，引导用户去另一个页面，为Java插件产生相关的HTML等等。</p>
-<p>行为标签只有一种语法格式，它严格遵守XML标准：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;jsp:action_name attribute&#x3D;&quot;value&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>行为标签基本上是一些预先就定义好的函数，下表罗列出了一些可用的JSP行为标签：：</p>
-<table>
-<thead>
-<tr>
-<th align="left"><strong>语法</strong></th>
-<th align="left"><strong>描述</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">jsp:include</td>
-<td align="left">用于在当前页面中包含静态或动态资源</td>
-</tr>
-<tr>
-<td align="left">jsp:useBean</td>
-<td align="left">寻找和初始化一个JavaBean组件</td>
-</tr>
-<tr>
-<td align="left">jsp:setProperty</td>
-<td align="left">设置 JavaBean组件的值</td>
-</tr>
-<tr>
-<td align="left">jsp:getProperty</td>
-<td align="left">将 JavaBean组件的值插入到 output中</td>
-</tr>
-<tr>
-<td align="left">jsp:forward</td>
-<td align="left">从一个JSP文件向另一个文件传递一个包含用户请求的request对象</td>
-</tr>
-<tr>
-<td align="left">jsp:plugin</td>
-<td align="left">用于在生成的HTML页面中包含Applet和JavaBean对象</td>
-</tr>
-<tr>
-<td align="left">jsp:element</td>
-<td align="left">动态创建一个XML元素</td>
-</tr>
-<tr>
-<td align="left">jsp:attribute</td>
-<td align="left">定义动态创建的XML元素的属性</td>
-</tr>
-<tr>
-<td align="left">jsp:body</td>
-<td align="left">定义动态创建的XML元素的主体</td>
-</tr>
-<tr>
-<td align="left">jsp:text</td>
-<td align="left">用于封装模板数据</td>
-</tr>
-</tbody></table>
-<h4 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式:${ }"></a>EL表达式:${ }</h4><ul>
-<li><strong>获取数据</strong></li>
-<li><strong>执行运算</strong></li>
-<li><strong>获取web开发的常用对象</strong></li>
-</ul>
-<h4 id="JSTL标签"><a href="#JSTL标签" class="headerlink" title="JSTL标签"></a>JSTL标签</h4><p>JSP标准标签库（JSTL）是一个JSP标签集合，它封装了JSP应用的通用核心功能。</p>
-<p>JSTL支持通用的、结构化的任务，比如迭代，条件判断，XML文档操作，国际化标签，SQL标签。 除了这些，它还提供了一个框架来使用集成JSTL的自定义标签。</p>
-<p>根据JSTL标签所提供的功能，可以将其分为5个类别。</p>
-<ul>
-<li><strong>核心标签</strong></li>
-<li><strong>格式化标签</strong></li>
-<li><strong>SQL 标签</strong></li>
-<li><strong>XML 标签</strong></li>
-<li><strong>JSTL 函数</strong></li>
-</ul>
-<p>核心标签是最常用的 JSTL标签。引用核心标签库的语法如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%@ taglib prefix&#x3D;&quot;c&quot; uri&#x3D;&quot;http:&#x2F;&#x2F;java.sun.com&#x2F;jsp&#x2F;jstl&#x2F;core&quot; %&gt;</span><br></pre></td></tr></table></figure>
-
-<p>使用任何库，你必须在每个 JSP 文件中的头部包含 <strong><taglib></strong> 标签。</p>
-<p><strong>在Tomcat 也需要引入 jstl的包，否则会报错：JSTL解析错误</strong></p>
-<p>c:if</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;h4&gt;if测试&lt;/h4&gt;</span><br><span class="line"></span><br><span class="line">&lt;hr&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action=<span class="string">"coreif.jsp"</span> method=<span class="string">"get"</span>&gt;</span><br><span class="line">    &lt;%--</span><br><span class="line">    EL表达式获取表单中的数据</span><br><span class="line">    $&#123;param.参数名&#125;</span><br><span class="line">    --%&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> name=<span class="string">"username"</span> value=<span class="string">"$&#123;param.username&#125;"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"submit"</span> value=<span class="string">"登录"</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;%--判断如果提交的用户名是管理员，则登录成功--%&gt;</span><br><span class="line">&lt;c:<span class="keyword">if</span> test=<span class="string">"$&#123;param.username=='admin'&#125;"</span> <span class="keyword">var</span>=<span class="string">"isAdmin"</span>&gt;</span><br><span class="line">    &lt;c:out value=<span class="string">"管理员欢迎您！"</span>/&gt;</span><br><span class="line">&lt;/c:if&gt;</span><br><span class="line"></span><br><span class="line">&lt;%--自闭合标签--%&gt;</span><br><span class="line">&lt;c:out value=<span class="string">"$&#123;isAdmin&#125;"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>javaEE</category>
-      </categories>
-      <tags>
-        <tag>jsp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>较为完整win10程序员计算器使用教程</title>
-    <url>/2020/05/28/calc/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>前言：关于win10程序员计算器的使用，如有错误，欢迎指出。版本为10.1910.0.0</p>
-<a id="more"></a>
-<p>快捷进入win键+R  输入calc</p>
-<p>HEX ：十六进制     DEC：十进制        OCT：八进制    BIN：二进制，注意这里的二进制为二进制补码形式<br>每输入一个数，进制转换会自动进行</p>
-<p>QWORD：四字（64位）    DWORD：双字（32位）    WORD：字（16位）    BYTE：字节（8位）</p>
-<p>CE：清除本次输入        C：清除所有输入，结束计算        MS：内存存储    M：查看内存<br><img src="https://s1.ax1x.com/2020/05/28/tZfqRx.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hexo的使用</title>
-    <url>/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>记录一些我学到hexo命令</p>
-<a id="more"></a>
-<h2 id="Hexo学到的东西"><a href="#Hexo学到的东西" class="headerlink" title="Hexo学到的东西"></a>Hexo学到的东西</h2><h3 id="hexo命令1-本地部署"><a href="#hexo命令1-本地部署" class="headerlink" title="hexo命令1-本地部署"></a>hexo命令1-本地部署</h3><pre><code class="bash">$ hexo init &lt;folder&gt; <span class="comment">#init是初始化一个hexo文件夹</span></code></pre>
-<pre><code class="bash">$ <span class="built_in">cd</span> &lt;folder&gt;  <span class="comment">#注意一定要打开文件夹才能进行部署</span></code></pre>
-<pre><code class="bash">$ npm install    <span class="comment">#部署之前进行安装</span></code></pre>
-<pre><code class="bash">$ hexo g   <span class="comment">#生成静态网页</span></code></pre>
-<pre><code class="bash">$ hexo s      <span class="comment">#启动服务器 启动之后会默认给一个网址进去就是我们部署的网页了</span></code></pre>
-<h3 id="更换hexo主题"><a href="#更换hexo主题" class="headerlink" title="更换hexo主题"></a>更换hexo主题</h3><pre><code class="bash"> 把你想更换的主题放在themes目录下。官网有很多好看的主题：https://hexo.io/themes/
-
- 然后修改站点目录下的_config.yml配置文件找到themes: landscape(默认主题)
-
-修改成你在themes下放好的主题，就完成了</code></pre>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>cos对象存储拒绝访问解决方法（腾讯云）</title>
     <url>/2020/04/25/cosnew/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>昨天一直在图床的测试，然后访问的时候一直提示Access Denied，emmm我太菜了。当时因为我看不懂英HHHHH。直接百度了.cors跨域访问也设置了,访问权限公有读也设置了,为什么还不能访问呢？</p>
@@ -717,6 +683,40 @@
       </categories>
       <tags>
         <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>较为完整win10程序员计算器使用教程</title>
+    <url>/2020/05/28/calc/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>前言：关于win10程序员计算器的使用，如有错误，欢迎指出。版本为10.1910.0.0</p>
+<a id="more"></a>
+<p>快捷进入win键+R  输入calc</p>
+<p>HEX ：十六进制     DEC：十进制        OCT：八进制    BIN：二进制，注意这里的二进制为二进制补码形式<br>每输入一个数，进制转换会自动进行</p>
+<p>QWORD：四字（64位）    DWORD：双字（32位）    WORD：字（16位）    BYTE：字节（8位）</p>
+<p>CE：清除本次输入        C：清除所有输入，结束计算        MS：内存存储    M：查看内存<br><img src="https://s1.ax1x.com/2020/05/28/tZfqRx.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hexo的使用</title>
+    <url>/2020/04/24/hexo-%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>记录一些我学到hexo命令</p>
+<a id="more"></a>
+<h2 id="Hexo学到的东西"><a href="#Hexo学到的东西" class="headerlink" title="Hexo学到的东西"></a>Hexo学到的东西</h2><h3 id="hexo命令1-本地部署"><a href="#hexo命令1-本地部署" class="headerlink" title="hexo命令1-本地部署"></a>hexo命令1-本地部署</h3><pre><code class="bash">$ hexo init &lt;folder&gt; <span class="comment">#init是初始化一个hexo文件夹</span></code></pre>
+<pre><code class="bash">$ <span class="built_in">cd</span> &lt;folder&gt;  <span class="comment">#注意一定要打开文件夹才能进行部署</span></code></pre>
+<pre><code class="bash">$ npm install    <span class="comment">#部署之前进行安装</span></code></pre>
+<pre><code class="bash">$ hexo g   <span class="comment">#生成静态网页</span></code></pre>
+<pre><code class="bash">$ hexo s      <span class="comment">#启动服务器 启动之后会默认给一个网址进去就是我们部署的网页了</span></code></pre>
+<h3 id="更换hexo主题"><a href="#更换hexo主题" class="headerlink" title="更换hexo主题"></a>更换hexo主题</h3><pre><code class="bash"> 把你想更换的主题放在themes目录下。官网有很多好看的主题：https://hexo.io/themes/
+
+ 然后修改站点目录下的_config.yml配置文件找到themes: landscape(默认主题)
+
+修改成你在themes下放好的主题，就完成了</code></pre>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -769,146 +769,6 @@
 <p>是因为一般说来，编译器每碰到一个字符串的字面值，就会创建一个新的对象<br>所以在第3行会创建了一个新的字符串”嘿嘿”,</p>
 <p>但是在第4行，编译器发现已经存在现成的”嘿嘿”，那么就直接拿来使用，而没有进行重复创建。（这里可以将字面值当为一个对象理解）</p>
 <p>然而第5行虽然字面值和引用a,b相同，但是已经指向了一个新的对象，所以第7行判断结果为false。</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>控制语句</title>
-    <url>/2020/04/24/java%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>控制语句在基础中还是比较重要，还带那么一点有趣</p>
-<a id="more"></a>
-<h2 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h2><h3 id="选择结构："><a href="#选择结构：" class="headerlink" title="选择结构："></a>选择结构：</h3><p>if单选泽结构<br>if-else 双选择结构<br>if-else if - else多选择结构<br>switch结构</p>
-<h3 id="循环结构："><a href="#循环结构：" class="headerlink" title="循环结构："></a>循环结构：</h3><p>while循环<br>do-while循环（先执行再判断，为true继续执行，否则停止）<br>for循环（初始化声明的变量作用域为整个for循环体内，在循环体外无法访问）<br>嵌套循环（  在一个循环语句内部再嵌套一个或多个循环，称为嵌套循环。<br>while、do-while与for循环可以任意嵌套多层。）<br>break和continue语句<br>带标签的break和continue</p>
-<h3 id="下面是几个控制语句的例题"><a href="#下面是几个控制语句的例题" class="headerlink" title="下面是几个控制语句的例题"></a>下面是几个控制语句的例题</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">* 复利公式：</span><br><span class="line">F = p* ( (<span class="number">1</span>+r)^n );</span><br><span class="line">F 最终收入 p 本金 r 年利率 n 存了多少年</span><br><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Millionaire</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> p = <span class="number">1000</span>,n;</span><br><span class="line">		<span class="keyword">float</span> r = <span class="number">0.2F</span>;</span><br><span class="line">		<span class="keyword">int</span> F=<span class="number">0</span>  ;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; F&lt;=<span class="number">100000</span>; i++) &#123;</span><br><span class="line">			F=(<span class="keyword">int</span>) (p*((r/<span class="number">12</span>)+<span class="number">1</span>));</span><br><span class="line">			p+=<span class="number">1000</span>;</span><br><span class="line">			<span class="keyword">if</span> (F&gt;=<span class="number">100000</span>) &#123;</span><br><span class="line">				n=i/<span class="number">12</span>;</span><br><span class="line">				System.out.println(n);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">* 黄金分割点：</span><br><span class="line"> * 寻找某两个数相除，其结果 离黄金分割点 <span class="number">0.618</span>最近</span><br><span class="line">分母和分子不能同时为偶数</span><br><span class="line">分母和分子 取值范围在[<span class="number">1</span>-<span class="number">20</span>]</span><br><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoldSenectionRatio</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 寻找某两个数相除，其结果 离黄金分割点 0.618最近</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="comment">// 分母和分子不能同时为偶数</span></span><br><span class="line">        <span class="comment">// 分母和分子 取值范围在[1-20]</span></span><br><span class="line">        <span class="keyword">int</span> range = <span class="number">20</span>; <span class="comment">// 取值范围</span></span><br><span class="line">        <span class="keyword">float</span> breakPoint = <span class="number">0.618f</span>; <span class="comment">// 黄金分割点</span></span><br><span class="line"> </span><br><span class="line">        <span class="keyword">float</span> minDiff = <span class="number">100</span>; <span class="comment">// 离黄金分割点的差值</span></span><br><span class="line">        <span class="keyword">int</span> answerFenzi = <span class="number">0</span>; <span class="comment">// 找到的分子</span></span><br><span class="line">        <span class="keyword">int</span> answerFenmu = <span class="number">0</span>; <span class="comment">// 找到的分母</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> fenzi = <span class="number">1</span>; fenzi &lt;= range; fenzi++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> fenmu = <span class="number">1</span>; fenmu &lt;= range; fenmu++) &#123;</span><br><span class="line">                <span class="comment">// 分母和分子不能同时为偶数</span></span><br><span class="line">                <span class="keyword">if</span> (<span class="number">0</span> == fenzi % <span class="number">2</span> &amp; <span class="number">0</span> == fenmu % <span class="number">2</span>)</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line"> </span><br><span class="line">                <span class="comment">// 取值</span></span><br><span class="line">                <span class="keyword">float</span> value = (<span class="keyword">float</span>) fenzi / fenmu;</span><br><span class="line">                <span class="comment">// 取离黄金分割点的差值</span></span><br><span class="line">                <span class="keyword">float</span> diff = value - breakPoint;</span><br><span class="line">                <span class="comment">// 绝对值</span></span><br><span class="line">                diff = diff &lt; <span class="number">0</span> ? <span class="number">0</span> - diff : diff;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//                 找出最小的差值</span></span><br><span class="line">                <span class="keyword">if</span> (diff &lt; minDiff) &#123;</span><br><span class="line">                    minDiff = diff;</span><br><span class="line">                    answerFenzi = fenzi;</span><br><span class="line">                    answerFenmu = fenmu;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        System.out.println(<span class="string">"离黄金分割点("</span> + breakPoint + <span class="string">")最近的两个数相除是:"</span> + answerFenzi + <span class="string">"/"</span> + answerFenmu + <span class="string">"="</span></span><br><span class="line">                + ((<span class="keyword">float</span>) answerFenzi / answerFenmu));</span><br><span class="line"> </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="comment">/*计算数的阶乘*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Factorial</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		 Scanner s = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">	        System.out.println(<span class="string">"请输入一个整数："</span>);</span><br><span class="line">	        <span class="keyword">int</span> n = s.nextInt();</span><br><span class="line">	        <span class="keyword">int</span> fac = <span class="number">1</span>;</span><br><span class="line">	        <span class="keyword">while</span>(n&gt;=<span class="number">1</span>)&#123;</span><br><span class="line">	            fac *=n;</span><br><span class="line">	            n--;</span><br><span class="line">	        &#125;</span><br><span class="line">	        System.out.println(<span class="string">"阶乘是:"</span> + fac);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*水仙花数定义：</span></span><br><span class="line"><span class="comment">1. 一定是3位数</span></span><br><span class="line"><span class="comment">2. 每一位的立方，加起来恰好是这个数本身，比如153=1*1*1+5*5*5+3*3*3</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Daffodil</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> daffodil;</span><br><span class="line">		System.out.println(<span class="string">"打印所有的水仙花数："</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> a = <span class="number">0</span>; a &lt; <span class="number">10</span>; a++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> b = <span class="number">0</span>; b &lt; <span class="number">10</span>; b++) &#123;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; <span class="number">10</span>; c++) &#123;</span><br><span class="line">					<span class="keyword">if</span> (a*<span class="number">100</span>+b*<span class="number">10</span>+c == (a*a*a)+(b*b*b)+(c*c*c)&amp;&amp;a*<span class="number">100</span>+b*<span class="number">10</span>+c&gt;<span class="number">99</span>) &#123;</span><br><span class="line">						daffodil =a*<span class="number">100</span>+b*<span class="number">10</span>+c;</span><br><span class="line">						System.out.println(daffodil);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://how2j.cn/p/5504" target="_blank" rel="noopener">例题来源</a></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java数据类型</title>
-    <url>/2020/04/24/java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>java的数据类型可分为两大类：<br>基本数据类型（primitive data type）和引用数据类型（referece data type)</p>
-<a id="more"></a>
-<h3 id="基本数据类型（primitive-data-type）："><a href="#基本数据类型（primitive-data-type）：" class="headerlink" title="基本数据类型（primitive data type）："></a>基本数据类型（primitive data type）：</h3><p>-整数类型（byte short int long）<br>型(java语言的整型常数默认为int型，声明long型常量可以后加 ‘l’或’L’)<br>浮点类型(float double)<br>字符型（char）<br>布尔型(boolean)        </p>
-<h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><p>类（class）(String是引用类型)<br>接口(interface)<br>数组</p>
-<p>$ //引用数据类型的大小统一为4个字节,记录的是其引用对象的地址</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th align="left">占用存储空间</th>
-<th align="center">表示范围</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>byte</td>
-<td align="left">1字节</td>
-<td align="center">（=8位=2⑻=256字）    -2⑺ ~ 2⑺-1  （-128~127)</td>
-</tr>
-<tr>
-<td>short</td>
-<td align="left">2字节</td>
-<td align="center">-2⒂ ~ 2⒂-1      (-32768~32767)</td>
-</tr>
-<tr>
-<td>int</td>
-<td align="left">4字节</td>
-<td align="center">-2<em>(31幂)~2</em>(31幂)（ -2127283648~2147483647）（约21亿）</td>
-</tr>
-<tr>
-<td>long</td>
-<td align="left">8字节</td>
-<td align="center">-2<em>(63) ~ 2</em>(63)-1</td>
-</tr>
-<tr>
-<td>char</td>
-<td align="left">2字节</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td>boolean</td>
-<td align="left">1位</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td>float</td>
-<td align="left">4字节</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td>double</td>
-<td align="left">8字节</td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<p> 基本数据类型的类型转换可分为：<br>自动类型转换：容量小的数据类型可以自动转换为容量大的数据类型<br>强制类型转换：用于显式的转换一个数值的类型，语法格式：(type)var</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在jsp中使用include指令引用html页面乱码处理方式</title>
-    <url>/2020/11/16/jspIncludeEncoding/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1、将HTML页面，换成JSP页面，更改编码模式与Tomcat编码模式一致。"><a href="#1、将HTML页面，换成JSP页面，更改编码模式与Tomcat编码模式一致。" class="headerlink" title="1、将HTML页面，换成JSP页面，更改编码模式与Tomcat编码模式一致。"></a>1、将HTML页面，换成JSP页面，更改编码模式与Tomcat编码模式一致。</h3><a id="more"></a>
-<h3 id="2、在html文件的html的head标签或者jsp下加入这行代码"><a href="#2、在html文件的html的head标签或者jsp下加入这行代码" class="headerlink" title="2、在html文件的html的head标签或者jsp下加入这行代码"></a>2、在html文件的html的head标签或者jsp下加入这行代码</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">	&lt;%<span class="meta">@page</span> pageEncoding=<span class="string">"UTF-8"</span>%&gt;</span><br><span class="line">``</span><br><span class="line">pageEncoding是jsp文件本身的编码，是指定web容器将jsp编译成java文件时采用什么编码读取jsp文件。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 3、还有一种方法就是在web.xml中去统一配置pageEncoding的编码,在web-app标签里添加如下配置：</span><br><span class="line">```xml</span><br><span class="line">&lt;jsp-config&gt;</span><br><span class="line">	&lt;jsp-property-group&gt;</span><br><span class="line">		&lt;description&gt;html encoding&lt;/description&gt;</span><br><span class="line">		&lt;display-name&gt;JSPConfiguration&lt;/display-name&gt;</span><br><span class="line">		&lt;url-pattern&gt;*.html&lt;/url-pattern&gt;</span><br><span class="line">		&lt;el-ignored&gt;true&lt;/el-ignored&gt;</span><br><span class="line">		&lt;page-encoding&gt;UTF-8&lt;/page-encoding&gt;</span><br><span class="line">		&lt;scripting-invalid&gt;false&lt;/scripting-invalid&gt;</span><br><span class="line">		&lt;include-prelude&gt;&lt;/include-prelude&gt;</span><br><span class="line">		&lt;include-coda&gt;&lt;/include-coda&gt;</span><br><span class="line">	&lt;/jsp-property-group&gt;</span><br><span class="line">&lt;/jsp-config&gt;</span><br></pre></td></tr></table></figure>
-<p>以上三种是在网络搜索到的解决方法:</p>
-<p>如果你是使用jsp标签引入的html界面的话建议使用第一种方法。因为jsp标签引入文件属于拼接页面，都是独立的，所有第二种方法的设置无效，第三种测试一下报500错误。<br>jsp指令的：&lt;%@ nclude file=””%&gt; 建议使用第二和第三种方法。不能一起使用会冲突。</p>
-<p>感谢博主提供的宝贵经验：<a href="https://blog.csdn.net/yan245294305/article/details/83623123" target="_blank" rel="noopener">https://blog.csdn.net/yan245294305/article/details/83623123</a><br>    <a href="https://www.cnblogs.com/xiaobudong/p/7203933.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaobudong/p/7203933.html</a></p>
-]]></content>
-      <categories>
-        <category>javaEE</category>
-      </categories>
-      <tags>
-        <tag>jsp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java数组</title>
-    <url>/2020/04/24/java%E6%95%B0%E7%BB%84%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>数组，以及Arrays.方法的使用</p>
-<a id="more"></a>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="创建数组的时候，要指明数组的长度。"><a href="#创建数组的时候，要指明数组的长度。" class="headerlink" title="创建数组的时候，要指明数组的长度。"></a>创建数组的时候，要指明数组的长度。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">int a [ ] = new int[5] ; //分配了长度是5的数组，但是没有赋值</span><br><span class="line">a[4]=100; //下标4，实质上是“第5个”，即最后一个</span><br><span class="line">a[5]=101; //下标5，实质上是“第6个”，超出范围 ,产生数组下标越界异</span><br><span class="line"></span><br><span class="line">int[] a = new int[]&#123;100,102,444,836,3236&#125;;//写法一: 分配空间同时赋值</span><br><span class="line">int[] b = &#123;100,102,444,836,3236&#125;;//写法二： 省略了new int[],效果一样</span><br><span class="line"></span><br><span class="line">//写法三：同时分配空间，和指定内容</span><br><span class="line">//在这个例子里，长度是3，内容是5个，产生矛盾了</span><br><span class="line">//所以如果指定了数组的内容，就不能同时设置数组的长度</span><br><span class="line"> int[] c = new int[3]&#123;100,102,444,836,3236&#125;;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="引用概念："><a href="#引用概念：" class="headerlink" title="引用概念："></a>引用概念：</h3><p>如果变量代表一个数组，比如a,我们把a叫做引用<br>与基本类型不同 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int c &#x3D; 5; 这叫给c赋值为5 </span><br><span class="line">声明一个引用 int[] a; </span><br><span class="line">a &#x3D; new int[5]; </span><br><span class="line">让a这个引用，指向数组</span><br><span class="line">常</span><br></pre></td></tr></table></figure>
-
-<h3 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h3><p>选择法排序</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; a.length-<span class="number">1</span>; j++) &#123;<span class="comment">//外层循环一次，</span></span><br><span class="line">因为最后一次剩下的就是最大的所以循环次数-<span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = j+<span class="number">1</span>; i &lt; a.length; i++) &#123;<span class="comment">//内层会全部循环一次</span></span><br><span class="line">    <span class="keyword">if</span>(a[i]&lt;a[j])&#123; <span class="comment">//如果然后的数小于前面的就换位 </span></span><br><span class="line">      <span class="keyword">int</span> temp = a[j];</span><br><span class="line">     a[j] = a[i];</span><br><span class="line">     a[i] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>冒泡法排序</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; a.length; j++) &#123;<span class="comment">//</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length-j-<span class="number">1</span>; i++) &#123;<span class="comment">//-1防止数组下标越界</span></span><br><span class="line"><span class="comment">//-j是因为每内循环一次，最大的就放在后面了，就不需要比较了</span></span><br><span class="line">    <span class="keyword">if</span>(a[i]&gt;a[i+<span class="number">1</span>])&#123; <span class="comment">//如果前面的大于后面的就互换 </span></span><br><span class="line">     <span class="keyword">int</span> temp = a[i];</span><br><span class="line">     a[i] = a[i+<span class="number">1</span>];</span><br><span class="line">     a[i+<span class="number">1</span>] = temp;</span><br><span class="line">              &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="增强型for循环遍历"><a href="#增强型for循环遍历" class="headerlink" title="增强型for循环遍历"></a>增强型for循环遍历</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> [] values = <span class="keyword">new</span> <span class="keyword">int</span>[];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> each : values) &#123;</span><br><span class="line">   System.out.println(each);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="复制数组："><a href="#复制数组：" class="headerlink" title="复制数组："></a>复制数组：</h3><p>把一个数组的值，复制到另一个数组中<br>System.arraycopy(src, srcPos, dest, destPos, length)<br>src: 源数组<br>srcPos: 从源数组复制数据的起始位置<br>dest: 目标数组<br>destPos: 复制到目标数组的起始位置<br>length: 复制的长度</p>
-<p>这是一个二维数组，里面的每一个元素，都是一个一维数组<br>所以二维数组又叫数组的数组<br>int b[][] = new int[][]{<br>   {1,2,3},<br>   {4,5,6},<br>   {7,8,9}<br>};</p>
-<h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><p>Arrays是针对数组的工具类，可以进行 排序，查找，复制填充等功能。 大大提高了开发人员的工作效率。</p>
-<h3 id="copyOfRange-数组复制"><a href="#copyOfRange-数组复制" class="headerlink" title="copyOfRange    数组复制"></a>copyOfRange    数组复制</h3><p>与使用System.arraycopy进行数组复制类似的，Arrays提供了一个copyOfRange方法进行数组复制。<br>// copyOfRange(int[] original, int from, int to)<br>// 第一个参数表示源数组<br>// 第二个参数表示开始位置(取得到)<br>// 第三个参数表示结束位置(取不到)</p>
-<h3 id="toString-转换为字符串"><a href="#toString-转换为字符串" class="headerlink" title="toString()    转换为字符串"></a>toString()    转换为字符串</h3><p>//int a[] = new int[] { 18, 62, 68, 82, 65, 9 };<br> //String content = Arrays.toString(a);<br>sort    排序<br>在前面章节学习了 选择法排序 和 冒泡法排序，Arrays工具类提供了一个sort方法，只需要一行代码即可完成排序功能。</p>
-<h3 id="Arrays-sort-a"><a href="#Arrays-sort-a" class="headerlink" title="Arrays.sort(a);"></a>Arrays.sort(a);</h3><p>binarySearch    搜索<br>//使用binarySearch之前，必须先使用sort进行排序<br>//如果数组中有多个相同的元素，查找的结果是不确定的<br>int a[] = new int[] { 18, 62, 68, 82, 65, 9 };<br>Arrays.sort(a);<br>System.out.println(“数字 62出现的位置:”+Arrays.binarySearch(a, 62));</p>
-<h3 id="equals-判断是否相同"><a href="#equals-判断是否相同" class="headerlink" title="equals    判断是否相同"></a>equals    判断是否相同</h3><p>//比较两个数组的内容是否一样<br>System.out.println(Arrays.equals(a, b));</p>
-<h3 id="fill-填充"><a href="#fill-填充" class="headerlink" title="fill    填充"></a>fill    填充</h3><p>//使用同一个值，填充整个数组<br>int a[] = new int[10];<br>Arrays.fill(a, 5);</p>
-<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 练习-二维数组排序</span></span><br><span class="line"><span class="comment"> * 首先定义一个5*8的二维数组，然后使用随机数填充满</span></span><br><span class="line"><span class="comment"> * 借助Arrays的方法对二维数组进行排序</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Exercise_TwoDimensionSort</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> a[][] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>][<span class="number">8</span>];</span><br><span class="line">		<span class="keyword">int</span> []b = <span class="keyword">new</span> <span class="keyword">int</span> [<span class="number">40</span>];<span class="comment">//这里必须赋值</span></span><br><span class="line"><span class="comment">//		int b = (int)(Math.random()*100);</span></span><br><span class="line"><span class="comment">//		Arrays.fill(a, b);  二维不能填充；</span></span><br><span class="line">		System.out.println(<span class="string">"排序前："</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;<span class="number">8</span>; j++) &#123;</span><br><span class="line">				a[i][j] =(<span class="keyword">int</span>)(Math.random()*<span class="number">100</span>);<span class="comment">//给二维数组赋值；</span></span><br><span class="line">				System.out.print(+a[i][j]+<span class="string">"\t"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">			</span><br><span class="line">			System.arraycopy(a[i], <span class="number">0</span>, b, i*<span class="number">8</span>, a[i].length);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		Arrays.sort(b);</span><br><span class="line">		System.out.println(<span class="string">"排序后："</span>+Arrays.toString(b));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">			System.arraycopy(b, i*<span class="number">8</span>, a[i],<span class="number">0</span>,<span class="number">8</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"新的二维数组："</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">8</span>; j++) &#123;</span><br><span class="line">				System.out.print(a[i][j]+<span class="string">"\t"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://how2j.cn/p/5505" target="_blank" rel="noopener">原文来源</a></p>
 ]]></content>
       <categories>
         <category>java</category>
@@ -1100,45 +960,127 @@
       </tags>
   </entry>
   <entry>
-    <title>解决next主题菜单栏显示问号</title>
-    <url>/2020/05/01/nexttubiao/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>菜单栏和翻页按钮小图标显示不出来的问题终于解决了。</p>
+    <title>java数组</title>
+    <url>/2020/04/24/java%E6%95%B0%E7%BB%84%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>数组，以及Arrays.方法的使用</p>
 <a id="more"></a>
-<h3 id="解决next主题菜单栏显示问号"><a href="#解决next主题菜单栏显示问号" class="headerlink" title="解决next主题菜单栏显示问号"></a>解决next主题菜单栏显示问号</h3><p><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/%E5%9B%BE%E6%A0%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/1.jpg" alt="image text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/%E5%9B%BE%E6%A0%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/2.jpg" alt="image text"><br><img src="" alt="image text"><br>修改主题配置文件下(themes/_config.yml)的menu，每一个路径后面加||然后加图标</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F;||home</span><br><span class="line">  # about: &#x2F;about&#x2F;||user</span><br><span class="line">  # tags: &#x2F;tags&#x2F;||tags</span><br><span class="line">  #categories: &#x2F;categories&#x2F; || th</span><br><span class="line">  archives: &#x2F;archives&#x2F;||archive</span><br><span class="line">  top: &#x2F;top&#x2F;||signal</span><br><span class="line">  links: &#x2F;links&#x2F;||user-plus</span><br><span class="line">  #schedule: &#x2F;schedule&#x2F; || calendar</span><br><span class="line">  # books: &#x2F;books&#x2F;||book</span><br><span class="line">  messageboard: &#x2F;messageboard&#x2F; ||comment</span><br><span class="line">  #sitemap: &#x2F;sitemap.xml || sitemap</span><br><span class="line">  #commonweal: &#x2F;404&#x2F; || heartbeat</span><br><span class="line"></span><br><span class="line"># Enable&#x2F;Disable menu icons.</span><br><span class="line">menu_icons:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
-<p>注意: /与||之间是没有空格的!</p>
-<h3 id="解决next主题下翻页按钮图标无法显示问题"><a href="#解决next主题下翻页按钮图标无法显示问题" class="headerlink" title="解决next主题下翻页按钮图标无法显示问题"></a>解决next主题下翻页按钮图标无法显示问题</h3><p>修改themes/layout/_partials/pagination.swig文件，直接改为&lt;与&gt;</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#123;</span><br><span class="line">     paginator(&#123;</span><br><span class="line">       prev_text: &#39;&lt;&#39;,</span><br><span class="line">       next_text: &#39;&gt;&#39;,</span><br><span class="line">       mid_size: 1</span><br><span class="line">     &#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="创建数组的时候，要指明数组的长度。"><a href="#创建数组的时候，要指明数组的长度。" class="headerlink" title="创建数组的时候，要指明数组的长度。"></a>创建数组的时候，要指明数组的长度。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">int a [ ] = new int[5] ; //分配了长度是5的数组，但是没有赋值</span><br><span class="line">a[4]=100; //下标4，实质上是“第5个”，即最后一个</span><br><span class="line">a[5]=101; //下标5，实质上是“第6个”，超出范围 ,产生数组下标越界异</span><br><span class="line"></span><br><span class="line">int[] a = new int[]&#123;100,102,444,836,3236&#125;;//写法一: 分配空间同时赋值</span><br><span class="line">int[] b = &#123;100,102,444,836,3236&#125;;//写法二： 省略了new int[],效果一样</span><br><span class="line"></span><br><span class="line">//写法三：同时分配空间，和指定内容</span><br><span class="line">//在这个例子里，长度是3，内容是5个，产生矛盾了</span><br><span class="line">//所以如果指定了数组的内容，就不能同时设置数组的长度</span><br><span class="line"> int[] c = new int[3]&#123;100,102,444,836,3236&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>参考文章：<br><a href="https://www.cnblogs.com/xiejava/p/12456273.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiejava/p/12456273.html</a><br><a href="https://blog.csdn.net/qq_36852780/article/details/104657642" target="_blank" rel="noopener">https://blog.csdn.net/qq_36852780/article/details/104657642</a></p>
+
+<h3 id="引用概念："><a href="#引用概念：" class="headerlink" title="引用概念："></a>引用概念：</h3><p>如果变量代表一个数组，比如a,我们把a叫做引用<br>与基本类型不同 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int c &#x3D; 5; 这叫给c赋值为5 </span><br><span class="line">声明一个引用 int[] a; </span><br><span class="line">a &#x3D; new int[5]; </span><br><span class="line">让a这个引用，指向数组</span><br><span class="line">常</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h3><p>选择法排序</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; a.length-<span class="number">1</span>; j++) &#123;<span class="comment">//外层循环一次，</span></span><br><span class="line">因为最后一次剩下的就是最大的所以循环次数-<span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = j+<span class="number">1</span>; i &lt; a.length; i++) &#123;<span class="comment">//内层会全部循环一次</span></span><br><span class="line">    <span class="keyword">if</span>(a[i]&lt;a[j])&#123; <span class="comment">//如果然后的数小于前面的就换位 </span></span><br><span class="line">      <span class="keyword">int</span> temp = a[j];</span><br><span class="line">     a[j] = a[i];</span><br><span class="line">     a[i] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>冒泡法排序</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; a.length; j++) &#123;<span class="comment">//</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length-j-<span class="number">1</span>; i++) &#123;<span class="comment">//-1防止数组下标越界</span></span><br><span class="line"><span class="comment">//-j是因为每内循环一次，最大的就放在后面了，就不需要比较了</span></span><br><span class="line">    <span class="keyword">if</span>(a[i]&gt;a[i+<span class="number">1</span>])&#123; <span class="comment">//如果前面的大于后面的就互换 </span></span><br><span class="line">     <span class="keyword">int</span> temp = a[i];</span><br><span class="line">     a[i] = a[i+<span class="number">1</span>];</span><br><span class="line">     a[i+<span class="number">1</span>] = temp;</span><br><span class="line">              &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="增强型for循环遍历"><a href="#增强型for循环遍历" class="headerlink" title="增强型for循环遍历"></a>增强型for循环遍历</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> [] values = <span class="keyword">new</span> <span class="keyword">int</span>[];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> each : values) &#123;</span><br><span class="line">   System.out.println(each);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="复制数组："><a href="#复制数组：" class="headerlink" title="复制数组："></a>复制数组：</h3><p>把一个数组的值，复制到另一个数组中<br>System.arraycopy(src, srcPos, dest, destPos, length)<br>src: 源数组<br>srcPos: 从源数组复制数据的起始位置<br>dest: 目标数组<br>destPos: 复制到目标数组的起始位置<br>length: 复制的长度</p>
+<p>这是一个二维数组，里面的每一个元素，都是一个一维数组<br>所以二维数组又叫数组的数组<br>int b[][] = new int[][]{<br>   {1,2,3},<br>   {4,5,6},<br>   {7,8,9}<br>};</p>
+<h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><p>Arrays是针对数组的工具类，可以进行 排序，查找，复制填充等功能。 大大提高了开发人员的工作效率。</p>
+<h3 id="copyOfRange-数组复制"><a href="#copyOfRange-数组复制" class="headerlink" title="copyOfRange    数组复制"></a>copyOfRange    数组复制</h3><p>与使用System.arraycopy进行数组复制类似的，Arrays提供了一个copyOfRange方法进行数组复制。<br>// copyOfRange(int[] original, int from, int to)<br>// 第一个参数表示源数组<br>// 第二个参数表示开始位置(取得到)<br>// 第三个参数表示结束位置(取不到)</p>
+<h3 id="toString-转换为字符串"><a href="#toString-转换为字符串" class="headerlink" title="toString()    转换为字符串"></a>toString()    转换为字符串</h3><p>//int a[] = new int[] { 18, 62, 68, 82, 65, 9 };<br> //String content = Arrays.toString(a);<br>sort    排序<br>在前面章节学习了 选择法排序 和 冒泡法排序，Arrays工具类提供了一个sort方法，只需要一行代码即可完成排序功能。</p>
+<h3 id="Arrays-sort-a"><a href="#Arrays-sort-a" class="headerlink" title="Arrays.sort(a);"></a>Arrays.sort(a);</h3><p>binarySearch    搜索<br>//使用binarySearch之前，必须先使用sort进行排序<br>//如果数组中有多个相同的元素，查找的结果是不确定的<br>int a[] = new int[] { 18, 62, 68, 82, 65, 9 };<br>Arrays.sort(a);<br>System.out.println(“数字 62出现的位置:”+Arrays.binarySearch(a, 62));</p>
+<h3 id="equals-判断是否相同"><a href="#equals-判断是否相同" class="headerlink" title="equals    判断是否相同"></a>equals    判断是否相同</h3><p>//比较两个数组的内容是否一样<br>System.out.println(Arrays.equals(a, b));</p>
+<h3 id="fill-填充"><a href="#fill-填充" class="headerlink" title="fill    填充"></a>fill    填充</h3><p>//使用同一个值，填充整个数组<br>int a[] = new int[10];<br>Arrays.fill(a, 5);</p>
+<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 练习-二维数组排序</span></span><br><span class="line"><span class="comment"> * 首先定义一个5*8的二维数组，然后使用随机数填充满</span></span><br><span class="line"><span class="comment"> * 借助Arrays的方法对二维数组进行排序</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Exercise_TwoDimensionSort</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> a[][] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>][<span class="number">8</span>];</span><br><span class="line">		<span class="keyword">int</span> []b = <span class="keyword">new</span> <span class="keyword">int</span> [<span class="number">40</span>];<span class="comment">//这里必须赋值</span></span><br><span class="line"><span class="comment">//		int b = (int)(Math.random()*100);</span></span><br><span class="line"><span class="comment">//		Arrays.fill(a, b);  二维不能填充；</span></span><br><span class="line">		System.out.println(<span class="string">"排序前："</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;<span class="number">8</span>; j++) &#123;</span><br><span class="line">				a[i][j] =(<span class="keyword">int</span>)(Math.random()*<span class="number">100</span>);<span class="comment">//给二维数组赋值；</span></span><br><span class="line">				System.out.print(+a[i][j]+<span class="string">"\t"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">			</span><br><span class="line">			System.arraycopy(a[i], <span class="number">0</span>, b, i*<span class="number">8</span>, a[i].length);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		Arrays.sort(b);</span><br><span class="line">		System.out.println(<span class="string">"排序后："</span>+Arrays.toString(b));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">			System.arraycopy(b, i*<span class="number">8</span>, a[i],<span class="number">0</span>,<span class="number">8</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"新的二维数组："</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">8</span>; j++) &#123;</span><br><span class="line">				System.out.print(a[i][j]+<span class="string">"\t"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://how2j.cn/p/5505" target="_blank" rel="noopener">原文来源</a></p>
 ]]></content>
       <categories>
-        <category>hexo</category>
+        <category>java</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
-    <title>idea搭建maven中遇到的错误</title>
-    <url>/2020/08/21/mavenbuilderro/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Maven项目架构管理工具：<br>Maven的核心思想：<strong>约定大于配置</strong>,有约束，不要去违反。(来自狂神老师的教导)<br>下面是我在 idea搭建maven中遇到的错误,可以还有错误忘记写了，不是很全面请见谅。</p>
+    <title>java数据类型</title>
+    <url>/2020/04/24/java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>java的数据类型可分为两大类：<br>基本数据类型（primitive data type）和引用数据类型（referece data type)</p>
 <a id="more"></a>
-<h3 id="maven默认web项目中的web-xml版本问题"><a href="#maven默认web项目中的web-xml版本问题" class="headerlink" title="maven默认web项目中的web.xml版本问题"></a>maven默认web项目中的web.xml版本问题</h3><p>   1.1问题：和启动tomcat版本冲突<br>   1.2解决方法：替换为tomcat的版本<br><img src="https://ftp.bmp.ovh/imgs/2020/08/88084f42b60aff28.png" alt=""></p>
-<h3 id="Error-java-Compliation-falied-internal-java-compiler-error-或无效的项目发行版本-13"><a href="#Error-java-Compliation-falied-internal-java-compiler-error-或无效的项目发行版本-13" class="headerlink" title="Error:java:Compliation falied:internal java compiler error.或无效的项目发行版本:13"></a>Error:java:Compliation falied:internal java compiler error.或无效的项目发行版本:13</h3><p>解决方法：项目的和文件里的冲突了 改成一样的就好了<br>路径：Settings-&gt;Build,Execution,Deployment-&gt;Compiler-&gt;Java Compiler<br><img src="https://ftp.bmp.ovh/imgs/2020/08/721c99808cdab0ad.png" alt="compiler"></p>
-<h3 id="警告：No-archetype-found-in-remote-catalog-Defaulting-to-internal-catalog"><a href="#警告：No-archetype-found-in-remote-catalog-Defaulting-to-internal-catalog" class="headerlink" title="警告：No archetype found in remote catalog. Defaulting to internal catalog."></a>警告：No archetype found in remote catalog. Defaulting to internal catalog.</h3><pre><code>解决方法：https://blog.csdn.net/AdminGuan/article/details/103216314</code></pre><h3 id="报错Cannot-resolve-plugin-org-apache-maven-plugins-maven-compiler-plugin-3-1"><a href="#报错Cannot-resolve-plugin-org-apache-maven-plugins-maven-compiler-plugin-3-1" class="headerlink" title="报错Cannot resolve plugin org.apache.maven.plugins:maven-compiler-plugin:3.1"></a>报错Cannot resolve plugin org.apache.maven.plugins:maven-compiler-plugin:3.1</h3><pre><code>报错原因：本地maven的配置文件和仓库地址不一致
-解决方法：注意选择自己的maven版本，将下面图中的override勾选，然后选择自己电脑本地的Maven配置文件和本地maven的仓库地址</code></pre><p><img src="https://ftp.bmp.ovh/imgs/2020/08/5e4ccaed2168a3d9.png" alt="maven仓库配置"></p>
-<h3 id="IDEA中每次都要重复配置Maven"><a href="#IDEA中每次都要重复配置Maven" class="headerlink" title="IDEA中每次都要重复配置Maven"></a>IDEA中每次都要重复配置Maven</h3><p>解决方法：在IDEA中的全局默认配置中去配置<br>在左上角new那里的close project关闭项目，之后打开右下角的configure-&gt;Settings<br><img src="https://ftp.bmp.ovh/imgs/2020/08/75abf55bd8d62b0a.png" alt=""><br>找到Maven的仓库配置，注意选择自己的maven版本，将下面图中的override勾选，然后选择自己电脑本地的Maven配置文件和本地maven的仓库地址<br><img src="https://ftp.bmp.ovh/imgs/2020/08/3dfae78226506764.png" alt=""></p>
-<h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h3><p>1.maven的pom.xml配置文件记得jdk版本改成你使用的版本(推荐1.8)</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">    &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">    &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br></pre></td></tr></table></figure>
-
-<p>参考文章：<br><a href="https://blog.csdn.net/qq_45309297/article/details/106436535" target="_blank" rel="noopener">https://blog.csdn.net/qq_45309297/article/details/106436535</a><br><a href="https://blog.csdn.net/AdminGuan/article/details/103216314" target="_blank" rel="noopener">https://blog.csdn.net/AdminGuan/article/details/103216314</a><br><a href="https://blog.csdn.net/AdminGuan/article/details/103216314" target="_blank" rel="noopener">https://blog.csdn.net/AdminGuan/article/details/103216314</a><br><a href="https://blog.csdn.net/weixin_42030357/article/details/92097971" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42030357/article/details/92097971</a><br><a href="https://www.cnblogs.com/loufangcheng/p/12861762.html" target="_blank" rel="noopener">https://www.cnblogs.com/loufangcheng/p/12861762.html</a></p>
+<h3 id="基本数据类型（primitive-data-type）："><a href="#基本数据类型（primitive-data-type）：" class="headerlink" title="基本数据类型（primitive data type）："></a>基本数据类型（primitive data type）：</h3><p>-整数类型（byte short int long）<br>型(java语言的整型常数默认为int型，声明long型常量可以后加 ‘l’或’L’)<br>浮点类型(float double)<br>字符型（char）<br>布尔型(boolean)        </p>
+<h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><p>类（class）(String是引用类型)<br>接口(interface)<br>数组</p>
+<p>$ //引用数据类型的大小统一为4个字节,记录的是其引用对象的地址</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th align="left">占用存储空间</th>
+<th align="center">表示范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td align="left">1字节</td>
+<td align="center">（=8位=2⑻=256字）    -2⑺ ~ 2⑺-1  （-128~127)</td>
+</tr>
+<tr>
+<td>short</td>
+<td align="left">2字节</td>
+<td align="center">-2⒂ ~ 2⒂-1      (-32768~32767)</td>
+</tr>
+<tr>
+<td>int</td>
+<td align="left">4字节</td>
+<td align="center">-2<em>(31幂)~2</em>(31幂)（ -2127283648~2147483647）（约21亿）</td>
+</tr>
+<tr>
+<td>long</td>
+<td align="left">8字节</td>
+<td align="center">-2<em>(63) ~ 2</em>(63)-1</td>
+</tr>
+<tr>
+<td>char</td>
+<td align="left">2字节</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>boolean</td>
+<td align="left">1位</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>float</td>
+<td align="left">4字节</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>double</td>
+<td align="left">8字节</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p> 基本数据类型的类型转换可分为：<br>自动类型转换：容量小的数据类型可以自动转换为容量大的数据类型<br>强制类型转换：用于显式的转换一个数值的类型，语法格式：(type)var</p>
 ]]></content>
       <categories>
-        <category>javaEE</category>
+        <category>java</category>
       </categories>
       <tags>
-        <tag>maven</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>控制语句</title>
+    <url>/2020/04/24/java%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>控制语句在基础中还是比较重要，还带那么一点有趣</p>
+<a id="more"></a>
+<h2 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h2><h3 id="选择结构："><a href="#选择结构：" class="headerlink" title="选择结构："></a>选择结构：</h3><p>if单选泽结构<br>if-else 双选择结构<br>if-else if - else多选择结构<br>switch结构</p>
+<h3 id="循环结构："><a href="#循环结构：" class="headerlink" title="循环结构："></a>循环结构：</h3><p>while循环<br>do-while循环（先执行再判断，为true继续执行，否则停止）<br>for循环（初始化声明的变量作用域为整个for循环体内，在循环体外无法访问）<br>嵌套循环（  在一个循环语句内部再嵌套一个或多个循环，称为嵌套循环。<br>while、do-while与for循环可以任意嵌套多层。）<br>break和continue语句<br>带标签的break和continue</p>
+<h3 id="下面是几个控制语句的例题"><a href="#下面是几个控制语句的例题" class="headerlink" title="下面是几个控制语句的例题"></a>下面是几个控制语句的例题</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">* 复利公式：</span><br><span class="line">F = p* ( (<span class="number">1</span>+r)^n );</span><br><span class="line">F 最终收入 p 本金 r 年利率 n 存了多少年</span><br><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Millionaire</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> p = <span class="number">1000</span>,n;</span><br><span class="line">		<span class="keyword">float</span> r = <span class="number">0.2F</span>;</span><br><span class="line">		<span class="keyword">int</span> F=<span class="number">0</span>  ;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; F&lt;=<span class="number">100000</span>; i++) &#123;</span><br><span class="line">			F=(<span class="keyword">int</span>) (p*((r/<span class="number">12</span>)+<span class="number">1</span>));</span><br><span class="line">			p+=<span class="number">1000</span>;</span><br><span class="line">			<span class="keyword">if</span> (F&gt;=<span class="number">100000</span>) &#123;</span><br><span class="line">				n=i/<span class="number">12</span>;</span><br><span class="line">				System.out.println(n);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">* 黄金分割点：</span><br><span class="line"> * 寻找某两个数相除，其结果 离黄金分割点 <span class="number">0.618</span>最近</span><br><span class="line">分母和分子不能同时为偶数</span><br><span class="line">分母和分子 取值范围在[<span class="number">1</span>-<span class="number">20</span>]</span><br><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoldSenectionRatio</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 寻找某两个数相除，其结果 离黄金分割点 0.618最近</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="comment">// 分母和分子不能同时为偶数</span></span><br><span class="line">        <span class="comment">// 分母和分子 取值范围在[1-20]</span></span><br><span class="line">        <span class="keyword">int</span> range = <span class="number">20</span>; <span class="comment">// 取值范围</span></span><br><span class="line">        <span class="keyword">float</span> breakPoint = <span class="number">0.618f</span>; <span class="comment">// 黄金分割点</span></span><br><span class="line"> </span><br><span class="line">        <span class="keyword">float</span> minDiff = <span class="number">100</span>; <span class="comment">// 离黄金分割点的差值</span></span><br><span class="line">        <span class="keyword">int</span> answerFenzi = <span class="number">0</span>; <span class="comment">// 找到的分子</span></span><br><span class="line">        <span class="keyword">int</span> answerFenmu = <span class="number">0</span>; <span class="comment">// 找到的分母</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> fenzi = <span class="number">1</span>; fenzi &lt;= range; fenzi++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> fenmu = <span class="number">1</span>; fenmu &lt;= range; fenmu++) &#123;</span><br><span class="line">                <span class="comment">// 分母和分子不能同时为偶数</span></span><br><span class="line">                <span class="keyword">if</span> (<span class="number">0</span> == fenzi % <span class="number">2</span> &amp; <span class="number">0</span> == fenmu % <span class="number">2</span>)</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line"> </span><br><span class="line">                <span class="comment">// 取值</span></span><br><span class="line">                <span class="keyword">float</span> value = (<span class="keyword">float</span>) fenzi / fenmu;</span><br><span class="line">                <span class="comment">// 取离黄金分割点的差值</span></span><br><span class="line">                <span class="keyword">float</span> diff = value - breakPoint;</span><br><span class="line">                <span class="comment">// 绝对值</span></span><br><span class="line">                diff = diff &lt; <span class="number">0</span> ? <span class="number">0</span> - diff : diff;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//                 找出最小的差值</span></span><br><span class="line">                <span class="keyword">if</span> (diff &lt; minDiff) &#123;</span><br><span class="line">                    minDiff = diff;</span><br><span class="line">                    answerFenzi = fenzi;</span><br><span class="line">                    answerFenmu = fenmu;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        System.out.println(<span class="string">"离黄金分割点("</span> + breakPoint + <span class="string">")最近的两个数相除是:"</span> + answerFenzi + <span class="string">"/"</span> + answerFenmu + <span class="string">"="</span></span><br><span class="line">                + ((<span class="keyword">float</span>) answerFenzi / answerFenmu));</span><br><span class="line"> </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="comment">/*计算数的阶乘*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Factorial</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		 Scanner s = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">	        System.out.println(<span class="string">"请输入一个整数："</span>);</span><br><span class="line">	        <span class="keyword">int</span> n = s.nextInt();</span><br><span class="line">	        <span class="keyword">int</span> fac = <span class="number">1</span>;</span><br><span class="line">	        <span class="keyword">while</span>(n&gt;=<span class="number">1</span>)&#123;</span><br><span class="line">	            fac *=n;</span><br><span class="line">	            n--;</span><br><span class="line">	        &#125;</span><br><span class="line">	        System.out.println(<span class="string">"阶乘是:"</span> + fac);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*水仙花数定义：</span></span><br><span class="line"><span class="comment">1. 一定是3位数</span></span><br><span class="line"><span class="comment">2. 每一位的立方，加起来恰好是这个数本身，比如153=1*1*1+5*5*5+3*3*3</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Daffodil</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> daffodil;</span><br><span class="line">		System.out.println(<span class="string">"打印所有的水仙花数："</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> a = <span class="number">0</span>; a &lt; <span class="number">10</span>; a++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> b = <span class="number">0</span>; b &lt; <span class="number">10</span>; b++) &#123;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; <span class="number">10</span>; c++) &#123;</span><br><span class="line">					<span class="keyword">if</span> (a*<span class="number">100</span>+b*<span class="number">10</span>+c == (a*a*a)+(b*b*b)+(c*c*c)&amp;&amp;a*<span class="number">100</span>+b*<span class="number">10</span>+c&gt;<span class="number">99</span>) &#123;</span><br><span class="line">						daffodil =a*<span class="number">100</span>+b*<span class="number">10</span>+c;</span><br><span class="line">						System.out.println(daffodil);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://how2j.cn/p/5504" target="_blank" rel="noopener">例题来源</a></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -1163,6 +1105,64 @@
       </categories>
       <tags>
         <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决next主题菜单栏显示问号</title>
+    <url>/2020/05/01/nexttubiao/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>菜单栏和翻页按钮小图标显示不出来的问题终于解决了。</p>
+<a id="more"></a>
+<h3 id="解决next主题菜单栏显示问号"><a href="#解决next主题菜单栏显示问号" class="headerlink" title="解决next主题菜单栏显示问号"></a>解决next主题菜单栏显示问号</h3><p><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/%E5%9B%BE%E6%A0%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/1.jpg" alt="image text"><br><img src="https://tuchuang-1301263664.cos.ap-nanjing.myqcloud.com/%E5%9B%BE%E6%A0%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/2.jpg" alt="image text"><br><img src="" alt="image text"><br>修改主题配置文件下(themes/_config.yml)的menu，每一个路径后面加||然后加图标</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F;||home</span><br><span class="line">  # about: &#x2F;about&#x2F;||user</span><br><span class="line">  # tags: &#x2F;tags&#x2F;||tags</span><br><span class="line">  #categories: &#x2F;categories&#x2F; || th</span><br><span class="line">  archives: &#x2F;archives&#x2F;||archive</span><br><span class="line">  top: &#x2F;top&#x2F;||signal</span><br><span class="line">  links: &#x2F;links&#x2F;||user-plus</span><br><span class="line">  #schedule: &#x2F;schedule&#x2F; || calendar</span><br><span class="line">  # books: &#x2F;books&#x2F;||book</span><br><span class="line">  messageboard: &#x2F;messageboard&#x2F; ||comment</span><br><span class="line">  #sitemap: &#x2F;sitemap.xml || sitemap</span><br><span class="line">  #commonweal: &#x2F;404&#x2F; || heartbeat</span><br><span class="line"></span><br><span class="line"># Enable&#x2F;Disable menu icons.</span><br><span class="line">menu_icons:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
+<p>注意: /与||之间是没有空格的!</p>
+<h3 id="解决next主题下翻页按钮图标无法显示问题"><a href="#解决next主题下翻页按钮图标无法显示问题" class="headerlink" title="解决next主题下翻页按钮图标无法显示问题"></a>解决next主题下翻页按钮图标无法显示问题</h3><p>修改themes/layout/_partials/pagination.swig文件，直接改为&lt;与&gt;</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#123;</span><br><span class="line">     paginator(&#123;</span><br><span class="line">       prev_text: &#39;&lt;&#39;,</span><br><span class="line">       next_text: &#39;&gt;&#39;,</span><br><span class="line">       mid_size: 1</span><br><span class="line">     &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>参考文章：<br><a href="https://www.cnblogs.com/xiejava/p/12456273.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiejava/p/12456273.html</a><br><a href="https://blog.csdn.net/qq_36852780/article/details/104657642" target="_blank" rel="noopener">https://blog.csdn.net/qq_36852780/article/details/104657642</a></p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在jsp中使用include指令引用html页面乱码处理方式</title>
+    <url>/2020/11/16/jspIncludeEncoding/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1、将HTML页面，换成JSP页面，更改编码模式与Tomcat编码模式一致。"><a href="#1、将HTML页面，换成JSP页面，更改编码模式与Tomcat编码模式一致。" class="headerlink" title="1、将HTML页面，换成JSP页面，更改编码模式与Tomcat编码模式一致。"></a>1、将HTML页面，换成JSP页面，更改编码模式与Tomcat编码模式一致。</h3><a id="more"></a>
+<h3 id="2、在html文件的html的head标签或者jsp下加入这行代码"><a href="#2、在html文件的html的head标签或者jsp下加入这行代码" class="headerlink" title="2、在html文件的html的head标签或者jsp下加入这行代码"></a>2、在html文件的html的head标签或者jsp下加入这行代码</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">	&lt;%<span class="meta">@page</span> pageEncoding=<span class="string">"UTF-8"</span>%&gt;</span><br><span class="line">``</span><br><span class="line">pageEncoding是jsp文件本身的编码，是指定web容器将jsp编译成java文件时采用什么编码读取jsp文件。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 3、还有一种方法就是在web.xml中去统一配置pageEncoding的编码,在web-app标签里添加如下配置：</span><br><span class="line">```xml</span><br><span class="line">&lt;jsp-config&gt;</span><br><span class="line">	&lt;jsp-property-group&gt;</span><br><span class="line">		&lt;description&gt;html encoding&lt;/description&gt;</span><br><span class="line">		&lt;display-name&gt;JSPConfiguration&lt;/display-name&gt;</span><br><span class="line">		&lt;url-pattern&gt;*.html&lt;/url-pattern&gt;</span><br><span class="line">		&lt;el-ignored&gt;true&lt;/el-ignored&gt;</span><br><span class="line">		&lt;page-encoding&gt;UTF-8&lt;/page-encoding&gt;</span><br><span class="line">		&lt;scripting-invalid&gt;false&lt;/scripting-invalid&gt;</span><br><span class="line">		&lt;include-prelude&gt;&lt;/include-prelude&gt;</span><br><span class="line">		&lt;include-coda&gt;&lt;/include-coda&gt;</span><br><span class="line">	&lt;/jsp-property-group&gt;</span><br><span class="line">&lt;/jsp-config&gt;</span><br></pre></td></tr></table></figure>
+<p>以上三种是在网络搜索到的解决方法:</p>
+<p>如果你是使用jsp标签引入的html界面的话建议使用第一种方法。因为jsp标签引入文件属于拼接页面，都是独立的，所有第二种方法的设置无效，第三种测试一下报500错误。<br>jsp指令的：&lt;%@ nclude file=””%&gt; 建议使用第二和第三种方法。不能一起使用会冲突。</p>
+<p>感谢博主提供的宝贵经验：<a href="https://blog.csdn.net/yan245294305/article/details/83623123" target="_blank" rel="noopener">https://blog.csdn.net/yan245294305/article/details/83623123</a><br>    <a href="https://www.cnblogs.com/xiaobudong/p/7203933.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaobudong/p/7203933.html</a></p>
+]]></content>
+      <categories>
+        <category>javaEE</category>
+      </categories>
+      <tags>
+        <tag>jsp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>idea搭建maven中遇到的错误</title>
+    <url>/2020/08/21/mavenbuilderro/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Maven项目架构管理工具：<br>Maven的核心思想：<strong>约定大于配置</strong>,有约束，不要去违反。(来自狂神老师的教导)<br>下面是我在 idea搭建maven中遇到的错误,可以还有错误忘记写了，不是很全面请见谅。</p>
+<a id="more"></a>
+<h3 id="maven默认web项目中的web-xml版本问题"><a href="#maven默认web项目中的web-xml版本问题" class="headerlink" title="maven默认web项目中的web.xml版本问题"></a>maven默认web项目中的web.xml版本问题</h3><p>   1.1问题：和启动tomcat版本冲突<br>   1.2解决方法：替换为tomcat的版本<br><img src="https://ftp.bmp.ovh/imgs/2020/08/88084f42b60aff28.png" alt=""></p>
+<h3 id="Error-java-Compliation-falied-internal-java-compiler-error-或无效的项目发行版本-13"><a href="#Error-java-Compliation-falied-internal-java-compiler-error-或无效的项目发行版本-13" class="headerlink" title="Error:java:Compliation falied:internal java compiler error.或无效的项目发行版本:13"></a>Error:java:Compliation falied:internal java compiler error.或无效的项目发行版本:13</h3><p>解决方法：项目的和文件里的冲突了 改成一样的就好了<br>路径：Settings-&gt;Build,Execution,Deployment-&gt;Compiler-&gt;Java Compiler<br><img src="https://ftp.bmp.ovh/imgs/2020/08/721c99808cdab0ad.png" alt="compiler"></p>
+<h3 id="警告：No-archetype-found-in-remote-catalog-Defaulting-to-internal-catalog"><a href="#警告：No-archetype-found-in-remote-catalog-Defaulting-to-internal-catalog" class="headerlink" title="警告：No archetype found in remote catalog. Defaulting to internal catalog."></a>警告：No archetype found in remote catalog. Defaulting to internal catalog.</h3><pre><code>解决方法：https://blog.csdn.net/AdminGuan/article/details/103216314</code></pre><h3 id="报错Cannot-resolve-plugin-org-apache-maven-plugins-maven-compiler-plugin-3-1"><a href="#报错Cannot-resolve-plugin-org-apache-maven-plugins-maven-compiler-plugin-3-1" class="headerlink" title="报错Cannot resolve plugin org.apache.maven.plugins:maven-compiler-plugin:3.1"></a>报错Cannot resolve plugin org.apache.maven.plugins:maven-compiler-plugin:3.1</h3><pre><code>报错原因：本地maven的配置文件和仓库地址不一致
+解决方法：注意选择自己的maven版本，将下面图中的override勾选，然后选择自己电脑本地的Maven配置文件和本地maven的仓库地址</code></pre><p><img src="https://ftp.bmp.ovh/imgs/2020/08/5e4ccaed2168a3d9.png" alt="maven仓库配置"></p>
+<h3 id="IDEA中每次都要重复配置Maven"><a href="#IDEA中每次都要重复配置Maven" class="headerlink" title="IDEA中每次都要重复配置Maven"></a>IDEA中每次都要重复配置Maven</h3><p>解决方法：在IDEA中的全局默认配置中去配置<br>在左上角new那里的close project关闭项目，之后打开右下角的configure-&gt;Settings<br><img src="https://ftp.bmp.ovh/imgs/2020/08/75abf55bd8d62b0a.png" alt=""><br>找到Maven的仓库配置，注意选择自己的maven版本，将下面图中的override勾选，然后选择自己电脑本地的Maven配置文件和本地maven的仓库地址<br><img src="https://ftp.bmp.ovh/imgs/2020/08/3dfae78226506764.png" alt=""></p>
+<h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h3><p>1.maven的pom.xml配置文件记得jdk版本改成你使用的版本(推荐1.8)</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">    &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">    &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br></pre></td></tr></table></figure>
+
+<p>参考文章：<br><a href="https://blog.csdn.net/qq_45309297/article/details/106436535" target="_blank" rel="noopener">https://blog.csdn.net/qq_45309297/article/details/106436535</a><br><a href="https://blog.csdn.net/AdminGuan/article/details/103216314" target="_blank" rel="noopener">https://blog.csdn.net/AdminGuan/article/details/103216314</a><br><a href="https://blog.csdn.net/AdminGuan/article/details/103216314" target="_blank" rel="noopener">https://blog.csdn.net/AdminGuan/article/details/103216314</a><br><a href="https://blog.csdn.net/weixin_42030357/article/details/92097971" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42030357/article/details/92097971</a><br><a href="https://www.cnblogs.com/loufangcheng/p/12861762.html" target="_blank" rel="noopener">https://www.cnblogs.com/loufangcheng/p/12861762.html</a></p>
+]]></content>
+      <categories>
+        <category>javaEE</category>
+      </categories>
+      <tags>
+        <tag>maven</tag>
       </tags>
   </entry>
   <entry>
