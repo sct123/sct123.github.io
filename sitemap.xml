@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://howsyc.cn/about/index.html</loc>
+    
+    <lastmod>2021-02-23T11:28:15.929Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://howsyc.cn/2020/11/16/jspIncludeEncoding/</loc>
     
     <lastmod>2020-11-17T09:17:59.033Z</lastmod>
@@ -180,13 +187,6 @@
     <loc>https://howsyc.cn/messageboard/index.html</loc>
     
     <lastmod>2020-05-22T18:42:14.093Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://howsyc.cn/about/index.html</loc>
-    
-    <lastmod>2020-05-22T14:32:24.398Z</lastmod>
     
   </url>
   
